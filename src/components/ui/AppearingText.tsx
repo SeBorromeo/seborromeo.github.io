@@ -1,22 +1,38 @@
-import { useRef } from 'react';
+import { FC } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+
 import styles from './AppearingText.module.scss'
 
-export default function AppearingText({ text }: { text: string }) {
-    const textRef = useRef(null);
+interface Props{
+    text: string;
+    stagger?: number;
+    delay?: number;
+    duration?: number;
+}
 
+const AppearingText:FC<Props> = ({text, stagger = 0.05, delay = 0.2, duration = 0.4}) => {
     useGSAP(() => {
-        gsap.to(textRef.current!, {
-            y: 0,
-            stagger: 0.05,
-            delay: 0.2,
-            duration: 0.8,
-            ease: 'power1.inOut'
+        gsap.from(`.${styles.char}`, {
+            y: 80,
+            stagger: stagger,
+            delay: delay,
+            duration: duration,
+            ease: 'power4.out'
         });
-    }, {scope: textRef});
+    });
+
+    const charArray: string[] = text.split('');
 
     return (
-        <h1 ref={textRef} className={styles.text}>{text}</h1>
+        <h1 className={styles.text}>
+            <div className={styles.line}>
+                {charArray.map((char, index) => (
+                    <div key={index} className={styles.char}>{char === ' ' ? '\u00A0' : char}</div>
+                ))}
+            </div>
+        </h1>
     );
 }
+
+export default AppearingText;
