@@ -1,9 +1,12 @@
+'use client'
+
+import AppearingText from "@/components/ui/AppearingText";
 import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>Hi, I&apos;m Sebastian</h1>
+      <AppearingText text="Hi, I'm Sebastian"/>
       <p>Computer Science Student at The University of Virginia</p>
     </main>
   );
