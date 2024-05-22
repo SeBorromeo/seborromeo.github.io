@@ -9,12 +9,14 @@ interface Props{
     stagger?: number;
     delay?: number;
     duration?: number;
+    className?: string;
 }
 
-const AppearingText:FC<Props> = ({text, stagger = 0.05, delay = 0.2, duration = 0.4}) => {
+const AppearingText:FC<Props> = ({text, stagger = 0.05, delay = 0.2, duration = 0.4, className}) => {
     useGSAP(() => {
-        gsap.from(`.${styles.char}`, {
-            y: 80,
+        console.log(className)
+        gsap.to(`.${styles.char}`, {
+            y: 0,
             stagger: stagger,
             delay: delay,
             duration: duration,
@@ -28,7 +30,7 @@ const AppearingText:FC<Props> = ({text, stagger = 0.05, delay = 0.2, duration = 
         <h1 className={styles.text}>
             <div className={styles.line}>
                 {charArray.map((char, index) => (
-                    <div key={index} className={styles.char}>{char === ' ' ? '\u00A0' : char}</div>
+                    <div key={index} className={`${styles.char} ${className}`}>{char === ' ' ? '\u00A0' : char}</div>
                 ))}
             </div>
         </h1>
