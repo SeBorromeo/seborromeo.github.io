@@ -10,26 +10,51 @@ $title-color: #727272;
 
 .section1 {
     position: relative;
-    display: inline-block;
+    display: flex;
     width: 100%;
     height: 100vh;
+    padding: 150px 50px;
+    background-image: url("/images/section1-gradient.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.section1_background {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+.name_container {
+    flex: 0 0 50%;
+}
+
+.photo_container {
+    flex: 1;
 }
 
 .name {
     color: $name-color;
-    font-family: 'Poppins';
-    font-size: 5rem;
+    font-size: 5.3vw;
+    font-weight: 500;
 }
 
 .title {
     color: $title-color;
+    font-size: 2.3vw;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    margin-bottom: 1vw;
+}
+
+.bio {
+    font-size: 1.8vw;
+    font-weight: 400;
+    color: var(--text-color-light);
+}
+
+.resume_button {
+    display: block;
+    width: 12vw;
+    text-align: center;
+    font-size: 1vw;
+    background-color: #3F3F3F;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
 }

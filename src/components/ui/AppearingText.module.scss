@@ -1,6 +1,5 @@
 .text { 
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 5.9rem;
 }
 
 .line {
@@ -8,5 +7,5 @@
 }
 
 .char {
-    transform: translateY(100px);
+    transform: translateY(10vw); /*TODO: someway that calculates how low it goes based on current text size */
 }
