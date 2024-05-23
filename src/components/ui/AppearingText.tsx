@@ -14,7 +14,6 @@ interface Props{
 
 const AppearingText:FC<Props> = ({text, stagger = 0.05, delay = 0.2, duration = 0.4, className}) => {
     useGSAP(() => {
-        console.log(className)
         gsap.to(`.${styles.char}`, {
             y: 0,
             stagger: stagger,

@@ -1,0 +1,35 @@
+.nav_container {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    padding: 22px 35px;
+
+    color: var(--header2-color);
+}
+
+.home_container {
+    display: flex;
+    align-items: center;
+
+    h2 {
+        font-weight: 500;
+    }
+}
+
+.contact_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 330px;
+
+    h3 {
+        font-weight: 500;
+        color: var(--header3-color);
+    }
+
+    h2 {
+        font-weight: 500;
+    }
+}
