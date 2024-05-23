@@ -1,3 +1,5 @@
+$main-header-color: rgb(145, 145, 160);
+
 .nav_container {
     position: fixed;
     display: flex;
@@ -6,8 +8,10 @@
     width: 100%;
     padding: 22px 40px;
     z-index: 1;
+    
+    color: $main-header-color;
 
-    color: var(--header2-color);
+    mix-blend-mode: difference;
 }
 
 .home_container {
