@@ -21,6 +21,9 @@ export default function Home() {
 
           </div>
         </div>
+        <div className={styles.section2}>
+
+        </div>
       </main>
     </>
   );

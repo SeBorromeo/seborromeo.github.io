@@ -10,7 +10,6 @@ const Navbar:FC = () => {
         
     });
 
-    
     return (
         <nav className={styles.nav_container}>
             <div className={styles.home_container}>
