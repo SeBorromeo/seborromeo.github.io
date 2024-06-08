@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home() {
   const headshotStyle = {
-    borderRadius: '20%',
+    borderRadius: '5%',
   }
 
   return (
@@ -23,7 +23,7 @@ export default function Home() {
         </div>
         <div className={styles.photo_column}>
           <div className={styles.photo_container}>
-            <Image src="/images/headshot.png" alt="Photo of Sebastian" layout="fill" style={headshotStyle}/>
+            <Image src="/images/blank-profile-pic.webp" alt="Photo of Sebastian" layout="fill" style={headshotStyle}/>
           </div>
         </div>
       </header>
