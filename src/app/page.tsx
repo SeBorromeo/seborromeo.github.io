@@ -1,5 +1,3 @@
-'use client'
-
 import Navbar from "@/components/layout/Navbar";
 import AppearingText from "@/components/ui/AppearingText";
 

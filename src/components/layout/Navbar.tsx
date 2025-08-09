@@ -1,6 +1,7 @@
+'use client';
+
 import { FC } from 'react'
 import Link from 'next/link';
-import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 import styles from './Navbar.module.scss'
@@ -19,7 +20,7 @@ const Navbar:FC = () => {
             </div>
             <div className={styles.contact_container}>
                 <h3>AVAILABLE TO WORK</h3>
-                <h2><a href="mailto:uwg3xs@virginia.edu">CONTACT</a></h2>
+                <h2><a href="mailto:sebastiangborromeo@gmail.com">CONTACT</a></h2>
             </div>
         </nav>
     );
