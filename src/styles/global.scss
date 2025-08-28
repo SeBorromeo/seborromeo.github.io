@@ -5,12 +5,12 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 20, 20, 20;
 
-    --header1-color: #3F3F3F;
+    --header1-color: #3f3f3f;
     --header2-color: #474747;
     --header3-color: #727272;
-    --text-color-light: #FFFFFF;
+    --text-color-light: #ffffff;
 }
-  
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -25,12 +25,7 @@ body {
 
 body {
     color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgb(var(--background-end-rgb))
-        )
-        rgb(var(--background-start-rgb));
+    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 a {
@@ -38,7 +33,9 @@ a {
     text-decoration: none;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--font-poppins);
 }
 
