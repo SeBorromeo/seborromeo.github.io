@@ -8,14 +8,18 @@ import { useGSAP } from '@gsap/react';
 import { SplitText } from "gsap/SplitText";
 
 import { useIntroTimeline } from '../layout/IntroAnimationLayout/IntroAnimationLayout';
+import { useRef } from 'react';
 
 gsap.registerPlugin(SplitText);
 
 export default function Header() {
+    const imageRef = useRef<HTMLDivElement>(null);
     const masterTl = useIntroTimeline();
     
     useGSAP(() => {
         let tl = gsap.timeline();
+
+        tl.from(imageRef.current, { width: '78%', ease: 'power2.inOut', duration: 1 })
 
         let name = SplitText.create([`.${styles.name}`, '.name'], { // TODO: Figure out server-side rendering
             type: 'chars',
@@ -85,7 +89,7 @@ export default function Header() {
                 </a>
             </div>
             <div data-speed="clamp(0.7)" className={styles.photo_column}>
-                <div className={styles.photo_container}>
+                <div ref={imageRef} className={styles.photo_container}>
                     <Image
                         src="/images/blank-profile-pic.webp"
                         alt="Photo of Sebastian"
