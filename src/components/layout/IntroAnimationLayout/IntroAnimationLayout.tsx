@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useRef, useContext } from "react";
 import gsap from "gsap";
+import { createContext, useRef, useContext } from "react";
 import IntroOverlay from "./IntroOverlay/IntroOverlay";
 
 export const TimelineContext = createContext<gsap.core.Timeline | null>(null);
@@ -11,7 +11,7 @@ export default function IntroAnimationLayout({ children }: { children: React.Rea
 
     return (
         <TimelineContext.Provider value={masterTl.current}>
-            <IntroOverlay timeline={masterTl.current}/>
+            <IntroOverlay masterTl={masterTl.current}/>
             {children}
         </TimelineContext.Provider>
     );

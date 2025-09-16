@@ -6,56 +6,57 @@ import { SplitText } from "gsap/SplitText";
 
 import styles from './header.module.scss';
 import { useGSAP } from '@gsap/react';
+import { useIntroTimeline } from '../layout/IntroAnimationLayout/IntroAnimationLayout';
 
 gsap.registerPlugin(SplitText);
 
 export default function Header() {
-
+    const masterTl = useIntroTimeline();
+    
     useGSAP(() => {
+        let tl = gsap.timeline();
+
         let name = SplitText.create([`.${styles.name}`, '.name'], { // TODO: Figure out server-side rendering
             type: 'chars',
             mask: "chars", 
         });
 
-        gsap.set([`.${styles.name}`, `.${styles.title}`, `.${styles.bio}`], {visibility: 'inherit'});
-
-        gsap.from(name.chars, {
-            y: "100px",
+        tl.from(name.chars, {
+            y: "200%",
             stagger: 0.02,
             duration: 1,
             ease: 'power2.out',
             onComplete: () => name.revert()
-        });
+        }, 0);
 
         let subtitle = SplitText.create(`.${styles.title}`, { 
             type: 'lines',
             mask: "lines", 
         });
 
-        gsap.from(subtitle.lines, {
-            y: "100vh",
-            autoAlpha: 0,
+        tl.from(subtitle.lines, {
+            y: "200%",
             stagger: 0.03,
             duration: 1,
-            delay: 0.2,
             ease: 'power2.out',
-        });
+        }, 0.1);
 
         SplitText.create(`.${styles.bio}`, { 
             type: 'words, lines',
             autoSplit: true,   
             mask: "lines", 
             onSplit: (self) => {
-                return gsap.from(self.lines, {
-                    y: "100vh",
+                return tl.from(self.lines, {
+                    y: "200%",
                     stagger: 0.08,
                     duration: 1,
-                    delay: 0.4,
                     ease: 'power2.out',
                     onComplete: () => self.revert()
-                });
+                }, 0.2);
             },
         });
+
+        masterTl.add(tl, "introEnd")
     });
 
     const headshotStyle = {
@@ -65,7 +66,7 @@ export default function Header() {
     return (
         <header className={styles.section1}>
             <div className={styles.name_column}>
-                <h1 data-speed="clamp(0.75)" className={styles.name}>Hi, I&apos;m Sebastian!</h1>
+                <h1 data-speed="clamp(0.74)" className={styles.name}>Hi, I&apos;m Sebastian!</h1>
                 <h2 data-speed="clamp(0.73)" className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
                 <h3 data-speed="clamp(0.72)" className={styles.bio}>
                     Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,

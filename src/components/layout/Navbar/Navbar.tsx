@@ -15,7 +15,7 @@ const Navbar: FC = () => {
         tl.to(navRef.current, {
             opacity: 1,
             duration: 1.5,
-        })
+        }, "introEnd")
     });
 
     return (

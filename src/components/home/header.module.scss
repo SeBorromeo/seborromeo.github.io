@@ -45,7 +45,6 @@
     font-size: 4.6rem;
     font-weight: 500;
     margin-bottom: 0.4rem;
-    visibility: hidden;
 
     @include lg {
         font-size: 3.7rem;
@@ -71,7 +70,6 @@
     font-weight: 500;
     letter-spacing: -0.5px;
     margin-bottom: 2%;
-    visibility: hidden;
 
     @include lg {
         font-size: 1.1rem;
@@ -88,7 +86,6 @@
     font-weight: 400;
     color: var(--text-color-light);
     margin-bottom: 2rem;
-    visibility: hidden;
 
     @include lg {
         font-size: 1.3rem;
