@@ -1,15 +1,17 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Roboto, Roboto_Mono } from 'next/font/google';
 
 import '@/styles/global.scss';
-import Navbar from '@/components/layout/Navbar/Navbar';
-import IntroOverlay from '@/components/layout/IntroAnimationLayout/IntroOverlay/IntroOverlay';
-import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
     variable: '--font-poppins',
     weight: ['400', '500'],
+    subsets: ['latin'],
+});
+const roboto = Roboto_Mono({
+    variable: '--font-roboto-mono',
+    weight: '400',
     subsets: ['latin'],
 });
 

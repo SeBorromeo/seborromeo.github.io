@@ -15,6 +15,8 @@ export default function IntroOverlay( { masterTl }: Props) {
     useGSAP(() => {
         let tl = gsap.timeline();
 
+        tl.delay(3)
+
         tl.to(overlayRef.current, {
             y: '-100%',
             duration: 1.2,
@@ -29,8 +31,9 @@ export default function IntroOverlay( { masterTl }: Props) {
     })
 
     return (
-        <div ref={overlayRef} className={styles.background}>
-            <span>Sebastian Borromeo</span>
+        <div ref={overlayRef} className={styles.overlay_container}>
+            <div className={styles.reveal_text_overlay}></div>
+            <span className={styles.reveal_text}>Sebastian Borromeo</span>
         </div>
     );
 }

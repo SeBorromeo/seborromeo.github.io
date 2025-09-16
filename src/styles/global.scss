@@ -14,7 +14,11 @@
         overflow:hidden;
     }
 }
-    
+
+:root::-webkit-scrollbar {
+  display: none;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;

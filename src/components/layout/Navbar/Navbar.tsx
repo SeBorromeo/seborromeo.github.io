@@ -14,8 +14,8 @@ const Navbar: FC = () => {
     useGSAP(() => {
         tl.to(navRef.current, {
             opacity: 1,
-            duration: 1.5,
-        }, "introEnd")
+            duration: 1.7,
+        }, "introEnd-=0.2")
     });
 
     return (

@@ -1,11 +1,12 @@
 "use client"; 
 
+import styles from './Header.module.scss';
+
 import Image from 'next/image';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { SplitText } from "gsap/SplitText";
 
-import styles from './header.module.scss';
-import { useGSAP } from '@gsap/react';
 import { useIntroTimeline } from '../layout/IntroAnimationLayout/IntroAnimationLayout';
 
 gsap.registerPlugin(SplitText);
@@ -56,7 +57,14 @@ export default function Header() {
             },
         });
 
-        masterTl.add(tl, "introEnd")
+        tl.from(`.${styles.resume_button}`, {
+            transformY: "200px",
+            scaleY: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+        }, 0.2)
+
+        masterTl.add(tl, "introEnd-=0.6")
     });
 
     const headshotStyle = {
