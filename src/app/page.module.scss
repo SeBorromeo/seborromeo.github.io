@@ -1,5 +1,12 @@
 @import 'src/styles/index.scss';
 
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-color: black; //TODO: Make variable
+    z-index: 50;
+}
+
 .main {
     display: flex;
     flex-direction: column;

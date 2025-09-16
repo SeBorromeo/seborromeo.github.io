@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
+
 import '@/styles/global.scss';
+import Navbar from '@/components/layout/Navbar';
+import IntroOverlay from '@/components/home/IntroOverlay/IntroOverlay';
+import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
@@ -15,14 +19,16 @@ export const metadata: Metadata = {
         'Sebastian Borromeo is a rising fourth-year student studying Computer Science and Data Science at The Universiity of Virginia. Explore my portfolio to see my latest projects and work!',
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-            <body className={`${poppins.variable} ${inter.className}`}>{children}</body>
+            <body className={`${poppins.variable} ${inter.className} no-doc-scroll`}>
+                <IntroAnimationLayout>
+                    <IntroOverlay />
+                    <Navbar />
+                    {children}
+                </IntroAnimationLayout>
+            </body>
         </html>
     );
 }

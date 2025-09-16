@@ -9,7 +9,7 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(SplitText);
 
-export default function Header({children}: {children?: React.ReactNode}) {
+export default function Header() {
 
     useGSAP(() => {
         let name = SplitText.create([`.${styles.name}`, '.name'], { // TODO: Figure out server-side rendering
@@ -64,19 +64,18 @@ export default function Header({children}: {children?: React.ReactNode}) {
 
     return (
         <header className={styles.section1}>
-            {children}
             <div className={styles.name_column}>
-                <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
-                <h2 className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
-                <h3 className={styles.bio}>
+                <h1 data-speed="clamp(0.75)" className={styles.name}>Hi, I&apos;m Sebastian!</h1>
+                <h2 data-speed="clamp(0.73)" className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
+                <h3 data-speed="clamp(0.72)" className={styles.bio}>
                     Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
                     PHP, SQL, and RESTful APIs.
                 </h3>
-                <a href="/images/resume.pdf" className={styles.resume_button}>
+                <a data-speed="clamp(0.71)" href="/images/resume.pdf" className={styles.resume_button}>
                     VIEW MY RESUME
                 </a>
             </div>
-            <div className={styles.photo_column}>
+            <div data-speed="clamp(0.7)" className={styles.photo_column}>
                 <div className={styles.photo_container}>
                     <Image
                         src="/images/blank-profile-pic.webp"
