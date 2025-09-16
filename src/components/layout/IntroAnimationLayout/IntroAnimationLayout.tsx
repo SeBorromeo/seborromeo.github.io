@@ -2,6 +2,7 @@
 
 import { createContext, useRef, useContext } from "react";
 import gsap from "gsap";
+import IntroOverlay from "./IntroOverlay/IntroOverlay";
 
 export const TimelineContext = createContext<gsap.core.Timeline | null>(null);
 
@@ -10,12 +11,13 @@ export default function IntroAnimationLayout({ children }: { children: React.Rea
 
     return (
         <TimelineContext.Provider value={masterTl.current}>
+            <IntroOverlay timeline={masterTl.current}/>
             {children}
         </TimelineContext.Provider>
     );
 }
 
-export function useTimeline() {
+export function useIntroTimeline() {
     const ctx = useContext(TimelineContext);
     if (!ctx) throw new Error("useTimeline must be used inside TimelineProvider");
     return ctx;

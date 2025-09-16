@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 
 import '@/styles/global.scss';
-import Navbar from '@/components/layout/Navbar';
-import IntroOverlay from '@/components/home/IntroOverlay/IntroOverlay';
+import Navbar from '@/components/layout/Navbar/Navbar';
+import IntroOverlay from '@/components/layout/IntroAnimationLayout/IntroOverlay/IntroOverlay';
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -23,11 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="en">
             <body className={`${poppins.variable} ${inter.className} no-doc-scroll`}>
-                <IntroAnimationLayout>
-                    <IntroOverlay />
-                    <Navbar />
-                    {children}
-                </IntroAnimationLayout>
+                {children}
             </body>
         </html>
     );

@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
 
 import styles from './Navbar.module.scss';
-import { useTimeline } from './IntroAnimationLayout/IntroAnimationLayout';
+import { useIntroTimeline } from '../IntroAnimationLayout/IntroAnimationLayout';
 
 const Navbar: FC = () => {
     const navRef = useRef<HTMLDivElement>(null);
-    const tl = useTimeline();
+    const tl = useIntroTimeline();
 
     useGSAP(() => {
         tl.to(navRef.current, {
