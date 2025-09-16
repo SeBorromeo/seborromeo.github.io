@@ -11,13 +11,25 @@ interface Props {
 
 export default function IntroOverlay( { masterTl }: Props) {
     const overlayRef = useRef<HTMLDivElement>(null);
+    const revealTextOverlayRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         let tl = gsap.timeline();
-
-        tl.delay(3)
-
-        tl.to(overlayRef.current, {
+        tl.fromTo(revealTextOverlayRef.current, {
+            xPercent: 30,
+        }, {
+            xPercent: 70,
+            duration: 2,
+            ease: "power2.inOut",
+        })
+        .fromTo(revealTextOverlayRef.current, {
+            xPercent: -100,
+        }, {
+            xPercent: -30,
+            duration: 2.5,
+            ease: "power2.inOut",
+        })
+        .to(overlayRef.current, {
             y: '-100%',
             duration: 1.2,
             ease: "power1.inOut",
@@ -32,7 +44,7 @@ export default function IntroOverlay( { masterTl }: Props) {
 
     return (
         <div ref={overlayRef} className={styles.overlay_container}>
-            <div className={styles.reveal_text_overlay}></div>
+            <div ref={revealTextOverlayRef} className={styles.reveal_text_overlay}></div>
             <span className={styles.reveal_text}>Sebastian Borromeo</span>
         </div>
     );

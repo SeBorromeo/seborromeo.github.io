@@ -74,13 +74,13 @@ export default function Header() {
     return (
         <header className={styles.section1}>
             <div className={styles.name_column}>
-                <h1 data-speed="clamp(0.74)" className={styles.name}>Hi, I&apos;m Sebastian!</h1>
-                <h2 data-speed="clamp(0.73)" className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
-                <h3 data-speed="clamp(0.72)" className={styles.bio}>
+                <h1 data-speed="clamp(0.84)" className={styles.name}>Hi, I&apos;m Sebastian!</h1>
+                <h2 data-speed="clamp(0.83)" className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
+                <h3 data-speed="clamp(0.82)" className={styles.bio}>
                     Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
                     PHP, SQL, and RESTful APIs.
                 </h3>
-                <a data-speed="clamp(0.71)" href="/images/resume.pdf" className={styles.resume_button}>
+                <a data-speed="clamp(0.81)" href="/images/resume.pdf" className={styles.resume_button}>
                     VIEW MY RESUME
                 </a>
             </div>
