@@ -10,16 +10,16 @@ interface Props {
 }
 
 export default function IntroOverlay( { masterTl }: Props) {
-    const [animationFinished, setAnimationFinished] = useState(false);
+    const [animationFinished, setAnimationFinished] = useState(false); // Set to true to skip animation for now
     const overlayRef = useRef<HTMLDivElement>(null);
     const revealTextOverlayRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         let tl = gsap.timeline();
         tl.fromTo(revealTextOverlayRef.current, {
-            xPercent: 0,
+            xPercent: 35,
         }, {
-            xPercent: -100,
+            xPercent: 100,
             duration: 2,
             ease: "power2.inOut",
         })

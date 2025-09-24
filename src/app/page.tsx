@@ -1,5 +1,4 @@
 import styles from './page.module.scss';
-import AppearingParagraph from '@/components/ui/AppearingParagraph/AppearingParagraph';
 import Header from './../components/home/Header';
 import SmoothScrollOverlay from '@/components/layout/SmoothScrollLayout/SmoothScrollLayout';
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';

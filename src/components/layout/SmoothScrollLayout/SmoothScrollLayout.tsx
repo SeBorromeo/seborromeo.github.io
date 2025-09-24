@@ -3,7 +3,6 @@
 import { gsap, ScrollTrigger, ScrollSmoother} from 'gsap/all';
 import { useGSAP } from '@gsap/react';
 
-
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScrollOverlay({ children }: Readonly<{ children: React.ReactNode }>) {

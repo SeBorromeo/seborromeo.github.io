@@ -21,14 +21,14 @@ export default function Header() {
 
         tl.from(imageRef.current, { width: '78%', ease: 'power2.inOut', duration: 1 })
 
-        let name = SplitText.create([`.${styles.name}`, '.name'], { // TODO: Figure out server-side rendering
+        let name = SplitText.create([`.${styles.name}`, '.name'], { 
             type: 'chars',
             mask: "chars", 
         });
 
         tl.from(name.chars, {
             y: "200%",
-            stagger: 0.02,
+            stagger: 0.03,
             duration: 1,
             ease: 'power2.out',
             onComplete: () => name.revert()
@@ -61,39 +61,41 @@ export default function Header() {
             },
         });
 
-        tl.from(`.${styles.resume_button}`, {
-            transformY: "200px",
-            scaleY: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-        }, 0.2)
+        // tl.from(`.${styles.resume_button}`, {
+        //     transformY: "200px",
+        //     scaleY: 0,
+        //     duration: 0.5,
+        //     ease: 'power2.out',
+        // }, 0.2)
 
-        masterTl.add(tl, "introEnd-=0.6")
+        masterTl.add(tl, "introEnd-=0.9")
     });
 
-    const headshotStyle = {
+    const headshotStyle: React.CSSProperties = {
+        objectFit: "cover",
         borderRadius: '5%',
+        filter: "drop-shadow(0 0 6px rgba(0, 0, 0, 0.1))",
     };
 
     return (
         <header className={styles.section1}>
             <div className={styles.name_column}>
-                <h1 data-speed="clamp(0.84)" className={styles.name}>Hi, I&apos;m Sebastian!</h1>
-                <h2 data-speed="clamp(0.83)" className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
-                <h3 data-speed="clamp(0.82)" className={styles.bio}>
+                <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
+                <h2 className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
+                <h3 className={styles.bio}>
                     Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
                     PHP, SQL, and RESTful APIs.
                 </h3>
-                <a data-speed="clamp(0.81)" href="/images/resume.pdf" className={styles.resume_button}>
+                <a href="/images/resume.pdf" className={styles.resume_button}>
                     VIEW MY RESUME
                 </a>
             </div>
-            <div data-speed="clamp(0.7)" className={styles.photo_column}>
+            <div className={styles.photo_column}>
                 <div ref={imageRef} className={styles.photo_container}>
                     <Image
-                        src="/images/blank-profile-pic.webp"
+                        fill
+                        src="/images/newheadshot.jpg"
                         alt="Photo of Sebastian"
-                        layout="fill"
                         style={headshotStyle}
                     />
                 </div>

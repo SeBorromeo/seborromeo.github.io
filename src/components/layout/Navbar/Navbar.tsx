@@ -22,12 +22,12 @@ const Navbar: FC = () => {
         <nav className={styles.nav_container} ref={navRef}>
             <div className={styles.home_container}>
                 <Link href="/">
-                    <h2>[HOME]</h2>
+                    <h2 className={styles.nav_link}>[HOME]</h2>
                 </Link>
             </div>
             <div className={styles.contact_container}>
                 <h3>AVAILABLE TO WORK</h3>
-                <h2>
+                <h2 className={styles.nav_link}>
                     <a href="mailto:sebastiangborromeo@gmail.com">[CONTACT]</a>
                 </h2>
             </div>
