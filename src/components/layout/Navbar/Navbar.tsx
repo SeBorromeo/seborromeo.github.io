@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 
 import styles from './Navbar.module.scss';
 import { useIntroTimeline } from '../IntroAnimationLayout/IntroAnimationLayout';
+import StickyDiv from '@/components/ui/StickyDiv/StickyDiv';
 
 const Navbar: FC = () => {
     const navRef = useRef<HTMLDivElement>(null);
@@ -21,15 +22,19 @@ const Navbar: FC = () => {
     return (
         <nav className={styles.nav_container} ref={navRef}>
             <div className={styles.home_container}>
-                <Link href="/">
-                    <h2 className={styles.nav_link}>[HOME]</h2>
-                </Link>
+                <StickyDiv padding='0px'>
+                    <Link href="/">
+                        <h2 className={styles.nav_link}>[HOME]</h2>
+                    </Link>
+                </StickyDiv>
             </div>
             <div className={styles.contact_container}>
                 <h3>AVAILABLE TO WORK</h3>
-                <h2 className={styles.nav_link}>
-                    <a href="mailto:sebastiangborromeo@gmail.com">[CONTACT]</a>
-                </h2>
+                <StickyDiv padding='0px'>
+                    <h2 className={styles.nav_link}>
+                        <a href="mailto:sebastiangborromeo@gmail.com">[CONTACT]</a>
+                    </h2>
+                </StickyDiv>
             </div>
         </nav>
     );
