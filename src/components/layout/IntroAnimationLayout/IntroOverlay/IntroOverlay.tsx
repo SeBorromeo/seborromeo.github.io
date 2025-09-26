@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function IntroOverlay( { masterTl }: Props) {
-    const [animationFinished, setAnimationFinished] = useState(false); // Set to true to skip animation for now
+    const [animationFinished, setAnimationFinished] = useState(false);
     const overlayRef = useRef<HTMLDivElement>(null);
     const revealTextOverlayRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +35,7 @@ export default function IntroOverlay( { masterTl }: Props) {
             ease: "power1.inOut",
             onComplete: () => {
                 setAnimationFinished(true);
-                document.body.classList.remove('no-doc-scroll');
+                document.documentElement.classList.remove('no-doc-scroll');
             }
         })
 
