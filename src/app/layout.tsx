@@ -25,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="en" className='no-doc-scroll'>
             <body className={`${poppins.variable} ${inter.className}`} suppressHydrationWarning={true}>
+                <div className="grain-overlay" aria-hidden="true"></div>
                 {children}
             </body>
         </html>

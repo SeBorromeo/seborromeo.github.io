@@ -59,3 +59,16 @@ h1 {
 .no-doc-scroll {
     overflow-y: hidden;
 }
+
+.grain-overlay {
+    pointer-events: none;            /* don’t block clicks */
+    position: fixed;
+    inset: 0;                        /* top:0;right:0;bottom:0;left:0 */
+    z-index: 9999;                   /* above content (choose appropriately) */
+    background-image: url("/images/grain-32.png"); /* tiny repeating noise tile */
+    background-repeat: repeat;
+    background-size: 50px;           /* tile size; tweak for intensity */
+    opacity: 0.06;                   
+    mix-blend-mode: soft-light;          /* or overlay / soft-light for different looks */
+    will-change: opacity, transform;
+}
