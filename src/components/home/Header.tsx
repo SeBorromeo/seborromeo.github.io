@@ -1,14 +1,15 @@
 "use client"; 
 
-import styles from './Header.module.scss';
-
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { SplitText } from "gsap/SplitText";
-
-import { useIntroTimeline } from '../layout/IntroAnimationLayout/IntroAnimationLayout';
 import { useRef } from 'react';
+import { useIntroTimeline } from '../layout/IntroAnimationLayout/IntroAnimationLayout';
+import Image from 'next/image';
+import StickyDiv from '../ui/StickyDiv/StickyDiv';
+import Button from '../ui/Button/Button';
+
+import styles from './Header.module.scss';
 
 gsap.registerPlugin(SplitText);
 
@@ -78,7 +79,7 @@ export default function Header() {
     };
 
     return (
-        <header className={styles.section1}>
+        <header className={styles.section1} data-speed="0.8">
             <div className={styles.name_column}>
                 <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
                 <h2 className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
@@ -86,18 +87,20 @@ export default function Header() {
                     Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
                     PHP, SQL, and RESTful APIs.
                 </h3>
-                <a href="/images/resume.pdf" className={styles.resume_button}>
+                <Button href="/images/resume.pdf" className={styles.resume_button}>
                     VIEW MY RESUME
-                </a>
+                </Button>
             </div>
             <div className={styles.photo_column}>
                 <div ref={imageRef} className={styles.photo_container}>
-                    <Image
-                        fill
-                        src="/images/newheadshot.jpg"
-                        alt="Photo of Sebastian"
-                        style={headshotStyle}
-                    />
+                    <StickyDiv>
+                        <Image
+                            fill
+                            src="/images/newheadshot.jpg"
+                            alt="Photo of Sebastian"
+                            style={headshotStyle}
+                        />
+                    </StickyDiv>
                 </div>
             </div>
         </header>

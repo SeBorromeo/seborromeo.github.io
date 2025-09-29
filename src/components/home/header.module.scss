@@ -3,8 +3,11 @@
 .section1 {
     position: relative;
     display: flex;
+    align-items: center;
+
     width: 100%;
-    height: 110vh;
+    height: auto;
+    min-height: 100vh;
     padding: 180px 8%;
     background-image: url('/images/section1-gradient.png');
     background-size: cover;
@@ -117,6 +120,8 @@
     }
 }
 
-.scroll_text {
-    
+@keyframes bounce {
+  0%, 20% { transform: translateY(0); }
+  10% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
