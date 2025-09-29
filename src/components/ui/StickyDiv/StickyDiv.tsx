@@ -52,7 +52,7 @@ const StickyDiv: FC<StickyDivProps> = ({ children, padding = '10px', easeFactor 
     });     
 
     const onMouseLeave = contextSafe(() => {
-        gsap.to(container.current, { y: 0, x: 0, xPercent: 0, yPercent: 0, duration: 0.6, ease: "power3" });
+        gsap.to(container.current, { y: 0, x: 0, duration: 0.6, ease: "power3" });
     });
 
 

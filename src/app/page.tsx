@@ -1,9 +1,8 @@
-import styles from './page.module.scss';
 import Header from './../components/home/Header';
 import SmoothScrollOverlay from '@/components/layout/SmoothScrollLayout/SmoothScrollLayout';
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 import Navbar from '@/components/layout/Navbar/Navbar';
-import Button from '@/components/ui/Button/Button';
+import Bio from '@/components/home/Bio/Bio';
 
 import styles from './page.module.scss';
 
@@ -14,14 +13,16 @@ export default function Home() {
             <SmoothScrollOverlay>
                 <Header />
                 <main className={styles.main}>
-                    <AppearingParagraph text={'Hello \n paragraph this that \n look at it me'} />
+                    {/* Scroll Line */}
+                    <div data-speed="clamp(0.75)" className={styles.scroll_text_container}>
+                        <span>SCROLL</span>
+                        <div className={styles.vertical_line}></div>
+                    </div>
+
+                    <Bio />
 
                     <div className={styles.section2}>
-                        <div style={{ maxWidth: '200px', margin: '0 auto' }}>
-                            <Button href="/images/resume.pdf">
-                                VIEW MY RESUME
-                            </Button>
-                        </div>
+                        
                     </div>
                 </main>
             </SmoothScrollOverlay>

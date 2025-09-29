@@ -6,9 +6,10 @@ import '@/styles/global.scss';
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
     variable: '--font-poppins',
-    weight: ['400', '500'],
+    weight: ['100', '200', '300', '400', '500'],
     subsets: ['latin'],
 });
+
 const roboto = Roboto_Mono({
     variable: '--font-roboto-mono',
     weight: '400',
