@@ -1,9 +1,7 @@
 @import 'index';
 
 :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 20, 20, 20;
+    --background-color: #161616;
 
     --header1-color: #3f3f3f;
     --header2-color: #474747;
@@ -19,6 +17,7 @@
 
 html {
     height: 100%;
+    background-color: var(--background-color);
 }
 
 html,
@@ -33,8 +32,7 @@ body {
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    color: var(--text-color-light);
 }
 
 a {

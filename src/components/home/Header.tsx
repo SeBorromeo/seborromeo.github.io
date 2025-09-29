@@ -45,6 +45,7 @@ export default function Header() {
             stagger: 0.03,
             duration: 1,
             ease: 'power2.out',
+            onComplete: () => subtitle.revert()
         }, 0.1);
 
         SplitText.create(`.${styles.bio}`, { 
@@ -70,6 +71,18 @@ export default function Header() {
         // }, 0.2)
 
         masterTl.add(tl, "introEnd-=0.9")
+
+        // ScrollTrigger for header background change
+        gsap.to(`.${styles.bg}`, {
+            opacity: 0,
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: `.${styles.header}`,
+                toggleActions: "play none none reverse",
+                markers: true,
+                start: "bottom 80%",
+            }
+        });
     });
 
     const headshotStyle: React.CSSProperties = {
@@ -79,29 +92,38 @@ export default function Header() {
     };
 
     return (
-        <header className={styles.section1} data-speed="0.8">
-            <div className={styles.name_column}>
-                <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
-                <h2 className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
-                <h3 className={styles.bio}>
-                    Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
-                    PHP, SQL, and RESTful APIs.
-                </h3>
-                <Button href="/images/resume.pdf" className={styles.resume_button}>
-                    VIEW MY RESUME
-                </Button>
-            </div>
-            <div className={styles.photo_column}>
-                <div ref={imageRef} className={styles.photo_container}>
-                    <StickyDiv>
-                        <Image
-                            fill
-                            src="/images/newheadshot.jpg"
-                            alt="Photo of Sebastian"
-                            style={headshotStyle}
-                        />
-                    </StickyDiv>
+        <header className={styles.header} data-speed="0.72">
+            <div className={styles.bg}/>
+            <div className={styles.intro_section}>
+                <div className={styles.name_column}>
+                    <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
+                    <h2 className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
+                    <h3 className={styles.bio}>
+                        Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
+                        PHP, SQL, and RESTful APIs.
+                    </h3>
+                    <Button href="/images/resume.pdf" className={styles.resume_button}>
+                        VIEW MY RESUME
+                    </Button>
                 </div>
+                <div className={styles.photo_column}>
+                    <div ref={imageRef} className={styles.photo_container}>
+                        <StickyDiv>
+                            <Image
+                                fill
+                                src="/images/newheadshot.jpg"
+                                alt="Photo of Sebastian"
+                                style={headshotStyle}
+                            />
+                        </StickyDiv>
+                    </div>
+                </div>
+            </div>
+
+            {/* Scroll Line */}
+            <div data-speed="clamp(0.97)" className={styles.scroll_text_container}>
+                <span>SCROLL</span>
+                <div className={styles.vertical_line}></div>
             </div>
         </header>
     );

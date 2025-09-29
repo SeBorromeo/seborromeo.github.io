@@ -3,6 +3,7 @@ import SmoothScrollOverlay from '@/components/layout/SmoothScrollLayout/SmoothSc
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 import Navbar from '@/components/layout/Navbar/Navbar';
 import Bio from '@/components/home/Bio/Bio';
+import Projects from '@/components/home/Projects/Projects';
 
 import styles from './page.module.scss';
 
@@ -13,17 +14,11 @@ export default function Home() {
             <SmoothScrollOverlay>
                 <Header />
                 <main className={styles.main}>
-                    {/* Scroll Line */}
-                    <div data-speed="clamp(0.75)" className={styles.scroll_text_container}>
-                        <span>SCROLL</span>
-                        <div className={styles.vertical_line}></div>
-                    </div>
+                    
 
                     <Bio />
 
-                    <div className={styles.section2}>
-                        
-                    </div>
+                    {/* <Projects /> */}
                 </main>
             </SmoothScrollOverlay>
         </IntroAnimationLayout>
