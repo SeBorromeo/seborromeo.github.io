@@ -4,8 +4,8 @@ const nextConfig = {
     basePath: '',
     output: 'export',
     reactStrictMode: true,
-    images: {
-        unoptimized: true,
+    images: { 
+        unoptimized: true, // For static export
     },
 };
 

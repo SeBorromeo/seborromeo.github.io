@@ -1,3 +1,5 @@
+import BioParagraph from './BioParagraph/BioParagraph';
+
 import styles from './Bio.module.scss';
 
 export default function Bio() {
@@ -7,6 +9,7 @@ export default function Bio() {
         <section className={styles.section}>
             <div className={styles.text_column}>
                 <h2>ABOUT ME</h2>
+                <BioParagraph />
                 <p>
                     I am a fourth-year student at The University of Virginia pursuing a Bachelor of Science in Computer Science and Data Science. My passion lies in creating innovative software solutions that address real-world challenges. I have experience working with a variety of programming languages and frameworks, and I am always eager to learn new technologies.
                 </p>
