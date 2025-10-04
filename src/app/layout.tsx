@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins, Roboto, Roboto_Mono } from 'next/font/google';
 
 import '@/styles/global.scss';
+import Cursor from '@/components/ui/animations/CustomCursor/CustomCursor';
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en" className='no-doc-scroll'>
             <body className={`${poppins.variable} ${inter.className}`} suppressHydrationWarning={true}>
                 <div className="grain-overlay" aria-hidden="true"></div>
+                <Cursor />
                 {children}
             </body>
         </html>

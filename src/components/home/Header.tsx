@@ -121,7 +121,7 @@ export default function Header() {
             </div>
 
             {/* Scroll Line */}
-            <div data-speed="clamp(0.97)" className={styles.scroll_text_container}>
+            <div data-speed="clamp(0.99)" className={styles.scroll_text_container}>
                 <span>SCROLL</span>
                 <div className={styles.vertical_line}></div>
             </div>

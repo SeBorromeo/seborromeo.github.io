@@ -70,3 +70,29 @@ h1 {
     mix-blend-mode: soft-light;          /* or overlay / soft-light for different looks */
     will-change: opacity, transform;
 }
+
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;       /* very large circle */
+  height: 200px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5) 0%,     /* bright center */
+    rgba(255, 255, 255, 0.05) 60%,   /* mid fade */
+    rgba(255, 255, 255, 0) 0%      /* fully transparent edges */
+  );
+
+  box-shadow: 
+    0 0 60px 50px rgba(255, 255, 255, 0.05),   /* smaller than before */
+    0 0 120px 80px rgba(255, 255, 255, 0.03);  /* keep proportion */
+
+  transition: transform 75ms ease-out;
+}
