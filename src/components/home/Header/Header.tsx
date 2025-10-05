@@ -4,10 +4,10 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { SplitText } from "gsap/SplitText";
 import { useRef } from 'react';
-import { useIntroTimeline } from '../layout/IntroAnimationLayout/IntroAnimationLayout';
+import { useIntroTimeline } from '../../layout/IntroAnimationLayout/IntroAnimationLayout';
 import Image from 'next/image';
-import StickyDiv from '../ui/StickyDiv/StickyDiv';
-import Button from '../ui/Button/Button';
+import StickyDiv from '../../ui/StickyDiv/StickyDiv';
+import Button from '../../ui/Button/Button';
 
 import styles from './Header.module.scss';
 
