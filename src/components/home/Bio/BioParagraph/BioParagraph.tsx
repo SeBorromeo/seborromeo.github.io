@@ -4,10 +4,10 @@ import { RichTextNode } from "@/types/richText";
 export type Paragraph = RichTextNode[];
 
 export type Bio = {
-  id: string;
-  paragraphs: Paragraph[];
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    paragraphs: Paragraph[];
+    createdAt: Date;
+    updatedAt: Date;
 };
  
 export default async function BioParagraph() {
@@ -27,18 +27,18 @@ export default async function BioParagraph() {
                 <p key={idx}>
                 {para.map((node, i) => {
                     switch (node.type) {
-                    case 'bold':
-                        return <strong key={i}>{node.text}</strong>
-                    case 'italic':
-                        return <em key={i}>{node.text}</em>
-                    case 'link':
-                        return (
-                        <a key={i} href={node.url} target="_blank" rel="noopener noreferrer">
-                            {node.text}
-                        </a>
-                        )
-                    default:
-                        return <span key={i}>{node.text}</span>
+                        case 'bold':
+                            return <strong key={i}>{node.text}</strong>
+                        case 'italic':
+                            return <em key={i}>{node.text}</em>
+                        case 'link':
+                            return (
+                            <a key={i} href={node.url} target="_blank" rel="noopener noreferrer">
+                                {node.text}
+                            </a>
+                            )
+                        default:
+                            return <span key={i}>{node.text}</span>
                     }
                 })}
                 </p>

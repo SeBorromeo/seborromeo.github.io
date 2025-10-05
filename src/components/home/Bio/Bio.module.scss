@@ -20,7 +20,8 @@
     }
 
     p {
-        font-size: 1.2rem;
+        font-family: var(--font-open-sans);
+        font-size: 1.1rem;
         margin-bottom: 2rem;
     }
 
@@ -34,10 +35,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 60px 100px;
 
-    @include md {
+    @include lg {
         padding: 30px;
         margin-top: 40px;
+    }
+
+    @include sm {
+        display: none;
     }
 }

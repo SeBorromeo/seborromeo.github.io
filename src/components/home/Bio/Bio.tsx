@@ -1,7 +1,8 @@
 import BioParagraph from './BioParagraph/BioParagraph';
+import MaskedTextReveal from '@/components/ui/animations/MaskedTextReveal/MaskedTextReveal';
+import ParallaxImage from '@/components/ui/animations/ParallaxImage/ParallaxImage';
 
 import styles from './Bio.module.scss';
-import MaskedTextReveal from '@/components/ui/animations/MaskedTextReveal';
 
 export default function Bio() {
 
@@ -38,7 +39,7 @@ export default function Bio() {
                 </MaskedTextReveal>
             </div>
             <div className={styles.photo_column}>
-
+                <ParallaxImage src='/images/obxhouse.JPG' alt='Photo of Sebastian'/>
             </div>
         </section>
     );

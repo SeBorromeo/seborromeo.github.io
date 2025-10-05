@@ -1,0 +1,25 @@
+.frame {
+    position: relative;
+    width: 100%;           /* or fixed width */
+    height: 80%;
+    display: block;
+    overflow: hidden;
+
+    .image_wrapper {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        bottom: 0;
+        transform: translateY(-50%);
+        will-change: transform;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        width: auto;
+        height: 200%;          /* make it taller than the frame */
+        object-fit: cover;
+        object-position: center top;
+    }
+}
