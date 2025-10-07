@@ -1,0 +1,19 @@
+.tags_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 9px; /* vertical, horizontal gap */
+  width: 100%;
+}
+
+.tag {
+  background-color: #f28aef7e;
+  color: #983E9A;
+  font-weight: 500;
+  border-radius: 15px; 
+  padding: 0.3rem 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  user-select: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+}
