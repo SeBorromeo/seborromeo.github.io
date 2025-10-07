@@ -1,0 +1,40 @@
+@import 'src/styles/index.scss';
+
+.experience_section {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    height: 100vh;
+    width: 100%;
+
+    background-color: #EFE7E7;
+}
+.experience_logos_column_bg {
+    position: absolute;
+    right: 0;
+    width: 30vw;
+    height: 100%;
+
+    background-image: url('/images/section1-gradient.png');
+    background-size: cover;
+}
+
+.experience_column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+
+    @include md {
+        padding-right: 0;
+        margin-bottom: 3rem;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.experience_card {
+    color: black;
+}

@@ -13,13 +13,13 @@ export type Bio = {
 export default async function BioParagraph() {
     const bio = await prisma.bio.findFirst({
         select: { paragraphs: true },
-    })
+    });
 
     if (!bio || !Array.isArray(bio.paragraphs)) {
         return <p>No bio available.</p>
     }
 
-    const paragraphs: Paragraph[] = bio.paragraphs as Paragraph[]
+    const paragraphs: Paragraph[] = bio.paragraphs as Paragraph[];
 
     return (
         <div>
