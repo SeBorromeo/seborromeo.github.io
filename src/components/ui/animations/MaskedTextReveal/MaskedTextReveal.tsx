@@ -1,5 +1,5 @@
 'use client'
-import React, { ReactNode, useRef } from "react";
+import React, { forwardRef, ReactNode, useRef } from "react";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger, SplitText } from "gsap/all";
 import gsap from "gsap";
@@ -8,6 +8,10 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const MaskedTextReveal = ({ children, stagger = 0.05 }: { children: ReactNode, stagger?: number }) => {
     const ref = useRef<HTMLDivElement>(null);
+
+    // const Child = forwardRef<HTMLDivElement, { text: string }>((props, ref) => {
+    //     return <div ref={ref}>{props.text}</div>;
+    // });
 
     useGSAP(() => {
         SplitText.create(ref.current, { 
@@ -35,8 +39,8 @@ const MaskedTextReveal = ({ children, stagger = 0.05 }: { children: ReactNode, s
             {React.Children.map(children, (child) => {
                 if (!React.isValidElement(child)) return child;
 
-                return React.cloneElement(child, {
-                    ref: ref,
+                return React.cloneElement(child as React.ReactElement<any>, {
+                    ref: ref as React.Ref<HTMLElement>,
                 });
             })}
         </>
