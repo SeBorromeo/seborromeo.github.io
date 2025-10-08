@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import { Inter, Open_Sans, Poppins, Roboto, Roboto_Mono } from 'next/font/google';
 
 import '@/styles/global.scss';
