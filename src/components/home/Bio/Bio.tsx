@@ -10,9 +10,12 @@ export default function Bio() {
     return (
         <section className={styles.section}>
             <div className={styles.text_column}>
+                <div className={styles.heading_container}>
                 <MaskedTextReveal>
+                    <div className="bio-text"/>
                     <h2>ABOUT ME</h2>
                 </MaskedTextReveal>
+                </div>
 
                 <MaskedTextReveal>
                     <BioParagraph />

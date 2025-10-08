@@ -12,11 +12,27 @@
     flex: 1;
     padding: 100px;
 
-    h2 {
-        font-size: 4rem;
-        font-family: var(--font-poppins);
-        font-weight: 500;
-        margin-bottom: 2.5rem;
+    :global(.bio-text) {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background-color: #161616;
+    }
+
+    .heading_container {
+        position: relative;
+        width: auto;
+        height: auto;
+
+        
+
+        h2 {
+            font-size: 4rem;
+            font-family: var(--font-poppins);
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+        }
     }
 
     p {
