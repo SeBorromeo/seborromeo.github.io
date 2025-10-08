@@ -1,19 +1,19 @@
 @import 'src/styles/index.scss';
 
 .experience_section {
-    display: flex;
-    flex-direction: row;
     position: relative;
 
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 
     background-color: #EFE7E7;
+    --column-width: 70;
 }
+
 .experience_logos_column_bg {
     position: absolute;
     right: 0;
-    width: 30vw;
+    width: calc(100vw - var(--column-width) * 1vw);
     height: 100%;
 
     background-image: url('/images/section1-gradient.png');
@@ -26,6 +26,7 @@
     justify-content: center;
 
     width: 100%;
+    z-index: 1;
 
     @include md {
         padding-right: 0;
@@ -35,6 +36,53 @@
     }
 }
 
-.experience_card {
-    color: black;
+.experience_row {
+    position: relative;
+    display: flex;
+
+    width: 100%;
+    min-height: calc(100vw - var(--column-width) * 1vw - 10vw);
+    color: #111111;
+
+    .text_section {
+        display: flex;
+        flex-direction: row;
+
+        width: calc(var(--column-width) * 1vw);
+        padding: 60px;
+
+        .time_tags_column {
+            flex: 0 0 35%;
+
+            gap: 0.4rem;
+        }
+
+        .role_description_column {
+            flex: 1;
+            gap: 0.6rem;
+
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+
+            p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+        }
+    }
+
+    .logo_section {
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5vw;
+
+        .logo_container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+        }
+    }
 }
