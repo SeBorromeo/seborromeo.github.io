@@ -72,17 +72,25 @@ export default function Header() {
 
         masterTl.add(tl, "introEnd-=0.9")
 
-        // ScrollTrigger for header background change
-        gsap.to(`.${styles.bg}`, {
-            opacity: 0,
-            duration: 0.5,
+        const switchBgTl = gsap.timeline({
             scrollTrigger: {
                 trigger: `.${styles.header}`,
                 toggleActions: "play none none reverse",
-                markers: true,
                 start: "bottom 80%",
-            }
+            },
+            defaults: { ease: 'none', duration: 0.5 },
         });
+
+        // ScrollTrigger for header background change
+        switchBgTl.to(`.${styles.bg}`, {
+            opacity: 0,
+            duration: 0.5,
+        });
+        
+        switchBgTl.to('.bio-text', {
+            opacity: 1,
+            duration: 0,
+        }, ">");
     });
 
     const headshotStyle: React.CSSProperties = {
