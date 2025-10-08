@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma';
 import Tags from '@/components/ui/Tags/Tags';
 import MaskedTextReveal from '@/components/ui/animations/MaskedTextReveal/MaskedTextReveal';
 import Image from 'next/image';
+import FadeInDiv from './../../ui/animations/FadeInDiv/FadeInDiv';
 
 import styles from './Experience.module.scss';
 
@@ -30,17 +31,22 @@ export default async function Experience() {
         <section className={styles.experience_section}>
             <div className={styles.experience_logos_column_bg}/>
             <div className={styles.experience_column}>
-                <h1>Experience</h1>
+                <FadeInDiv>
+                    <h1>EXPERIENCE</h1>
+                </FadeInDiv>
                 {experiences.map((exp: Experience) => (
                     <div key={exp.id} className={styles.experience_row}>
                         <div className={styles.text_section}>
-                            <div className={styles.time_tags_column}>
-                                <p>{exp.startDate.toLocaleString('en-US', { month: 'short', year: 'numeric'})} - {exp.endDate ? exp.endDate.toLocaleString('en-US', { month: 'short', year: 'numeric'}) : "Present"}</p>
+                            {/* Date and tags */}
+                            <FadeInDiv className={styles.time_tags_column}>
+                                <p className={styles.date_text}>{exp.startDate.toLocaleString('en-US', { month: 'short', year: 'numeric'})} - {exp.endDate ? exp.endDate.toLocaleString('en-US', { month: 'short', year: 'numeric'}) : "Present"}</p>
                                 <Tags list={exp.skills} />
-                            </div>
+                            </FadeInDiv>
+
+                            {/* Role, company, description */}
                             <div className={styles.role_description_column}>
                                 <MaskedTextReveal>
-                                    <h3>{exp.role} @ {exp.company}</h3>
+                                    <h3>{exp.role} <span className={styles.company}>@ {exp.company}</span></h3>
                                 </MaskedTextReveal>
                                 <MaskedTextReveal>
                                     <p>{exp.description}</p>
