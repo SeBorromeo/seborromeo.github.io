@@ -4,7 +4,8 @@ import { FC, useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import { useIntroTimeline } from '../IntroAnimationLayout/IntroAnimationLayout';
 import StickyDiv from '@/components/ui/StickyDiv/StickyDiv';
-import SideNav from '../SideNav/SideNav';
+import SideNav from './SideNav/SideNav';
+import { CONTACT_EMAIL } from '@/constants/authorInfo';
 
 import styles from './Navbar.module.scss';
 
@@ -36,7 +37,7 @@ const Navbar: FC = () => {
                     <h3>AVAILABLE TO WORK</h3>
                     <StickyDiv padding='0px'>
                         <h2 className={styles.nav_link}>
-                            <a href="mailto:sebastiangborromeo@gmail.com">[CONTACT]</a>
+                            <a href={`mailto:${CONTACT_EMAIL}`}>[CONTACT]</a>
                         </h2>
                     </StickyDiv>
                 </div>

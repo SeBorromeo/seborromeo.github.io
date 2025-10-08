@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
+import { CONTACT_EMAIL } from "@/constants/authorInfo";
 
 import styles from "./SideNav.module.scss";
 
@@ -63,7 +64,7 @@ export default function SideNav({ isOpen, onClose }: SidebarOverlayProps) {
         <div className={styles.footer}>
           <div className={styles.email}>
             <p className={styles.label}>EMAIL</p>
-            <p className={styles.address}>sebastianborromeo@gmail.com</p>
+            <a href={`mailto:${CONTACT_EMAIL}`} className={styles.address}>{CONTACT_EMAIL}</a>
           </div>
 
           <div className={styles.icons}>
