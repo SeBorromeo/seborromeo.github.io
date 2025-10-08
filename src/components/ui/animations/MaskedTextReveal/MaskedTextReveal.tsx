@@ -1,4 +1,5 @@
 'use client'
+
 import React, { ReactNode, useRef } from "react";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger, SplitText } from "gsap/all";
@@ -6,7 +7,7 @@ import gsap from "gsap";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const MaskedTextReveal = ({ children, stagger = 0.05 }: { children: ReactNode, stagger?: number }) => {
+const MaskedTextReveal = ({ children, stagger = 0.05, startPercent = 85 }: { children: ReactNode, stagger?: number, startPercent?: number }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -19,7 +20,7 @@ const MaskedTextReveal = ({ children, stagger = 0.05 }: { children: ReactNode, s
                     scrollTrigger: {
                         trigger: ref.current,
                         toggleActions: "play none none reverse",
-                        start: "top 90%",
+                        start: `top ${startPercent}%`,
                     },
                     y: "200%",
                     stagger: stagger,
