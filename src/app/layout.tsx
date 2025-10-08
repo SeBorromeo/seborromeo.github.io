@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins, Roboto, Roboto_Mono } from 'next/font/google';
+import { Inter, Open_Sans, Poppins, Roboto, Roboto_Mono } from 'next/font/google';
 
 import '@/styles/global.scss';
 
@@ -7,6 +7,11 @@ const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
     variable: '--font-poppins',
     weight: ['100', '200', '300', '400', '500'],
+    subsets: ['latin'],
+});
+const openSans = Open_Sans({
+    variable: '--font-open-sans',
+    weight: ['400', '600', '700'],
     subsets: ['latin'],
 });
 
@@ -25,7 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en" className='no-doc-scroll'>
-            <body className={`${poppins.variable} ${inter.className}`} suppressHydrationWarning={true}>
+            <body className={`${poppins.variable} ${openSans.className}`} suppressHydrationWarning={true}>
                 <div className="grain-overlay" aria-hidden="true"></div>
                 {children}
             </body>

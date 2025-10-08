@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import styles from './ParallaxImage.module.scss';
-import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,22 +24,6 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({
 }) => {
     const frameRef = useRef<HTMLDivElement>(null);
     const imgRef = useRef<HTMLDivElement>(null);
-
-    // useGSAP(() => {
-    //     if (!frameRef.current || !imgRef.current) return;
-    //     gsap.to(imgRef.current, {
-    //             scrollTrigger: {
-    //                 id: `parallax-${src}`,
-    //                 trigger: frameRef.current,
-    //                 start: "top bottom",
-    //                 end: "bottom top",
-    //                 scrub: true,
-    //                 // markers: true,
-    //             },
-    //             yPercent: parallaxPercent,
-    //         }
-    //     );
-    // }, [parallaxPercent]);
 
     return (
         <div
