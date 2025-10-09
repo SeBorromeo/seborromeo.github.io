@@ -40,10 +40,6 @@ export default function SideNav({ isOpen, onClose }: SidebarOverlayProps) {
   useEffect(() => {
         if (isOpen)
             document.documentElement.classList.add('no-doc-scroll');
-
-        return () => {
-            document.documentElement.classList.remove('no-doc-scroll');
-        };
   }, [isOpen]);
 
   if (!isOpen) return null;
