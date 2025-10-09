@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
-import { CONTACT_EMAIL } from "@/constants/authorInfo";
+import { CONTACT_EMAIL } from "@/constants/constants";
 
 import styles from "./SideNav.module.scss";
 

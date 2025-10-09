@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { useIntroTimeline } from '../IntroAnimationLayout/IntroAnimationLayout';
 import StickyDiv from '@/components/ui/StickyDiv/StickyDiv';
 import SideNav from './SideNav/SideNav';
-import { CONTACT_EMAIL } from '@/constants/authorInfo';
+import { CONTACT_EMAIL } from '@/constants/constants';
 
 import styles from './Navbar.module.scss';
 
