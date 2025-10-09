@@ -12,7 +12,7 @@ export type Experience = {
     role: string;
     startDate: Date;
     endDate?: Date | null;
-    description: string;
+    description: string[];
     logoUrl: string;
     createdAt: Date;
     updatedAt: Date;
@@ -48,9 +48,13 @@ export default async function Experience() {
                                 <MaskedTextReveal>
                                     <h3>{exp.role} <span className={styles.company}>@ {exp.company}</span></h3>
                                 </MaskedTextReveal>
-                                <MaskedTextReveal>
-                                    <p>{exp.description}</p>
-                                </MaskedTextReveal>
+                                <ul>
+                                    {exp.description.map((item, i) => (
+                                    <FadeInDiv key={i}>
+                                        <li key={i}>{item}</li>
+                                    </FadeInDiv>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                         <div className={styles.logo_section}>

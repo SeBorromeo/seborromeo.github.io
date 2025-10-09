@@ -89,9 +89,14 @@
                 color: #9A24BE;
             }
 
-            p {
+            ul {
                 font-size: 1.1rem;
                 line-height: 1.6;
+                margin-left: 2rem;
+
+                li {
+                    margin-bottom: 0.5rem;
+                }
             }
         }
     }
