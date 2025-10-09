@@ -1,3 +1,5 @@
+@import 'src/styles/index.scss';
+
 .frame {
     position: relative;
     width: 100%;           /* or fixed width */
@@ -7,19 +9,17 @@
 
     .image_wrapper {
         position: absolute;
-        height: 100%;
+        height: 120%;
         width: 100%;
         bottom: 0;
-        transform: translateY(-50%);
-        will-change: transform;
-    }
 
-    img {
-        position: absolute;
-        top: 0;
-        width: auto;
-        height: 200%;          /* make it taller than the frame */
-        object-fit: cover;
-        object-position: center top;
+        display: flex;              
+        justify-content: center;
+        align-items: center;
+
+        img, video {
+            width: auto;
+            height: 100%; 
+        }
     }
 }

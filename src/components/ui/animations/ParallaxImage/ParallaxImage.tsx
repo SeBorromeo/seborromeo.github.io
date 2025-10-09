@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useRef } from "react";
 import Image, { ImageProps } from "next/image";
 import { gsap } from "gsap";
@@ -10,18 +11,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 type ParallaxImageProps = ImageProps & {
     src: string;
-    parallaxPercent?: number; 
     className?: string;
-    frameClassName?: string;
+    alt: string;
+    isVideo?: boolean;
 };
 
-const ParallaxImage: React.FC<ParallaxImageProps> = ({
-    src,
-    parallaxPercent = -20,
-    className,
-    frameClassName,
-    ...imageProps
-}) => {
+const ParallaxImage: React.FC<ParallaxImageProps> = ({ src, className, alt, isVideo = false}) => {
     const frameRef = useRef<HTMLDivElement>(null);
     const imgRef = useRef<HTMLDivElement>(null);
 
@@ -31,14 +26,24 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({
             className={styles.frame}
         >
             <div ref={imgRef} className={styles.image_wrapper} data-speed='0.7'>
-                <Image
-                    {...imageProps}
-                    className={className}
-                    width={0} height={0}
-                    objectFit="cover"
-                    alt={imageProps.alt}
-                    src={src}
-                />
+                {isVideo ?
+                    <video
+                        src="/videos/dayonthelawn.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className={className}
+                    />
+                    :
+                    <Image
+                        className={className}
+                        width={0} height={0}
+                        objectFit="cover"
+                        src={src}
+                        alt={alt}
+                    />
+                }
             </div>
         </div>
     );
