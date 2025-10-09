@@ -3,6 +3,6 @@ export const CONTACT_EMAIL = "sebastiangborromeo@gmail.com";
 export const LOCATION = "Chantilly, VA";
 
 export const GITHUB_URL = "https://github.com/SeBorromeo";
-export const LINKEDIN_URL = "https://www.linkedin.com/in/sebastian-borromeo/";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/sebastian-borromeo";
 
-export const AWS_BUCKET_URL = "https://seborromeo-portfolio-assets.s3.us-east-2.amazonaws.com/";
+export const AWS_BUCKET_URL = "https://seborromeo-portfolio-assets.s3.us-east-2.amazonaws.com";

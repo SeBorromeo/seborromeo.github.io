@@ -28,7 +28,7 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({ src, className, alt, isVi
             <div ref={imgRef} className={styles.image_wrapper} data-speed='0.7'>
                 {isVideo ?
                     <video
-                        src="/videos/dayonthelawn.mp4"
+                        src={src}
                         autoPlay
                         muted
                         loop
@@ -37,11 +37,11 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({ src, className, alt, isVi
                     />
                     :
                     <Image
+                        src={src}
+                        alt={alt}
                         className={className}
                         width={0} height={0}
                         objectFit="cover"
-                        src={src}
-                        alt={alt}
                     />
                 }
             </div>

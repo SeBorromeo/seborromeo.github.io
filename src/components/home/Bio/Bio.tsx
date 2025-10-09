@@ -1,12 +1,11 @@
 import BioParagraph from './BioParagraph/BioParagraph';
 import MaskedTextReveal from '@/components/ui/animations/MaskedTextReveal/MaskedTextReveal';
 import ParallaxImage from '@/components/ui/animations/ParallaxImage/ParallaxImage';
+import { AWS_BUCKET_URL } from '@/constants/constants';
 
 import styles from './Bio.module.scss';
 
 export default function Bio() {
-
-
     return (
         <section className={styles.section}>
             <div className={styles.text_column}>
@@ -42,7 +41,7 @@ export default function Bio() {
                 </MaskedTextReveal>
             </div>
             <div className={styles.photo_column}>
-                <ParallaxImage src='/images/obxhouse.JPG' alt='Photo of Sebastian'/>
+                <ParallaxImage isVideo={true} src={`${AWS_BUCKET_URL}/videos/dayonthelawn.mp4`} alt='Photo of Sebastian'/>
             </div>
         </section>
     );
