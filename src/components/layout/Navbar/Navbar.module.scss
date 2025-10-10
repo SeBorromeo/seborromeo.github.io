@@ -1,3 +1,5 @@
+@import 'src/styles/index.scss';
+
 $main-header-color: rgb(145, 145, 160);
 
 .nav_container {
@@ -18,33 +20,38 @@ $main-header-color: rgb(145, 145, 160);
 
     h3 {
         font-weight: 500;
+
+        @include md {
+            display: none;
+        }
     }
 
     a {
         cursor: pointer;
     }
-}
 
-.home_container {
-    display: flex;
-    align-items: center;
-}
+    .home_container {
+        display: flex;
+        align-items: center;
+    }
 
-.contact_container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 360px;
-}
+    .contact_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+    }
 
-.nav_link {
-    text-decoration: none;
-    font-weight: 500;
-    pointer-events: auto;
+    .nav_link {
+        text-decoration: none;
+        font-weight: 500;
+        pointer-events: auto;
 
-    transition: color 0.4s ease;
+        transition: color 0.4s ease;
 
-    &:hover {
-        color: rgb(124, 124, 100);
+        &:hover {
+            color: rgb(124, 124, 100);
+        }
     }
 }
+
