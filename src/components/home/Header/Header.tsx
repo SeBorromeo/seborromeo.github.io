@@ -24,7 +24,7 @@ export default function Header() {
 
         let name = SplitText.create([`.${styles.name}`, '.name'], { 
             type: 'chars',
-            mask: "chars", 
+            mask: 'chars', 
         });
 
         tl.from(name.chars, {
@@ -37,7 +37,7 @@ export default function Header() {
 
         let subtitle = SplitText.create(`.${styles.title}`, { 
             type: 'lines',
-            mask: "lines", 
+            mask: 'lines', 
         });
 
         tl.from(subtitle.lines, {
@@ -48,30 +48,28 @@ export default function Header() {
             onComplete: () => subtitle.revert()
         }, 0.1);
 
-        SplitText.create(`.${styles.bio}`, { 
-            type: 'words, lines',
-            autoSplit: true,   
-            mask: "lines", 
-            onSplit: (self) => {
-                return tl.from(self.lines, {
-                    y: "200%",
-                    stagger: 0.08,
-                    duration: 1,
-                    ease: 'power2.out',
-                    onComplete: () => self.revert()
-                }, 0.2);
-            },
+        let bio = SplitText.create(`.${styles.bio}`, { 
+            type: 'lines',
+            mask: 'lines', 
         });
 
-        // tl.from(`.${styles.resume_button}`, {
-        //     transformY: "200px",
-        //     scaleY: 0,
-        //     duration: 0.5,
-        //     ease: 'power2.out',
-        // }, 0.2)
+        tl.from(bio.lines, {
+            y: "200%",
+            stagger: 0.03,
+            duration: 1,
+            ease: 'power2.out',
+            onComplete: () => bio.revert()
+        }, 0.2);
+
+        tl.from(`.${styles.resume_button}`, {
+            y: "200%",
+            duration: 1,
+            ease: 'power2.out',
+        }, 0.3)
 
         masterTl.add(tl, "introEnd-=0.9")
 
+        // Scroll Trigger Background Change Animation Timeline
         const switchBgTl = gsap.timeline({
             scrollTrigger: {
                 trigger: `.${styles.header}`,
@@ -81,7 +79,6 @@ export default function Header() {
             defaults: { ease: 'none', duration: 0.5 },
         });
 
-        // ScrollTrigger for header background change
         switchBgTl.to(`.${styles.bg}`, {
             opacity: 0,
             duration: 0.5,
@@ -110,9 +107,11 @@ export default function Header() {
                         Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
                         PHP, SQL, and RESTful APIs.
                     </h3>
-                    <Button href="/images/resume.pdf" className={styles.resume_button}>
-                        VIEW MY RESUME
-                    </Button>
+                    <div className={styles.button_container}>
+                        <Button href="/images/resume.pdf" className={styles.resume_button}>
+                            VIEW MY RESUME
+                        </Button>
+                    </div>
                 </div>
                 <div className={styles.photo_column}>
                     <div ref={imageRef} className={styles.photo_container}>

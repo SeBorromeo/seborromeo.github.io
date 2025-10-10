@@ -39,6 +39,12 @@
     flex: 0 0 65%;
     min-width: 0;
 
+    .button_container {
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
     @include md {
         display: flex;
         flex-direction: column;

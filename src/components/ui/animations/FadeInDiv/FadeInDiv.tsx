@@ -11,7 +11,7 @@ const FadeInDiv = ({ children, className = '' }: { children: ReactNode, classNam
         return gsap.from(ref.current, 
             { 
                 autoAlpha: 0, 
-                y: 25,
+                y: 50,
                 scrollTrigger: {
                     trigger: ref.current,
                     toggleActions: "play none none reverse",

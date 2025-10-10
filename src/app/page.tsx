@@ -10,7 +10,7 @@ import styles from './page.module.scss';
 
 export default function Home() {
     return (
-        <IntroAnimationLayout disable={true}>
+        <IntroAnimationLayout disable={false}>
             <Navbar />
             <SmoothScrollOverlay>
                 <Header />

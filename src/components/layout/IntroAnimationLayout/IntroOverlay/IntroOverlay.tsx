@@ -20,13 +20,13 @@ export default function IntroOverlay( { masterTl }: Props) {
             xPercent: 35,
         }, {
             xPercent: 100,
-            duration: 2,
+            duration: 1.5,
             ease: "power2.inOut",
         })
-        .set(revealTextOverlayRef.current, {xPercent: -100})
+        .set(revealTextOverlayRef.current, {xPercent: -100, duration: 0})
         .to(revealTextOverlayRef.current, {
             xPercent: -30,
-            duration: 2.5,
+            duration: 2,
             ease: "power2.inOut",
         })
         .to(overlayRef.current, {
@@ -36,8 +36,8 @@ export default function IntroOverlay( { masterTl }: Props) {
             onComplete: () => {
                 setAnimationFinished(true);
                 document.documentElement.classList.remove('no-doc-scroll');
-            }
-        })
+            },
+        });
 
         masterTl.add(tl)
         masterTl.addLabel("introEnd")
