@@ -39,24 +39,28 @@ export default async function Experience() {
                     <div key={exp.id} className={styles.experience_row}>
                         <div className={styles.text_section}>
                             {/* Date and tags */}
-                            <FadeInDiv className={styles.time_tags_column}>
-                                <p className={styles.date_text}>{exp.startDate.toLocaleString('en-US', { month: 'short', year: 'numeric'})} - {exp.endDate ? exp.endDate.toLocaleString('en-US', { month: 'short', year: 'numeric'}) : "Present"}</p>
+                            <FadeInDiv className={styles.date}>
+                                <p>
+                                    {exp.startDate.toLocaleString('en-US', { month: 'short', year: 'numeric'})} - {exp.endDate ? exp.endDate.toLocaleString('en-US', { month: 'short', year: 'numeric'}) : "Present"}
+                                </p>
+                            </FadeInDiv>
+                            
+                            <FadeInDiv className={styles.tags}>
                                 <Tags list={exp.skills} />
                             </FadeInDiv>
 
                             {/* Role, company, description */}
-                            <div className={styles.role_description_column}>
-                                <MaskedTextReveal>
-                                    <h3>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
-                                </MaskedTextReveal>
-                                <ul>
-                                    {exp.description.map((item, i) => (
-                                    <FadeInDiv key={i}>
-                                        <li key={i}>{item}</li>
-                                    </FadeInDiv>
-                                    ))}
-                                </ul>
-                            </div>
+                            <MaskedTextReveal>
+                                <h3 className={styles.company_and_role}>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
+                            </MaskedTextReveal>
+
+                            <ul className={styles.role_description_list}>
+                                {exp.description.map((item, i) => (
+                                <FadeInDiv key={i}>
+                                    <li key={i}>{item}</li>
+                                </FadeInDiv>
+                                ))}
+                            </ul>
                         </div>
                         <div className={styles.logo_section}>
                             <div className={styles.logo_container}>

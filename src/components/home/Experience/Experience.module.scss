@@ -18,6 +18,10 @@
 
     background-image: url('/images/section1-gradient.png');
     background-size: cover;
+
+    @include md {
+        display: none;
+    }
 }
 
 .experience_column {
@@ -34,13 +38,19 @@
         font-weight: 500;
         font-size: 3.9rem;
         color: #402D2D;
+
+        @include md {
+            padding-left: 30px;
+        }
+
+        @include sm {
+            font-size: 3.2rem;
+        }
     }
 
     @include md {
         padding-right: 0;
         margin-bottom: 3rem;
-        align-items: center;
-        text-align: center;
     }
 }
 
@@ -51,66 +61,87 @@
     width: 100%;
     min-height: calc(100vw - var(--column-width) * 1vw - 10vw);
     color: #111111;
+}
 
-    .text_section {
-        display: flex;
-        flex-direction: row;
+.text_section {
+    flex: 1;
+    padding: 60px;
 
-        width: calc(var(--column-width) * 1vw);
-        padding: 60px;
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    column-gap: 2rem;
+    row-gap: 0.5rem;
 
-        .time_tags_column {
-            flex: 0 0 35%;
+    grid-template-areas:
+        "date company_and_role"
+        "tags role_desc";
 
-            gap: 0.4rem;
+    @include md {
+        padding: 50px 30px;
+        grid-template-columns: 1fr;
 
-            .date_text {
-                font-size: 1.1rem;
-                font-weight: 500;
-                font-family: var(--font-poppins);
-                color: #6B6464;
-                margin-bottom: 20px;
-                margin-top: 0.45rem;       
-            }
-        }
+        grid-template-areas:
+        "date"
+        "company_and_role"
+        "role_desc"
+        "tags";
+    }
 
-        .role_description_column {
-            flex: 1;
-            gap: 0.6rem;
+    .date {
+        grid-area: date;
 
-            h3 {
-                font-size: 1.5rem;
-                font-weight: 500;
-                color: #1C1B1B;
-                margin-bottom: 10px;
-            }
-
-            .company {
-                color: #9A24BE;
-            }
-
-            ul {
-                font-size: 1.1rem;
-                line-height: 1.6;
-                margin-left: 2rem;
-
-                li {
-                    margin-bottom: 0.5rem;
-                }
-            }
+        p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: var(--font-poppins);
+            color: #6B6464;
         }
     }
 
-    .logo_section {
-        flex: 1;
-        align-items: center;
-        justify-content: center;
-        margin: 0 5vw;
+    .tags {
+        grid-area: tags;
+    }
 
-        .logo_container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
+    .company_and_role {
+        grid-area: company_and_role;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #1C1B1B;
+
+        .company {
+            color: #9A24BE;
         }
+    }
+    
+    .role_description_list {
+        grid-area: role_desc;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-left: 2rem;
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        li::marker {
+            font-size: 0.6em;
+        }
+    }
+}
+
+.logo_section {
+    width: calc(100vw - var(--column-width) * 1vw);
+    align-items: center;
+    justify-content: center;
+    padding: calc(30px - 1vw) 5vw;
+
+    .logo_container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    @include md {
+        display: none;
     }
 }
