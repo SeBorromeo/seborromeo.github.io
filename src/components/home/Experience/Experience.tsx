@@ -9,6 +9,7 @@ import styles from './Experience.module.scss';
 export type Experience = {
     id: string;
     company: string;
+    companyUrl: string;
     role: string;
     startDate: Date;
     endDate?: Date | null;
@@ -46,7 +47,7 @@ export default async function Experience() {
                             {/* Role, company, description */}
                             <div className={styles.role_description_column}>
                                 <MaskedTextReveal>
-                                    <h3>{exp.role} <span className={styles.company}>@ {exp.company}</span></h3>
+                                    <h3>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
                                 </MaskedTextReveal>
                                 <ul>
                                     {exp.description.map((item, i) => (
