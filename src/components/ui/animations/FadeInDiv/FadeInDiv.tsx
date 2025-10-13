@@ -15,7 +15,7 @@ const FadeInDiv = ({ children, className = '' }: { children: ReactNode, classNam
                 scrollTrigger: {
                     trigger: ref.current,
                     toggleActions: "play none none reverse",
-                    start: "top 90%",
+                    start: "top 95%",
                 },
                 duration: 1,
                 ease: 'power3',

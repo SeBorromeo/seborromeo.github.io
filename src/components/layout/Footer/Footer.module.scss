@@ -1,20 +1,46 @@
+@import 'src/styles/index.scss';
+
 .footer {
     width: 100vw;
     background-color: transparent;
-    padding: 35px 35px;
+    padding: 35px;
 
     font-family: var(--font-poppins);
+
+    @include md {
+        padding: 20px;
+    }
+
+    @include sm {
+        padding: 20px 10px;
+    }
 
     .name {
         color: #f8f7f7;
         font-size: 2rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
+
+        @include lg {
+            font-size: 1.7rem;
+        }
+
+        @include sm {
+            font-size: 1.4rem;
+        }
     }
 
     .caption {
         color: #DED6D6;
         font-size: 1.8rem;
         font-weight: 600;
+
+        @include lg {
+            font-size: 1.4rem;
+        }
+
+        @include sm {
+            font-size: 1.1rem;
+        }
     }
 }
