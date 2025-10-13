@@ -9,18 +9,16 @@ import '@/styles/global.scss';
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Poppins({
     variable: '--font-poppins',
-    weight: ['100', '200', '300', '400', '500'],
+    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
     subsets: ['latin'],
 });
 const openSans = Open_Sans({
     variable: '--font-open-sans',
-    weight: ['400', '600', '700'],
     subsets: ['latin'],
 });
 
 const roboto = Roboto_Mono({
     variable: '--font-roboto-mono',
-    weight: '400',
     subsets: ['latin'],
 });
 
