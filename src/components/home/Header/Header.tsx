@@ -104,8 +104,8 @@ export default function Header() {
                     <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
                     <h2 className={styles.title}>COMPUTER SCIENCE GRADUATE FROM THE UNIVERSITY OF VIRGINIA</h2>
                     <h3 className={styles.bio}>
-                        Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, React, Nextjs,
-                        PHP, SQL, and RESTful APIs.
+                        Aspiring Software Engineer familiar in HTML, CSS, SASS, JavaScript, TypeScript, Java, Python, PHP, React, Nextjs,
+                         SQL, and RESTful APIs.
                     </h3>
                     <div className={styles.button_container}>
                         <Button href="/images/resume.pdf" className={styles.resume_button}>
