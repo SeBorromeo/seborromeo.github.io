@@ -17,7 +17,7 @@ const openSans = Open_Sans({
     subsets: ['latin'],
 });
 
-const roboto = Roboto_Mono({
+const robotoMono = Roboto_Mono({
     variable: '--font-roboto-mono',
     subsets: ['latin'],
 });
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en" className='no-doc-scroll'>
+        <html lang="en">
             <body className={`${poppins.variable} ${openSans.className}`} suppressHydrationWarning={true}>
                 <Analytics />
                 <SpeedInsights />

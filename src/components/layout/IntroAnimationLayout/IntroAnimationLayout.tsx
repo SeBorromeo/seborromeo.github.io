@@ -12,6 +12,8 @@ export default function IntroAnimationLayout({ children, disable = false }: { ch
     useEffect(() => {
         if (disable)
             document.documentElement.classList.remove('no-doc-scroll');
+        else
+            document.documentElement.classList.add('no-doc-scroll');
     })
     
     return (

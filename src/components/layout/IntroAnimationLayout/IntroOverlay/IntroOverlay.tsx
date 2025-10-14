@@ -5,11 +5,7 @@ import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-interface Props {
-    masterTl: gsap.core.Timeline
-}
-
-export default function IntroOverlay( { masterTl }: Props) {
+export default function IntroOverlay( { masterTl }: { masterTl: gsap.core.Timeline }) {
     const [animationFinished, setAnimationFinished] = useState(false);
     const overlayRef = useRef<HTMLDivElement>(null);
     const revealTextOverlayRef = useRef<HTMLDivElement>(null);
