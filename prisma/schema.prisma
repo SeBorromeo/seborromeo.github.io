@@ -41,3 +41,17 @@ model Experience {
   updatedAt   DateTime @updatedAt
   skills      String[]
 }
+
+model Projects {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  slug        String   @unique
+  demoUrl     String?
+  repoUrl     String
+  description String
+  tags        String[]
+  imageUrl    String
+  order       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

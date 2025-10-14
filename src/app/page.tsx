@@ -19,7 +19,7 @@ export default function Home() {
                 <main className={styles.main}>
                     <Bio />
                     <Experience />
-                    
+                    <Projects />
                     <GetInTouch />
                 </main>
                 <Footer />
