@@ -7,7 +7,7 @@ import styles from './Bio.module.scss';
 
 export default function Bio() {
     return (
-        <section className={styles.section}>
+        <section id="about" className={styles.section}>
             <div className={styles.text_column}>
                 <div className={styles.heading_container}>
                 <MaskedTextReveal startPercent={75}>

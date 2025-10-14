@@ -5,7 +5,7 @@ import styles from './GetInTouch.module.scss';
 
 const GetInTouch = () => {
     return (
-        <section className={styles.get_in_touch}>
+        <section id="contact" className={styles.get_in_touch}>
             <div className={styles.card}>
                 <h3>Get in touch</h3>
                 <p className={styles.get_in_touch_text}>

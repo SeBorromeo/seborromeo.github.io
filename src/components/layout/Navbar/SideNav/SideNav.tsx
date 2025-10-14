@@ -2,17 +2,15 @@
 
 import { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap/all";
+import gsap, { ScrollToPlugin } from "gsap/all";
 import { CONTACT_EMAIL } from "@/constants/constants";
+import Socials from "@/components/ui/Socials/Socials";
 
 import styles from "./SideNav.module.scss";
 
-type SidebarOverlayProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+gsap.registerPlugin(ScrollToPlugin) 
 
-export default function SideNav({ isOpen, onClose }: SidebarOverlayProps) {
+export default function SideNav({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const { contextSafe } = useGSAP(() => {
         if (isOpen) {
             gsap.fromTo(`.${styles.sidebar}`, 
@@ -26,7 +24,7 @@ export default function SideNav({ isOpen, onClose }: SidebarOverlayProps) {
         }
     }, [isOpen]);
 
-    const closeNav = contextSafe(() => {
+    const closeNav = contextSafe((section?: string | number) => {
         document.documentElement.classList.remove('no-doc-scroll');
         gsap.to(`.${styles.sidebar}`, 
             { x: '-100%', duration: 0.5, ease: 'power3.out', onComplete: onClose },
@@ -35,47 +33,42 @@ export default function SideNav({ isOpen, onClose }: SidebarOverlayProps) {
         gsap.to(`.${styles.overlayBg}`,
             { opacity: 0, duration: 0.5, ease: 'power3' },
         );
+
+        if (section != undefined) {
+         	gsap.to(window, { duration: 1, scrollTo: { y: section } });}
     });
 
-  useEffect(() => {
-        if (isOpen)
-            document.documentElement.classList.add('no-doc-scroll');
-  }, [isOpen]);
+	useEffect(() => {
+		if (isOpen)
+			document.documentElement.classList.add('no-doc-scroll');
+	}, [isOpen]);
 
-  if (!isOpen) return null;
+	if (!isOpen) return null;
 
-  return (
-    <div className={styles.sidebarOverlay}>
-      <div className={styles.overlayBg} onClick={closeNav}></div>
+	return (
+		<div className={styles.sidebarOverlay}>
+			<div className={styles.overlayBg} onClick={() => closeNav()}></div>
 
-      <aside className={styles.sidebar}>
-        <nav className={styles.nav}>
-          <a href="#home" onClick={closeNav}>HOME</a>
-          <a href="#about" onClick={closeNav}>ABOUT</a>
-          <a href="#experience" onClick={closeNav}>EXPERIENCE</a>
-          <a href="#projects" onClick={closeNav}>PROJECTS</a>
-          <a href="#contact" onClick={closeNav}>CONTACT</a>
-        </nav>
+			<aside className={styles.sidebar}>
+				<nav className={styles.nav}>
+					<a onClick={() => closeNav(0)}>HOME</a>
+					<a onClick={() => closeNav('#about')}>ABOUT</a>
+					<a onClick={() => closeNav('#experience')}>EXPERIENCE</a>
+					<a onClick={() => closeNav('#projects')}>PROJECTS</a>
+					<a onClick={() => closeNav('#contact')}>CONTACT</a>
+				</nav>
 
-        <div className={styles.footer}>
-          <div className={styles.email}>
-            <p className={styles.label}>EMAIL</p>
-            <a href={`mailto:${CONTACT_EMAIL}`} className={styles.address}>{CONTACT_EMAIL}</a>
-          </div>
+				<div className={styles.footer}>
+					<div className={styles.email}>
+						<p className={styles.label}>EMAIL</p>
+						<a href={`mailto:${CONTACT_EMAIL}`} className={styles.address}>{CONTACT_EMAIL}</a>
+					</div>
 
-          <div className={styles.icons}>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-              <img src="/linkedin.svg" alt="LinkedIn" />
-            </a>
-            <a href="https://github.com" target="_blank" rel="noreferrer">
-              <img src="/github.svg" alt="GitHub" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              <img src="/instagram.svg" alt="Instagram" />
-            </a>
-          </div>
-        </div>
-      </aside>
-    </div>
-  );
+					<div className={styles.icons}>
+						<Socials />
+					</div>
+				</div>
+			</aside>
+		</div>
+  	);
 }

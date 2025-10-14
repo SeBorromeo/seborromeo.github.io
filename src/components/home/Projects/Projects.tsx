@@ -26,7 +26,7 @@ export default async function Projects () {
 	});
 	
     return (
-		<section className={styles.projects_section}>
+		<section id="projects" className={styles.projects_section}>
 			<FadeInDiv>
 				<h1>PROJECTS</h1>
 			</FadeInDiv>

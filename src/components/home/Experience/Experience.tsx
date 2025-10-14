@@ -29,7 +29,7 @@ export default async function Experience() {
         return <div>No experiences found.</div>;
 
     return (
-        <section className={styles.experience_section}>
+        <section id="experience" className={styles.experience_section}>
             <div className={styles.experience_logos_column_bg}/>
             <div className={styles.experience_column}>
                 <FadeInDiv>

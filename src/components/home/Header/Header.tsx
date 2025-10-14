@@ -97,7 +97,7 @@ export default function Header() {
     };
 
     return (
-        <header className={styles.header} data-speed="0.72">
+        <header id="header" className={styles.header} data-speed="0.72">
             <div className={styles.bg}/>
             <div className={styles.intro_section}>
                 <div className={styles.name_column}>
