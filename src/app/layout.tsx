@@ -22,6 +22,12 @@ const robotoMono = Roboto_Mono({
     subsets: ['latin'],
 });
 
+const roboto = Roboto({
+    variable: '--font-roboto',
+    weight: ['100', '300', '400', '500', '700', '900'],
+    subsets: ['latin'],
+});
+
 export const metadata: Metadata = {
     title: 'Sebastian Borromeo - Computer Science Student',
     description:

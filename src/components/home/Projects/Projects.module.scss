@@ -5,16 +5,15 @@
 
     width: 100%;
     min-height: 110vh;
-    padding: 40px;
+    padding: 50px;
 
     background-color: transparent;
 
     h1 {
-        padding-left: 20px;
-        padding-top: 30px;
         font-weight: 500;
         font-size: 3.9rem;
-        color: #f4f0f0;
+        color: #ffffff;
+        margin-bottom: 70px;
 
         @include md {
             padding-left: 30px;
@@ -38,7 +37,7 @@
 }
 
 .card {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(86, 86, 86, 0.1);
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -47,14 +46,8 @@
     position: relative;
     flex: 1 1 calc(33.333% - 10px);
     max-width: calc(33.333% - 10px);
-    height: 400px;
-    
-    h1, h2, h3, h4, span {
-        color: rgb(240, 240, 240);
-        font-family: var(--font-poppins);
-        font-weight: 400;
-        margin: 0px;
-    }
+    height: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     &:hover::before {
         opacity: 1;
@@ -76,7 +69,7 @@
     &::before {
         background: radial-gradient(
             800px circle at var(--mouse-x) var(--mouse-y), 
-            rgba(255, 255, 255, 0.06),
+            rgba(195, 195, 195, 0.06),
             transparent 40%
         );
         z-index: 3;
@@ -85,7 +78,7 @@
     &::after {  
         background: radial-gradient(
             600px circle at var(--mouse-x) var(--mouse-y), 
-            rgba(255, 255, 255, 0.4),
+            rgba(200, 200, 200, 0.4),
             transparent 40%
         );
         z-index: 1;
@@ -98,18 +91,30 @@
         flex-direction: column;
         flex-grow: 1;
         inset: 1px;
-        padding: 10px;
         position: absolute;
         z-index: 2;
     }
 }
 
 
-/* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
 .card_image {
-  align-items: center;
-  display: flex;
-  height: 140px;
-  justify-content: center;
-  overflow: hidden;
+    position: relative;
+    height: 45%;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    img {
+        object-position: top;
+        object-fit: cover;
+    }
+}
+
+.card_text_container {
+    padding: 15px;
+
+    h2 {
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
 }

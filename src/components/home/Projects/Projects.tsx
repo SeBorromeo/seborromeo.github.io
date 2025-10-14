@@ -1,9 +1,10 @@
 import { prisma } from '@/lib/prisma';
 import FadeInDiv from '@/components/ui/animations/FadeInDiv/FadeInDiv';
 import ProjectsContainer from './ProjectsContainer/ProjectsContainer';
+import Tags from '@/components/ui/Tags/Tags';
+import Image from 'next/image';
 
 import styles from './Projects.module.scss';
-import Tags from '@/components/ui/Tags/Tags';
 
 export type Project = {
 	id: string;
@@ -40,12 +41,17 @@ export default async function Projects () {
 
 const ProjectCard = ({ project }: { project: Project}) => {
 	return (
-		<div className={styles.card}>
+		<a href={project.demoUrl || project.repoUrl} className={styles.card} target="_blank" rel="noreferrer">
 			<div className={styles.card_content}>
-				<h2>{project.name}</h2>
-				<p>{project.description}</p>
-				<Tags list={project.tags} />
+				<div className={styles.card_image}>
+					<Image src={project.imageUrl} alt={project.name} fill/>
+				</div>
+				<div className={styles.card_text_container}>
+					<h2>{project.name}</h2>
+					<p>{project.description}</p>
+					<Tags list={project.tags} />
+				</div>
 			</div>
-		</div>
+		</a>
 	);
 };

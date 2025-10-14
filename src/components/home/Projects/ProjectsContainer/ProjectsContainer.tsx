@@ -1,11 +1,32 @@
 'use client';
 
 import { useRef } from "react";
+import gsap, { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 
 import styles from "../Projects.module.scss";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ProjectsContainer = ({ children }: { children: React.ReactNode }) => {
     const containerRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        const cards = containerRef.current!.querySelectorAll<HTMLElement>(`.${styles.card}`);
+
+        gsap.from(cards, {
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+            },
+        });
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         Array.from(containerRef.current!.querySelectorAll<HTMLElement>(`.${styles.card}`)).forEach(card => {
