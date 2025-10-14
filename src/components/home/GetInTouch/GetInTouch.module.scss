@@ -13,6 +13,7 @@
     }
 
     @include sm {
+        height: 450px;
         padding: 0px 10px;
     }
 }
@@ -33,7 +34,7 @@
     }
 
     @include sm {
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
     &::before {
@@ -56,6 +57,10 @@
     h3 {
         font-size: 2.7rem;
         font-weight: 600;
+
+        @include sm {
+            font-size: 2.2rem;
+        }
     }
 
     .get_in_touch_text {
@@ -63,7 +68,6 @@
         font-size: 1.5rem;
         width: 80%;
         color: #f9e6e6;
-        margin-bottom: 1rem;
 
         @include md {
             font-size: 1.2rem;
@@ -87,5 +91,11 @@
         font-size: 1rem;
         bottom: 15px;
         left: 15px;
+    }
+    
+    @include sm {
+        font-size: 0.9rem;
+        bottom: 10px;
+        left: 10px;
     }
 }
