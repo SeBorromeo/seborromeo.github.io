@@ -1,8 +1,9 @@
 import { prisma } from '@/lib/prisma';
 import FadeInDiv from '@/components/ui/animations/FadeInDiv/FadeInDiv';
 import ProjectsContainer from './ProjectsContainer/ProjectsContainer';
-import Tags from '@/components/ui/Tags/Tags';
+import Tags, { TagTheme } from '@/components/ui/Tags/Tags';
 import Image from 'next/image';
+import Button from '@/components/ui/Button/Button';
 
 import styles from './Projects.module.scss';
 
@@ -35,6 +36,9 @@ export default async function Projects () {
 					<ProjectCard project={project} key={index} />
 				))}
 			</ProjectsContainer>
+			<Button href="/projects" className={styles.resume_button}>
+				VIEW ALL
+			</Button>
 		</section>
     );
 }
