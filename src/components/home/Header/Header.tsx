@@ -67,8 +67,8 @@ export default function Header() {
             ease: 'power2.out',
         }, 0.3)
 
-        masterTl.add(tl, "introEnd-=0.9")
-
+   // masterTl.add(tl, "introEnd-=0.9");
+   tl.play();
         // Scroll Trigger Background Change Animation Timeline
         const switchBgTl = gsap.timeline({
             scrollTrigger: {
