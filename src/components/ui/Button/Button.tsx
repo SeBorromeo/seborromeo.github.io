@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC, ReactNode } from 'react';
+import Link from 'next/link';
 
 import styles from './Button.module.scss';
 
@@ -16,7 +17,7 @@ const Button: FC<ButtonProps> = ({
     href = '#',
 }) => {
     return (
-        <a
+        <Link
             href={href}
             className={`${styles.utl_button} ${className}`}
             style={style}
@@ -29,7 +30,7 @@ const Button: FC<ButtonProps> = ({
                     {children}
                 </span>
             </div>
-        </a>
+        </Link>
     );
 };
 

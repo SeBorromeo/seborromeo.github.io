@@ -32,7 +32,7 @@ export default async function Experience() {
         <section id="experience" className={styles.experience_section}>
             <div className={styles.experience_logos_column_bg}/>
             <div className={styles.experience_column}>
-                <FadeInDiv>
+                <FadeInDiv className={styles.heading_container}>
                     <h1>EXPERIENCE</h1>
                 </FadeInDiv>
                 {experiences.map((exp: Experience) => (

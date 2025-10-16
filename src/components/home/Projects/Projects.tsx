@@ -53,7 +53,7 @@ const ProjectCard = ({ project }: { project: Project}) => {
 				<div className={styles.card_text_container}>
 					<h2>{project.name}</h2>
 					<p>{project.description}</p>
-					<Tags list={project.tags} />
+					<Tags list={project.tags} theme={TagTheme.WhiteOutline}/>
 				</div>
 			</div>
 		</a>

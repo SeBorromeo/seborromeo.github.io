@@ -1,3 +1,5 @@
+@import 'src/styles/index.scss';
+
 .tags_container {
     display: flex;
     flex-wrap: wrap;
@@ -16,6 +18,8 @@
 	--bg-color: rgba(255, 255, 255, 0);
 	--text-color: #FFFFFF;
 	--outline: 1px solid rgba(255, 255, 255, 0.3);
+	--font-size: 0.85rem;
+	--font-weight: 400;
 }
 
 // Tag Themes ===================================
@@ -24,12 +28,20 @@
 	background-color: var(--bg-color);
 	color: var(--text-color);
 	outline: var(--outline, none);
-	font-weight: 500;
+	font-weight: var(--font-weight, 500);
 	border-radius: 15px; 
 	padding: 0.3rem 0.9rem;
-	font-size: 0.95rem;
+	font-size: var(--font-size, 0.95rem);
 	line-height: 1.4;
 	white-space: nowrap;
 	user-select: none;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+
+	@include md {
+		font-size: calc(var(--font-size, 0.95rem) - 0.1rem);
+	}
+
+	@include sm {
+		font-size: calc(var(--font-size, 0.95rem) - 0.2rem);
+	}
 }

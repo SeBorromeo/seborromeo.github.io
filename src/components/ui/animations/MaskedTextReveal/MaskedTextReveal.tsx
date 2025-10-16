@@ -7,7 +7,7 @@ import gsap from "gsap";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const MaskedTextReveal = ({ children, stagger = 0.05, startPercent = 85 }: { children: ReactNode, stagger?: number, startPercent?: number }) => {
+const MaskedTextReveal = ({ children, stagger = 0.05, startPercent = 90 }: { children: ReactNode, stagger?: number, startPercent?: number }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {

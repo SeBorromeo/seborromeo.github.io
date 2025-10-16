@@ -26,7 +26,7 @@ export default async function BioParagraph() {
         <>
             <div className="bio-text" style={{"transform": "translateY(-17px)"}}/>
             {paragraphs.map((para: any[], idx: number) => (
-                <MaskedTextReveal key={idx}>
+                <MaskedTextReveal key={idx} startPercent={95}>
                     <p key={idx}>
                     {para.map((node, i) => {
                         switch (node.type) {

@@ -9,6 +9,14 @@
 
     background-color: transparent;
 
+    @include md {
+        padding: 30px;
+    }
+
+    @include sm {
+        padding: 20px;
+    }
+
     h1 {
         font-weight: 500;
         font-size: 3.9rem;
@@ -16,11 +24,13 @@
         margin-bottom: 70px;
 
         @include md {
-            padding-left: 30px;
+            font-size: 3.6rem;
+            margin-bottom: 30px;
         }
 
         @include sm {
             font-size: 3.2rem;
+            margin-bottom: 20px;
         }
     }
 }
@@ -48,6 +58,17 @@
     max-width: calc(33.333% - 10px);
     height: 500px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @include md {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+
+    @include sm {
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: 450px;
+    }
 
     &:hover::before {
         opacity: 1;
