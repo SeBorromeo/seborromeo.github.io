@@ -8,18 +8,18 @@ interface ButtonProps {
     style?: CSSProperties;
     className?: string;
     href: string;
+    theme?: ButtonTheme
 }
 
-const Button: FC<ButtonProps> = ({
-    children,
-    style,
-    className = '',
-    href = '#',
-}) => {
+export enum ButtonTheme {
+	White = 'white_bg',
+}
+
+const Button: FC<ButtonProps> = ({ children, style, className = '', href = '#', theme }) => {
     return (
         <Link
             href={href}
-            className={`${styles.utl_button} ${className}`}
+            className={`${styles.utl_button} ${className} ${theme ? styles[theme] : ''}`}
             style={style}
         >
             <div className={styles.utl_button_text_container}>

@@ -3,7 +3,7 @@ import FadeInDiv from '@/components/ui/animations/FadeInDiv/FadeInDiv';
 import ProjectsContainer from './ProjectsContainer/ProjectsContainer';
 import Tags, { TagTheme } from '@/components/ui/Tags/Tags';
 import Image from 'next/image';
-import Button from '@/components/ui/Button/Button';
+import Button, { ButtonTheme } from '@/components/ui/Button/Button';
 
 import styles from './Projects.module.scss';
 
@@ -36,9 +36,11 @@ export default async function Projects () {
 					<ProjectCard project={project} key={index} />
 				))}
 			</ProjectsContainer>
-			<Button href="/projects" className={styles.resume_button}>
-				VIEW ALL
-			</Button>
+			<div className={styles.view_all_button_container}>
+				<Button href="/projects" className={styles.view_all_button} theme={ButtonTheme.White}>
+					VIEW ALL
+				</Button>
+			</div>
 		</section>
     );
 }

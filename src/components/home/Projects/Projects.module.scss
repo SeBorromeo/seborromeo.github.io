@@ -145,3 +145,14 @@
         margin-bottom: 12px;
     }
 }
+
+.view_all_button_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+    .view_all_button {
+        width: 150px;
+    }
+}
