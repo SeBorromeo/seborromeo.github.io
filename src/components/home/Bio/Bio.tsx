@@ -10,7 +10,7 @@ export default function Bio() {
         <section id="about" className={styles.section}>
             <div className={styles.text_column}>
                 <div className={styles.heading_container}>
-                <MaskedTextReveal startPercent={75}>
+                <MaskedTextReveal startPercent={85}>
                     <div className="bio-text"/>
                     <h2>ABOUT ME</h2>
                 </MaskedTextReveal>

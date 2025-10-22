@@ -28,6 +28,10 @@
         @include sm {
             font-size: 1.4rem;
         }
+
+        @include xs {
+            font-size: 1rem;
+        }
     }
 
     .caption {
@@ -41,6 +45,10 @@
 
         @include sm {
             font-size: 1.1rem;
+        }
+
+        @include xs {
+            font-size: 0.9rem;
         }
     }
 }

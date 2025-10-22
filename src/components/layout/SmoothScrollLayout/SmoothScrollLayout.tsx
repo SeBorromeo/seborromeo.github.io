@@ -13,11 +13,13 @@ export default function SmoothScrollOverlay({ children }: Readonly<{ children: R
         });
 
         smoother.scrollTop(0);
-    })
+    });
 
     return (
-        <div id="smooth-content">
-            {children}
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                {children}
+            </div>
         </div>
     );
 }

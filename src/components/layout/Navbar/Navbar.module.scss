@@ -9,7 +9,7 @@ $main-header-color: rgb(145, 145, 160);
     height: 100px;
     width: 100%;
     padding: 30px 60px;
-    z-index: 1;
+    z-index: 999;
     pointer-events: none;
 
     color: $main-header-color;
@@ -17,6 +17,16 @@ $main-header-color: rgb(145, 145, 160);
     mix-blend-mode: difference;
 
     opacity: 0;
+
+    @include md {
+        font-size: 1rem;
+        padding: 25px 40px;
+    } 
+    
+    @include sm {
+        font-size: 0.9rem;
+        padding: 20px 30px;
+    } 
 
     h3 {
         font-weight: 500;
@@ -40,6 +50,10 @@ $main-header-color: rgb(145, 145, 160);
         align-items: center;
         justify-content: space-between;
         gap: 50px;
+
+        @include xs {
+            display: none;
+        }
     }
 
     .nav_link {
