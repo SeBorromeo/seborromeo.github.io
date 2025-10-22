@@ -24,14 +24,14 @@ $breakpoints: (
     }
 }
 
-@mixin md {
-    @media (max-width: map-get($breakpoints, 'md')) {
+@mixin lg {
+    @media (max-width: map-get($breakpoints, 'lg')) {
         @content;
     }
 }
 
-@mixin lg {
-    @media (max-width: map-get($breakpoints, 'lg')) {
+@mixin xl {
+    @media (max-width: map-get($breakpoints, 'xl')) {
         @content;
     }
 }

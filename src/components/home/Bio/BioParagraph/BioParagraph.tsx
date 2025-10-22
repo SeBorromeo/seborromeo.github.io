@@ -1,4 +1,4 @@
-import MaskedTextReveal from "@/components/ui/animations/MaskedTextReveal/MaskedTextReveal";
+import FadeInDiv from "@/components/ui/animations/FadeInDiv/FadeInDiv";
 import { prisma } from "@/lib/prisma"
 import { RichTextNode } from "@/types/richText";
 
@@ -26,7 +26,7 @@ export default async function BioParagraph() {
         <>
             <div className="bio-text" style={{"transform": "translateY(-17px)"}}/>
             {paragraphs.map((para: any[], idx: number) => (
-                <MaskedTextReveal key={idx} startPercent={95}>
+                <FadeInDiv key={idx}>
                     <p key={idx}>
                     {para.map((node, i) => {
                         switch (node.type) {
@@ -45,7 +45,7 @@ export default async function BioParagraph() {
                         }
                     })}
                     </p>
-                </MaskedTextReveal>
+                </FadeInDiv>
             ))}
         </>
     );
