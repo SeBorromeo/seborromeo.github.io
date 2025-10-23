@@ -2,6 +2,8 @@ import FadeInDiv from "@/components/ui/animations/FadeInDiv/FadeInDiv";
 import { prisma } from "@/lib/prisma"
 import { RichTextNode } from "@/types/richText";
 
+import styles from '../Bio.module.scss';
+
 export type Paragraph = RichTextNode[];
 
 export type Bio = {
@@ -24,27 +26,27 @@ export default async function BioParagraph() {
 
     return (
         <>
-            <div className="bio-text" style={{"transform": "translateY(-17px)"}}/>
             {paragraphs.map((para: any[], idx: number) => (
-                <FadeInDiv key={idx}>
+                <FadeInDiv key={idx} className={styles.p_container}>
                     <p key={idx}>
-                    {para.map((node, i) => {
-                        switch (node.type) {
-                            case 'bold':
-                                return <strong key={i}>{node.text}</strong>
-                            case 'italic':
-                                return <em key={i}>{node.text}</em>
-                            case 'link':
-                                return (
-                                <a key={i} href={node.url} target="_blank" rel="noopener noreferrer">
-                                    {node.text}
-                                </a>
-                                )
-                            default:
-                                return <span key={i}>{node.text}</span>
-                        }
-                    })}
+                        {para.map((node, i) => {
+                            switch (node.type) {
+                                case 'bold':
+                                    return <strong key={i}>{node.text}</strong>
+                                case 'italic':
+                                    return <em key={i}>{node.text}</em>
+                                case 'link':
+                                    return (
+                                    <a key={i} href={node.url} target="_blank" rel="noopener noreferrer">
+                                        {node.text}
+                                    </a>
+                                    )
+                                default:
+                                    return <span key={i}>{node.text}</span>
+                            }
+                        })}
                     </p>
+                    <div className="bio-text"/>
                 </FadeInDiv>
             ))}
         </>

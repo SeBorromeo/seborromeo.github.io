@@ -23,9 +23,9 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({ src, className, alt, isVi
     return (
         <div
             ref={frameRef}
-            className={styles.frame}
+            className={`${styles.frame} ${className}`}
         >
-            <div ref={imgRef} className={styles.image_wrapper} data-speed='0.7'>
+            <div ref={imgRef} className={styles.image_wrapper} data-speed='0.65'>
                 {isVideo ?
                     <video
                         src={src}
@@ -33,13 +33,11 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({ src, className, alt, isVi
                         muted
                         loop
                         playsInline
-                        className={className}
                     />
                     :
                     <Image
                         src={src}
                         alt={alt}
-                        className={className}
                         width={0} height={0}
                         objectFit="cover"
                     />

@@ -24,7 +24,7 @@ const MaskedTextReveal = ({ children, stagger = 0.05, startPercent = 90 }: { chi
                     },
                     y: "200%",
                     stagger: stagger,
-                    duration: 1.1,
+                    duration: 0.9,
                     ease: 'power3',
                 });
             },

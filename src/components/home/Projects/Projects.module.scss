@@ -44,6 +44,10 @@
     &:hover > .card::after {
         opacity: 1;
     }
+
+    @include sm {
+        width: 100%;
+    }
 }
 
 .card {
@@ -59,7 +63,7 @@
     height: 500px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    @include md {
+    @include lg {
         flex: 1 1 calc(50% - 10px);
         max-width: calc(50% - 10px);
     }

@@ -19,7 +19,7 @@ export default function Bio() {
                 <BioParagraph />
             </div>
             <div className={styles.photo_column}>
-                <ParallaxImage isVideo={true} src={`${AWS_BUCKET_URL}/videos/dayonthelawn.mp4`} alt='Photo of Sebastian'/>
+                <ParallaxImage className={styles.photo_frame} isVideo={true} src={`${AWS_BUCKET_URL}/videos/dayonthelawn.mp4`} alt='Photo of Sebastian'/>
             </div>
         </section>
     );

@@ -2,9 +2,8 @@
 
 .frame {
     position: relative;
-    width: 100%;           /* or fixed width */
+    width: 100%;           
     height: 100%;
-    max-height: 600px;
     display: block;
     overflow: hidden;
 
@@ -12,7 +11,7 @@
         position: absolute;
         height: 120%;
         width: 100%;
-        bottom: 0;
+        bottom: -5%;
 
         display: flex;              
         justify-content: center;
@@ -20,7 +19,7 @@
 
         img, video {
             width: auto;
-            height: 120%; 
+            height: 100%; 
         }
     }
 }

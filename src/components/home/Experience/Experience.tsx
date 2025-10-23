@@ -50,7 +50,7 @@ export default async function Experience() {
                             </FadeInDiv>
 
                             {/* Role, company, description */}
-                            <MaskedTextReveal>
+                            <MaskedTextReveal startPercent={95}>
                                 <h3 className={styles.company_and_role}>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
                             </MaskedTextReveal>
 
