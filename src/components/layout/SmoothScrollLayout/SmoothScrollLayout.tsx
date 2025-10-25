@@ -2,25 +2,31 @@
 
 import { gsap, ScrollTrigger, ScrollSmoother} from 'gsap/all';
 import { useGSAP } from '@gsap/react';
+import { useEffect } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScrollOverlay({ children }: Readonly<{ children: React.ReactNode }>) {
+    useEffect(() => {
+        let forcingRefresh = false;
 
-    function smootherFix() {
-        let forcingRefresh: boolean;
-        ScrollTrigger.addEventListener("refresh", () => {
+        const refreshHandler = () => {
             if (!forcingRefresh) {
                 forcingRefresh = true;
-                let recordedScroll = window.pageYOffset;
+                const recordedScroll = window.pageYOffset;
                 window.scrollTo(0, 0);
                 ScrollTrigger.refresh();
                 window.scrollTo(0, recordedScroll);
                 forcingRefresh = false;
             }
-        });
-    }
-    smootherFix();
+        };
+
+        ScrollTrigger.addEventListener("refresh", refreshHandler);
+
+        return () => {
+            ScrollTrigger.removeEventListener("refresh", refreshHandler);
+        };
+    }, []);
 
     useGSAP(() => {
         let smoother = ScrollSmoother.create({
