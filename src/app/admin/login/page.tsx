@@ -1,8 +1,9 @@
 'use client';
 
-import { useActionState, useState } from 'react';
-import styles from './page.module.scss';
+import { useActionState } from 'react';
 import { login } from '@/app/actions/auth';
+
+import styles from './page.module.scss';
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState(login, undefined)
