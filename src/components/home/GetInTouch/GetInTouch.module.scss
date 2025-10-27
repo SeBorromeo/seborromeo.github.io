@@ -1,4 +1,5 @@
-@import 'src/styles/index.scss';
+@use 'styles/index' as *;
+
 
 .get_in_touch {
     width: 100%;

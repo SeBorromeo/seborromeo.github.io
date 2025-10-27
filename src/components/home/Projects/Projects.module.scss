@@ -1,4 +1,5 @@
-@import 'src/styles/index.scss';
+@use 'styles/index' as *;
+
 
 .projects_section {
     --card-color: rgb(23, 23, 23);
