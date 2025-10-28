@@ -13,7 +13,7 @@ export async function encrypt(payload: SessionPayload) {
  
 export async function decrypt(session: string | undefined = '') {
     try {
-        return jwt.verify(session, process.env.JWT_SECRET!)
+        return jwt.verify(session, process.env.JWT_SECRET!) as SessionPayload
     } catch (error) {
         console.log('Failed to verify session')
     }
@@ -31,4 +31,9 @@ export async function createSession(userId: string) {
         sameSite: 'lax',
         path: '/',
     })
+}
+
+export async function deleteSession() {
+    const cookieStore = await cookies()
+    cookieStore.delete('session')
 }

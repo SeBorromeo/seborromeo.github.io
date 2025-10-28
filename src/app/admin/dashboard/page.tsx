@@ -1,19 +1,16 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import jwt from 'jsonwebtoken';
+'use client';
+
+import { validate } from "@/app/actions/auth";
+import Router from "next/router";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
-    // const cookieStore = cookies();
-    // const session = cookieStore.get('session');
-
-    // if (!session) redirect('/admin/login');
-
-    // try {
-    //     jwt.verify(session.value, process.env.JWT_SECRET!);
-    // } catch {
-    //     alert('Invalid or expired login');
-    //     redirect('/admin/login');
-    // }
+    useEffect(() => {
+        const isAuth = validate()
+        if (!isAuth) {
+            Router.push('/admin/login');
+        }
+    });
 
     return (
         <div style={{ padding: '2rem', textAlign: 'center' }}>

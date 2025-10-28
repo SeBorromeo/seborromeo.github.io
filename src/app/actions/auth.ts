@@ -1,8 +1,9 @@
 'use server';
 
+import { verifySession } from '@/lib/dal';
 import { LoginFormSchema, FormState } from '@/lib/definitions';
 import { prisma } from '@/lib/prisma';
-import { createSession } from '@/lib/session';
+import { createSession, deleteSession } from '@/lib/session';
 import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 import * as z from 'zod'
@@ -36,4 +37,14 @@ export async function login(state: FormState, formData: FormData) {
 
     await createSession(user.id)
     redirect('/admin/dashboard')
+}
+
+export async function logout() {
+    await deleteSession()
+    redirect('/admin/login')
+}
+
+export async function validate() {
+    const { isAuth } = await verifySession()
+    return isAuth
 }
