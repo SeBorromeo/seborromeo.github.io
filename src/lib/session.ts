@@ -3,6 +3,7 @@ import 'server-only'
 import jwt from "jsonwebtoken";
 import { SessionPayload } from '@/lib/definitions'
 import { cookies } from 'next/headers';
+import { cache } from 'react';
  
 export async function encrypt(payload: SessionPayload) {
     return jwt.sign(
@@ -37,3 +38,21 @@ export async function deleteSession() {
     const cookieStore = await cookies()
     cookieStore.delete('session')
 }
+
+export async function updateSession() {
+    const session = (await cookies()).get('session')?.value
+    const payload = await decrypt(session)
+    
+    if (!session || !payload) {
+        return null
+    }
+    
+    createSession(payload.userId);
+}
+
+export const verifySession = cache(async () => {
+    const cookie = (await cookies()).get('session')?.value
+    const session = await decrypt(cookie)
+    
+    return { isAuth: true, userId: session?.userId }
+})
