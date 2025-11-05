@@ -50,9 +50,21 @@ export async function updateSession() {
     createSession(payload.userId);
 }
 
+
 export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
     const session = await decrypt(cookie)
     
+    if (!session?.userId)
+        return null
+    
     return { isAuth: true, userId: session?.userId }
 })
+
+export async function requireAuth() {
+    const session = await verifySession()
+    if (!session?.userId) {
+        throw new Error('Unauthorized')
+    }
+    return session
+}
