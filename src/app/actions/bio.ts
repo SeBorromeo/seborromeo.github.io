@@ -5,7 +5,8 @@ import { requireAuth } from '@/lib/session';
 import { RichTextNode } from '@/types/richText';
 
 export async function updateBio(paragraphs: RichTextNode[][]) {
-    await requireAuth()
+    const { session, error } = await requireAuth()
+    if (error) return { error }
 
     await prisma.bio.updateMany({
         data: { paragraphs },

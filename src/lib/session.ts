@@ -58,13 +58,13 @@ export const verifySession = cache(async () => {
     if (!session?.userId)
         return null
     
-    return { isAuth: true, userId: session?.userId }
+    return { isAuth: true, userId: session.userId }
 })
 
 export async function requireAuth() {
     const session = await verifySession()
-    if (!session?.userId) {
-        throw new Error('Unauthorized')
+    if (!session) {
+        return { error: 'Session expired', shouldRedirect: '/admin/login' }
     }
-    return session
+    return { session }
 }
