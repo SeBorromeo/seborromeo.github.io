@@ -1,7 +1,5 @@
 @use '@/styles/index' as *;
 
-
-
 .section {
     width: 100%;
     min-height: 110vh;
@@ -55,12 +53,9 @@
         }
     }
 
-    .p_container {
+    p {
         padding: 1rem 0;
         height: auto;
-    }
-
-    p {
         font-family: var(--font-open-sans);
         font-size: 1.1rem;
 

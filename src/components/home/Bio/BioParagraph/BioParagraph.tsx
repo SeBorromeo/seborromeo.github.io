@@ -1,8 +1,8 @@
 import FadeInDiv from "@/components/ui/animations/FadeInDiv/FadeInDiv";
+import { JSONContent } from '@tiptap/react'
 import { prisma } from "@/lib/prisma"
 import { RichTextNode } from "@/types/richText";
-
-import styles from '../Bio.module.scss';
+import { jsonToHTML } from "@/lib/tiptap";
 
 export type Paragraph = RichTextNode[];
 
@@ -15,40 +15,16 @@ export type Bio = {
  
 export default async function BioParagraph() {
     const bio = await prisma.bio.findFirst({
-        select: { paragraphs: true },
+        select: { tiptapcontent: true },
     });
-
-    if (!bio || !Array.isArray(bio.paragraphs)) {
-        return <p>No bio available.</p>
-    }
-
-    const paragraphs: Paragraph[] = bio.paragraphs as Paragraph[];
-
+    
+    const content: JSONContent = bio?.tiptapcontent as JSONContent || { type: 'doc', content: [] };
+    const html = jsonToHTML(content);
+    
     return (
-        <>
-            {paragraphs.map((para: any[], idx: number) => (
-                <FadeInDiv key={idx} className={styles.p_container}>
-                    <p key={idx}>
-                        {para.map((node, i) => {
-                            switch (node.type) {
-                                case 'bold':
-                                    return <strong key={i}>{node.text}</strong>
-                                case 'italic':
-                                    return <em key={i}>{node.text}</em>
-                                case 'link':
-                                    return (
-                                    <a key={i} href={node.url} target="_blank" rel="noopener noreferrer">
-                                        {node.text}
-                                    </a>
-                                    )
-                                default:
-                                    return <span key={i}>{node.text}</span>
-                            }
-                        })}
-                    </p>
-                    <div className="bio-text"/>
-                </FadeInDiv>
-            ))}
-        </>
+        <FadeInDiv>
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+            <div className="bio-text"/>
+        </FadeInDiv>
     );
 }
