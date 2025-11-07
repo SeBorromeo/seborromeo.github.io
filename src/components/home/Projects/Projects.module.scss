@@ -7,47 +7,57 @@
 
     width: 100%;
     min-height: 110vh;
-    padding: 50px;
+    margin: 30px 0;
 
     background-color: transparent;
-
-    @include md {
-        padding: 30px;
-    }
-
-    @include sm {
-        padding: 20px;
-    }
 
     h1 {
         font-weight: 500;
         font-size: 3.9rem;
         color: #ffffff;
-        margin-bottom: 70px;
+        padding-left: 50px;
 
         @include md {
             font-size: 3.6rem;
-            margin-bottom: 30px;
+            padding-left: 30px;
         }
-
+        
         @include sm {
             font-size: 3.2rem;
-            margin-bottom: 20px;
+            padding-left: 20px;
         }
     }
 }
 
 .projects_container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
     gap: 10px;  
-    width: calc(100% - 20px);
+    padding: 50px;
+    padding-top: 70px;
 
     &:hover > .card::after {
         opacity: 1;
     }
 
+    @include xxl {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include lg {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include md {
+        padding: 30px;
+        padding-top: 50px;
+    }
+    
     @include sm {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 20px;
+        padding-top: 40px;
         width: 100%;
     }
 }
@@ -60,19 +70,11 @@
     height: 260px;
     flex-direction: column;
     position: relative;
-    flex: 1 1 calc(33.333% - 10px);
-    max-width: calc(33.333% - 10px);
+    width: 100%;
     height: 500px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    @include lg {
-        flex: 1 1 calc(50% - 10px);
-        max-width: calc(50% - 10px);
-    }
-
     @include sm {
-        flex: 1 1 100%;
-        max-width: 100%;
         height: 450px;
     }
 
@@ -156,7 +158,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 40px;
 
     .view_all_button {
         width: 150px;
