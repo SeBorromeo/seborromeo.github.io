@@ -11,7 +11,7 @@ export default async function DashboardPage() {
     const content: JSONContent = bio?.tiptapcontent as JSONContent || { type: 'doc', content: [] };
 
     return (
-        <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <div style={{ padding: '2rem', textAlign: 'center' }} className="dark">
             <h1>Admin Dashboard</h1>
             <p>Welcome back! You’re authenticated ✅</p>
 
