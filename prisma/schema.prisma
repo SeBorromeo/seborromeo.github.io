@@ -49,6 +49,7 @@ model Projects {
   demoUrl     String?
   repoUrl     String
   description String
+  publishedAt DateTime?
   tags        String[]
   imageUrl    String
   order       Int

@@ -14,6 +14,7 @@ export type Project = {
 	demoUrl?: string | null;
 	repoUrl: string;
 	description: string;
+	publishedAt: Date | null;
 	tags: string[];
 	imageUrl: string;
 	order: number;
