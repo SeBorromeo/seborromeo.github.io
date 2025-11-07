@@ -5,6 +5,7 @@ import gsap from "gsap/all";
 import { ReactNode, useRef } from "react";
 
 const FadeInDiv = ({ children, className = '' }: { children: ReactNode, className?: string }) => {
+    const triggerRef = useRef<HTMLDivElement>(null);
     const ref = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -13,9 +14,10 @@ const FadeInDiv = ({ children, className = '' }: { children: ReactNode, classNam
                 autoAlpha: 0, 
                 y: 50,
                 scrollTrigger: {
-                    trigger: ref.current,
+                    trigger: triggerRef.current,
                     toggleActions: "play none none reverse",
                     start: "top 95%",
+                    markers: true,
                 },
                 duration: 1,
                 ease: 'power3',
@@ -23,8 +25,10 @@ const FadeInDiv = ({ children, className = '' }: { children: ReactNode, classNam
     });
 
     return (        
-        <div ref={ref} className={className}>
-            {children}
+        <div ref={triggerRef}>
+            <div ref={ref} className={className}>
+                {children}
+            </div>
         </div>
     );
 }
