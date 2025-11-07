@@ -23,7 +23,7 @@ model User {
 
 model Bio {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
-  paragraphs Json[] 
+  tiptapcontent Json 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
