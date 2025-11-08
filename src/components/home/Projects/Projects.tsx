@@ -51,7 +51,7 @@ const ProjectCard = ({ project }: { project: Project}) => {
 		<a href={project.demoUrl || project.repoUrl} className={styles.card} target="_blank" rel="noreferrer">
 			<div className={styles.card_content}>
 				<div className={styles.card_image}>
-					<Image src={project.imageUrl} alt={project.name} fill/>
+					<Image src={project.imageUrl} alt={project.name} fill sizes='100%, 100%'/>
 				</div>
 				<div className={styles.card_text_container}>
 					<h2>{project.name}</h2>

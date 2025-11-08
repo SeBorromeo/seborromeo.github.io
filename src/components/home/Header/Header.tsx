@@ -119,6 +119,7 @@ export default function Header() {
                             <Image
                                 fill
                                 src="/images/newheadshot.jpg"
+                                sizes='100%, 100%'
                                 alt="Photo of Sebastian"
                                 style={headshotStyle}
                             />

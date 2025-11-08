@@ -67,6 +67,7 @@ export default async function Experience() {
                                 <Image
                                     fill
                                     src={exp.logoUrl}
+                                    sizes='100%, 100%'
                                     alt="Photo of Sebastian"
                                     style={{ objectFit: "cover" }}
                                 />
