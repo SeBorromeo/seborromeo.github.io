@@ -1,0 +1,63 @@
+@use '@/styles/index' as *;
+
+.table {
+    padding: 2rem;
+    width: 100%;
+    border-collapse: collapse;
+
+    text-align: left;
+
+    td {
+        padding: 1rem 1rem 1rem 0;
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    tr {
+        border-bottom: 1px solid #2d2d2d;
+    }
+
+    .year {
+        padding-right: 2rem;
+    }
+
+    .project {
+        font-weight: 600;
+    }
+
+    .link {
+        transition: color 0.2s;
+
+        svg {
+            width: 1rem;
+            height: 1rem;
+            margin-left: 0.25rem;
+            vertical-align: middle;
+            transition: transform 0.2s;
+        }
+
+        &:hover {
+            color: $secondary-color;
+
+            svg {
+                transform: translate(0.25rem, -0.25rem);
+            }
+        }
+    }
+}
+
+.header {
+    position: sticky;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    top: 0;
+
+    border-bottom: 1px solid #2d2d2d;
+    
+    th {
+        padding: 1rem 1rem 1rem 0;
+        color: white;
+    }
+}
