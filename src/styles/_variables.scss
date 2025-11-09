@@ -7,6 +7,9 @@ $body-font: $font-secondary;
 $dark-heading-color: #3f3f3f;
 $dark-subheading-color: #727272;
 
+$primary-color: #9A24BE;
+$secondary-color: #FF6AD5;
+
 /* TipTap Variables */
 
 :root {
@@ -171,15 +174,6 @@ $dark-subheading-color: #727272;
   --tt-accent-contrast: 8%;
   --tt-destructive-contrast: 8%;
   --tt-foreground-contrast: 8%;
-
-  &,
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-    transition: none var(--tt-transition-duration-default)
-      var(--tt-transition-easing-default);
-  }
 }
 
 :root {
