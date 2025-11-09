@@ -1,7 +1,6 @@
 'use client';
 
 import { useEditor, EditorContent, EditorContext, JSONContent } from '@tiptap/react'
-import { BubbleMenu } from '@tiptap/react/menus'
 import StarterKit from '@tiptap/starter-kit'
 import { useMemo, useTransition } from 'react'
 import { Toolbar, ToolbarGroup } from '../tiptap-ui-primitive/toolbar';
@@ -34,49 +33,47 @@ const Tiptap = ({ initialContent = {}, onSave }: { initialContent: JSONContent, 
     }
     
     return (
-        <>
-            <EditorContext.Provider value={providerValue}>
-                <Toolbar>
-                    <ToolbarGroup>
-                        <MarkButton 
-                            editor={editor}
-                            type="bold"
-                            text="Bold"
-                            hideWhenUnavailable={true}
-                            showShortcut={true}
-                            aria-label="Toggle bold"
-                        >
-                            <BoldIcon className="tiptap-button-icon" />
-                        </MarkButton>
-                        <MarkButton 
-                            editor={editor}
-                            type="italic"
-                            text="Italic"
-                            hideWhenUnavailable={true}
-                            showShortcut={true}
-                            aria-label="Toggle italic"
-                        >
-                            <ItalicIcon className="tiptap-button-icon" />
-                        </MarkButton>
-                    </ToolbarGroup>
+        <EditorContext.Provider value={providerValue}>
+            <Toolbar>
+                <ToolbarGroup>
+                    <MarkButton 
+                        editor={editor}
+                        type="bold"
+                        text="Bold"
+                        hideWhenUnavailable={true}
+                        showShortcut={true}
+                        aria-label="Toggle bold"
+                    >
+                        <BoldIcon className="tiptap-button-icon" />
+                    </MarkButton>
+                    <MarkButton 
+                        editor={editor}
+                        type="italic"
+                        text="Italic"
+                        hideWhenUnavailable={true}
+                        showShortcut={true}
+                        aria-label="Toggle italic"
+                    >
+                        <ItalicIcon className="tiptap-button-icon" />
+                    </MarkButton>
+                </ToolbarGroup>
 
-                    <Spacer />
+                <Spacer />
 
-                    <ToolbarGroup>
-                        <Button 
-                            data-style="primary"
-                            data-disabled={isPending}
-                            shortcutKeys="Ctrl+Enter"
-                            onClick={handleSave}
-                        >
-                            {isPending ? "Saving..." : "Save"}
-                        </Button>
-                    </ToolbarGroup>
-                </Toolbar>
-                
-                <EditorContent editor={editor} />
-            </EditorContext.Provider>
-        </>
+                <ToolbarGroup>
+                    <Button 
+                        data-style="primary"
+                        data-disabled={isPending}
+                        shortcutKeys="Ctrl+Enter"
+                        onClick={handleSave}
+                    >
+                        {isPending ? "Saving..." : "Save"}
+                    </Button>
+                </ToolbarGroup>
+            </Toolbar>
+            
+            <EditorContent editor={editor} />
+        </EditorContext.Provider>
     )
 }
 

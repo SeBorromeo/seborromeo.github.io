@@ -40,7 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <body className={`${poppins.variable} ${openSans.className}`} suppressHydrationWarning={true}>
                 <Analytics />
                 <SpeedInsights />
-                <div className="grain-overlay" aria-hidden="true"></div>
+                <div className="grain-overlay" aria-hidden="true"/>
                 {children}
             </body>
         </html>

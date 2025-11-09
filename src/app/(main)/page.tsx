@@ -1,4 +1,4 @@
-import Header from '../components/home/Header/Header';
+import Header from '../../components/home/Header/Header';
 import SmoothScrollOverlay from '@/components/layout/SmoothScrollLayout/SmoothScrollLayout';
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 import Navbar from '@/components/layout/Navbar/Navbar';
