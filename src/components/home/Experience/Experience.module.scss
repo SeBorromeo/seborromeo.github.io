@@ -140,6 +140,7 @@
 
 .logo_section {
     width: calc(100vw - var(--column-width) * 1vw);
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: calc(30px - 1vw) 5vw;

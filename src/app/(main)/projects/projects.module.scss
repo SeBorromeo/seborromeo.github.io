@@ -2,6 +2,14 @@
 
 .main {
     padding: 2rem 3rem 4rem 3rem;
+
+    @include md {
+        padding: 2rem 2rem 4rem 2rem;
+    }
+
+    @include sm {
+        padding: 2rem 1rem 3rem 1rem;
+    }
 }
 
 .table {
@@ -9,6 +17,10 @@
     border-collapse: collapse;
 
     text-align: left;
+
+    @include sm {
+        font-size: 0.9rem;
+    }
 
     td {
         padding: 1rem 1rem 1rem 0;
@@ -28,6 +40,12 @@
 
     .project {
         font-weight: 600;
+    }
+
+    .tags {
+        @include md {
+            display: none;
+        }
     }
 
     .link {

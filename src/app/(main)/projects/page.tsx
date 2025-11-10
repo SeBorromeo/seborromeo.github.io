@@ -11,14 +11,14 @@ export default async function ProjectsTablePage () {
     
     return (
         <main className={styles.main}>
-            <PageTransitionLink href="/">← Sebastian Borromeo</PageTransitionLink>
+            <PageTransitionLink href="/">← Back to Portfolio</PageTransitionLink>
             <h1>All Projects</h1>
             <table className={styles.table}>
                 <thead className={styles.header}>
                     <tr>
                         <th className={styles.year}>Year</th>
                         <th>Project</th>
-                        <th>Built with</th>
+                        <th className={styles.tags}>Built with</th>
                         <th>Link</th>
                     </tr>
                 </thead>
@@ -27,7 +27,7 @@ export default async function ProjectsTablePage () {
                         <tr key={project.slug}>
                             <td className={styles.year}>{project.publishedAt ? project.publishedAt.getFullYear() : 'In Progress'}</td>
                             <td className={styles.project}>{project.name}</td>
-                            <td><Tags list={project.tags} theme={TagTheme.WhiteOutline}/></td>
+                            <td className={styles.tags}><Tags list={project.tags} theme={TagTheme.WhiteOutline}/></td>
                             <td>
                                 <a className={styles.link} href={project.demoUrl || project.repoUrl} target="_blank" rel="noreferrer">
                                     <span>
