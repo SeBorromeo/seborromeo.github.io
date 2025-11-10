@@ -10,9 +10,8 @@ import { Spacer } from '../tiptap-ui-primitive/spacer';
 import { MarkButton } from '../tiptap-ui/mark-button';
 import { Button } from '../tiptap-ui-primitive/button';
 
-const Tiptap = ({ initialContent = {}, onSave }: { initialContent: JSONContent, onSave: (content: JSONContent) => {}}) => {
+const Tiptap = ({ initialContent = {}, onSave, className = '' }: { initialContent: JSONContent, onSave: (content: JSONContent) => {}, className?: string}) => {
     const [isPending, startTransition] = useTransition();
-    
     
     const editor = useEditor({
         extensions: [StarterKit],
@@ -72,7 +71,7 @@ const Tiptap = ({ initialContent = {}, onSave }: { initialContent: JSONContent, 
                 </ToolbarGroup>
             </Toolbar>
             
-            <EditorContent editor={editor} />
+            <EditorContent editor={editor} className={className} />
         </EditorContext.Provider>
     )
 }
