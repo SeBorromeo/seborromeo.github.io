@@ -1,3 +1,5 @@
+export const revalidate = 86400; // 1 day in seconds
+
 import Header from '../../components/home/Header/Header';
 import SmoothScrollOverlay from '@/components/layout/SmoothScrollLayout/SmoothScrollLayout';
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';

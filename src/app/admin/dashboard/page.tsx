@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Tiptap from "@/components/editors/Tiptap";
 import { JSONContent } from '@tiptap/react'
 import { prisma } from "@/lib/prisma";
