@@ -1,6 +1,6 @@
 import Tags, { TagTheme } from "@/components/ui/Tags/Tags";
 import { prisma } from "@/lib/prisma";
-import Link from "next/link";
+import PageTransitionLink from "@/components/layout/page-transition/PageTransitionLink";
 
 import styles from './projects.module.scss';
 
@@ -10,8 +10,8 @@ export default async function ProjectsTablePage () {
     });
     
     return (
-        <section>
-            <Link href="/">← Sebastian Borromeo</Link>
+        <main className={styles.main}>
+            <PageTransitionLink href="/">← Sebastian Borromeo</PageTransitionLink>
             <h1>All Projects</h1>
             <table className={styles.table}>
                 <thead className={styles.header}>
@@ -42,6 +42,6 @@ export default async function ProjectsTablePage () {
                     ))}
                 </tbody>
             </table>
-        </section>
+        </main>
     );
 }

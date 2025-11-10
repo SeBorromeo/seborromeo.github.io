@@ -1,5 +1,5 @@
-import React, { CSSProperties, FC, ReactNode } from 'react';
-import Link from 'next/link';
+import { CSSProperties, FC, ReactNode } from 'react';
+import PageTransitionLink from '@/components/layout/page-transition/PageTransitionLink';
 
 import styles from './Button.module.scss';
 
@@ -17,7 +17,7 @@ export enum ButtonTheme {
 
 const Button: FC<ButtonProps> = ({ children, style, className = '', href = '#', theme }) => {
     return (
-        <Link
+        <PageTransitionLink
             href={href}
             className={`${styles.utl_button} ${className} ${theme ? styles[theme] : ''}`}
             style={style}
@@ -30,8 +30,48 @@ const Button: FC<ButtonProps> = ({ children, style, className = '', href = '#', 
                     {children}
                 </span>
             </div>
-        </Link>
+        </PageTransitionLink>
     );
+};
+
+const pageAnimation = () => {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        scale: 1,
+        transform: "translateY(0)",
+      },
+      {
+        opacity: 0.5,
+        scale: 0.9,
+        transform: "translateY(-100px)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
+
+  document.documentElement.animate(
+    [
+      {
+        transform: "translateY(100%)",
+      },
+      {
+        transform: "translateY(0)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
 };
 
 export default Button;

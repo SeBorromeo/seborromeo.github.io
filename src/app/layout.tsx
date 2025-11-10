@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { ViewTransitions } from 'next-view-transitions'
 
 import { Inter, Open_Sans, Poppins, Roboto, Roboto_Mono } from 'next/font/google';
 
@@ -36,13 +37,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
-            <body className={`${poppins.variable} ${openSans.className}`} suppressHydrationWarning={true}>
-                <Analytics />
-                <SpeedInsights />
-                <div className="grain-overlay" aria-hidden="true"/>
-                {children}
-            </body>
-        </html>
+        <ViewTransitions>
+            <html lang="en">
+                <body className={`${poppins.variable} ${openSans.className}`} suppressHydrationWarning={true}>
+                    <Analytics />
+                    <SpeedInsights />
+                    <div className="grain-overlay" aria-hidden="true"/>
+                    {children}
+                </body>
+            </html>
+        </ViewTransitions>
     );
 }

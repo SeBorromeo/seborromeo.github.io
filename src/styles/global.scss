@@ -95,6 +95,20 @@ body::selection {
   transition: transform 75ms ease-out;
 }
 
+
+/* Page Transition Psuedo-Elements */
+
+::view-transition-new(root) {
+  z-index: 2;
+  animation: none !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
+}
+
+
 /* TipTap Variables */
 
 :root {

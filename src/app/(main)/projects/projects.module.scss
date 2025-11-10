@@ -1,7 +1,10 @@
 @use '@/styles/index' as *;
 
+.main {
+    padding: 2rem 3rem 4rem 3rem;
+}
+
 .table {
-    padding: 2rem;
     width: 100%;
     border-collapse: collapse;
 
