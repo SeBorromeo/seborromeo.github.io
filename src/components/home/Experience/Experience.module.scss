@@ -34,11 +34,19 @@
 
     margin-top: 30px;
     
+    @include md {
+        margin-bottom: 1rem;
+    }
+    
     .heading_container {
         margin-left: 60px;
         
         @include md {
             margin-left: 30px;
+        }
+
+        @include sm {
+            margin-left: 15px;
         }
     }
 
@@ -51,10 +59,6 @@
             font-size: 3.2rem;
         }
     }
-
-    @include md {
-        margin-bottom: 3rem;
-    }
 }
 
 .experience_row {
@@ -62,8 +66,7 @@
     display: flex;
 
     width: 100%;
-    min-height: calc(100vw - var(--column-width) * 1vw - 10vw);
-    color: #111111;
+    color: #111111; 
 }
 
 .text_section {
@@ -73,7 +76,7 @@
     display: grid;
     grid-template-columns: 35% 1fr;
     column-gap: 2rem;
-    row-gap: 0.5rem;
+    row-gap: 0.5rem;    
 
     grid-template-areas:
         "date company_and_role"
@@ -89,7 +92,10 @@
         "company_and_role"
         "role_desc"
         "tags";
+    }
 
+    @include sm {
+        padding: 15px;
     }
 
     .date {
@@ -101,10 +107,20 @@
             font-family: var(--font-poppins);
             color: #6B6464;
         }
+
+        @include md {
+            font-size: 1rem;
+        }
     }
 
     .tags {
         grid-area: tags;
+
+        margin: 0.5rem 0;
+
+        @include sm {
+            display: none;
+        }
     }
 
     .company_and_role {
@@ -115,6 +131,10 @@
 
         .company {
             color: $primary-color;
+        }
+
+        @include md {
+            font-size: 1.2rem;
         }
     }
     
@@ -148,6 +168,7 @@
     .logo_container {
         position: relative;
         width: 100%;
+        max-width: 300px;   
         aspect-ratio: 1 / 1;
     }
 

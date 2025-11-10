@@ -54,13 +54,13 @@ export default async function Experience() {
                                 <h3 className={styles.company_and_role}>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
                             </MaskedTextReveal>
 
-                            <ul className={styles.role_description_list}>
-                                {exp.description.map((item, i) => (
-                                <FadeInDiv key={i}>
-                                    <li key={i}>{item}</li>
-                                </FadeInDiv>
-                                ))}
-                            </ul>
+                            <FadeInDiv>
+                                <ul className={styles.role_description_list}>
+                                    {exp.description.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </FadeInDiv>
                         </div>
                         <div className={styles.logo_section}>
                             <div className={styles.logo_container}>
