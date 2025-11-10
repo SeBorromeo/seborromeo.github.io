@@ -17,7 +17,7 @@ const FadeInDiv = ({ children, className = '' }: { children: ReactNode, classNam
                     trigger: triggerRef.current,
                     toggleActions: "play none none reverse",
                     start: "top 95%",
-                    markers: true,
+                    // markers: true,
                 },
                 duration: 1,
                 ease: 'power3',
