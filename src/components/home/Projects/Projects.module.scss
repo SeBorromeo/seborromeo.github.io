@@ -1,7 +1,5 @@
 @use '@/styles/index' as *;
 
-
-
 .projects_section {
     --card-color: rgb(23, 23, 23);
 
@@ -12,19 +10,20 @@
     background-color: transparent;
 
     h1 {
+        display: inline-block;
         font-weight: 500;
         font-size: 3.9rem;
         color: #ffffff;
-        padding-left: 50px;
+        margin-left: 50px;
 
         @include md {
             font-size: 3.6rem;
-            padding-left: 30px;
+            margin-left: 30px;
         }
         
         @include sm {
             font-size: 3.2rem;
-            padding-left: 20px;
+            margin-left: 20px;
         }
     }
 }

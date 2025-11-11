@@ -4,6 +4,7 @@ import ProjectsContainer from './ProjectsContainer/ProjectsContainer';
 import Tags, { TagTheme } from '@/components/ui/Tags/Tags';
 import Image from 'next/image';
 import Button, { ButtonTheme } from '@/components/ui/Button/Button';
+import UnderlineHeading from '@/components/ui/animations/UnderlineHeading/UnderlineHeading';
 
 import styles from './Projects.module.scss';
 
@@ -29,9 +30,7 @@ export default async function Projects () {
 	
     return (
 		<section id="projects" className={styles.projects_section}>
-			<FadeInDiv>
-				<h1>PROJECTS</h1>
-			</FadeInDiv>
+			<UnderlineHeading text={'PROJECTS'} />
 			<ProjectsContainer>
 				{projects.map((project, index) => (
 					<ProjectCard project={project} key={index} />
