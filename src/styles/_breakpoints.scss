@@ -50,3 +50,9 @@ $breakpoints: (
         @content;
     }
 }
+
+@mixin breakpoint-height($height: 0) {
+    @media (max-height: $height) {
+        @content;
+    }
+}

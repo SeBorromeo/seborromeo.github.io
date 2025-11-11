@@ -1,7 +1,5 @@
 @use '@/styles/index' as *;
 
-
-
 .header {
     width: 100%;
     height: auto;
@@ -156,9 +154,9 @@
     }
     
     @keyframes bounce {
-      0%, 20% { transform: translateY(0); }
-      10% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+        0%, 20% { transform: translateY(0); }
+        10% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
     }
     
     .scroll_text_container {
