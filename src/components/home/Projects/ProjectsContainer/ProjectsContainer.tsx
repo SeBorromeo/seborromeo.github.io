@@ -16,7 +16,7 @@ const ProjectsContainer = ({ children }: { children: React.ReactNode }) => {
         
         ScrollTrigger.batch(cards, {
             onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: {each: 0.15, grid: 'auto'}, overwrite: true}),
-            onLeaveBack: batch => gsap.to(batch, {opacity: 0, y: 100, overwrite: true}),
+            onLeaveBack: batch => gsap.to(batch, {opacity: 0, y: 100, stagger: {grid: 'auto'}, overwrite: true}),
         });
     }, []);
 

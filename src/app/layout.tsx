@@ -8,11 +8,13 @@ import { Inter, Open_Sans, Poppins, Roboto, Roboto_Mono } from 'next/font/google
 import '@/styles/global.scss';
 
 const inter = Inter({ subsets: ['latin'] });
+
 const poppins = Poppins({
     variable: '--font-poppins',
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
     subsets: ['latin'],
 });
+
 const openSans = Open_Sans({
     variable: '--font-open-sans',
     subsets: ['latin'],
@@ -39,7 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <ViewTransitions>
             <html lang="en">
-                <body className={`${poppins.variable} ${openSans.className}`} suppressHydrationWarning={true}>
+                <body className={`${openSans.className} ${poppins.variable} ${roboto.variable} ${robotoMono.variable}`} suppressHydrationWarning={true}>
                     <Analytics />
                     <SpeedInsights />
                     <div className="grain-overlay" aria-hidden="true"/>
