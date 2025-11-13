@@ -27,7 +27,7 @@ export async function createProject(formData: FormData) {
     // Convert file to buffer
     const fileBuffer = Buffer.from(await data.image.arrayBuffer());
     const fileExt = data.image.name.split(".").pop();
-    const key = `projects/${Date.now()}.${fileExt}`;
+    const key = `images/${Date.now()}.${fileExt}`;
 
     try {
         await s3.send(
@@ -57,14 +57,16 @@ export async function createProject(formData: FormData) {
         revalidatePath("/projects");
 
         return { success: true };
-    } catch (rollbackError) {
-      try {
-        await s3.send(
-            new DeleteObjectCommand({
-                Bucket: process.env.AWS_BUCKET_NAME!,
-                Key: key,
-            })
-        );
+    } catch (error) {
+        console.error("Upload failed:", error);
+
+        try {
+            await s3.send(
+                new DeleteObjectCommand({
+                    Bucket: process.env.AWS_BUCKET_NAME!,
+                    Key: key,
+                })
+            );
         } catch (rollbackError) {
             console.error("Rollback failed:", rollbackError);
         }

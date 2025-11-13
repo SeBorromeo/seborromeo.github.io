@@ -4,6 +4,7 @@ import Tiptap from "@/components/editors/Tiptap";
 import { JSONContent } from '@tiptap/react'
 import { prisma } from "@/lib/prisma";
 import { updateBio } from "@/app/actions/bio";
+import ProjectsEditor from "./_components/ProjectsEditor/ProjectsEditor";
 
 import styles from './dashboard.module.scss';
 
@@ -20,6 +21,8 @@ export default async function DashboardPage() {
             <p>Welcome back! You’re authenticated ✅</p>
 
             <Tiptap initialContent={content} onSave={updateBio} className={styles.bio_editor}/>
+
+            <ProjectsEditor />
         </div>
     );
 }
