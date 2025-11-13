@@ -1,5 +1,12 @@
 .bio_editor {
-    p {
-        margin-bottom: 1rem;
-    }
+
+}
+
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    z-index: 10;
 }
