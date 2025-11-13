@@ -7,7 +7,7 @@ export const LoginFormSchema = z.object({
     .trim(),
 })
  
-export type FormState =
+export type LoginState =
   | {
       errors?: {
         email?: string[]
@@ -37,3 +37,18 @@ export const CreateProjectSchema = z.object({
     )
     .refine((file) => file.size <= 2 * 1024 * 1024, "File too large (max 2MB)"),
 });
+
+export type CreateProjectState =
+  | {
+      errors?: {
+        name?: string[]
+        slug?: string[]
+        demoUrl?: string[]
+        repoUrl?: string[]
+        description?: string[]
+        tags?: string[]
+        image?: string[]
+      }
+      message?: string
+    }
+  | undefined

@@ -1,13 +1,17 @@
 "use server";
 
-import { CreateProjectSchema } from "@/lib/definitions";
+import { CreateProjectSchema, CreateProjectState } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { s3 } from "@/lib/s3";
+import { requireAuth } from "@/lib/session";
 import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { revalidatePath } from "next/cache";
 import * as z from 'zod'
 
-export async function createProject(formData: FormData) {
+export async function createProject(state: CreateProjectState, formData: FormData) {
+    const { error } = await requireAuth()
+    if (error) return { error }
+
     const raw = Object.fromEntries(formData.entries());
 
     const validatedFields = CreateProjectSchema.safeParse({
