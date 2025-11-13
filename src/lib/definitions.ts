@@ -36,6 +36,8 @@ export const CreateProjectSchema = z.object({
       "Only JPG, PNG, or WEBP allowed"
     )
     .refine((file) => file.size <= 2 * 1024 * 1024, "File too large (max 2MB)"),
+  order: z.number().optional(),
+  publishedAt: z.date().optional(),
 });
 
 export type CreateProjectState =
@@ -48,6 +50,8 @@ export type CreateProjectState =
         description?: string[]
         tags?: string[]
         image?: string[]
+        order?: string[]
+        publishedAt?: string[]
       }
       message?: string
     }

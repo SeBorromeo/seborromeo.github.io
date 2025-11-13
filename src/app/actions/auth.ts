@@ -1,19 +1,18 @@
 'use server';
 
 import { verifySession } from '@/lib/dal';
-import { LoginFormSchema, FormState } from '@/lib/definitions';
+import { LoginFormSchema, LoginState } from '@/lib/definitions';
 import { prisma } from '@/lib/prisma';
 import { createSession, deleteSession } from '@/lib/session';
 import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 import * as z from 'zod'
 
-export async function login(state: FormState, formData: FormData) {
+export async function login(state: LoginState, formData: FormData) {
     const validatedFields = LoginFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password'),
     });
-
     
     if (!validatedFields.success) {
         return {
