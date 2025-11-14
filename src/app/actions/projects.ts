@@ -5,15 +5,18 @@ import { prisma } from "@/lib/prisma";
 import { s3 } from "@/lib/s3";
 import { requireAuth } from "@/lib/session";
 import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import { revalidatePath } from "next/cache";
+import { refresh, revalidatePath } from "next/cache";
 import * as z from 'zod'
 
 export async function createProject(state: CreateProjectState, formData: FormData) {
     const { error } = await requireAuth()
-    if (error) return { error }
+    if (error) return { 
+        error,
+        message: "Unauthorized"
+    }
 
     const raw = Object.fromEntries(formData.entries());
-
+  
     const validatedFields = CreateProjectSchema.safeParse({
         ...raw,
         tags: raw.tags?.toString(),
@@ -59,8 +62,9 @@ export async function createProject(state: CreateProjectState, formData: FormDat
 
         revalidatePath("/");
         revalidatePath("/projects");
+        refresh();
 
-        return { success: true };
+        return { success: true, message: "Project created successfully" };
     } catch (error) {
         console.error("Upload failed:", error);
 
@@ -71,10 +75,10 @@ export async function createProject(state: CreateProjectState, formData: FormDat
                     Key: key,
                 })
             );
+            return { success: false, error: "Upload failed" };
         } catch (rollbackError) {
             console.error("Rollback failed:", rollbackError);
+            return { success: false, error: "Upload failed" };
         }
     }
-
-    return { success: false, error: "Upload or database save failed" };
 }

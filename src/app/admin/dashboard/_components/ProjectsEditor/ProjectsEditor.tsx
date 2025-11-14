@@ -7,7 +7,7 @@ import { ProjectCard } from "@/components/home/Projects/ProjectsContainer/Projec
 import styles from "./projectseditor.module.scss";
 
 export default function ProjectsEditor() {
-  const [state, action, pending] = useActionState(createProject, undefined)
+  const [state, action, pending] = useActionState(createProject, undefined);
 
   const [formPreview, setFormPreview] = useState({
     name: "",
@@ -40,7 +40,7 @@ export default function ProjectsEditor() {
   }
 
   return (
-    <div className={styles.editorWrapper}>
+    <div className={styles.editor_wrapper}>
       <form action={action} className={styles.projectForm}>
         <h1>Create Project</h1>
 
@@ -99,21 +99,23 @@ export default function ProjectsEditor() {
           <label>
             Release Date
             <input
-              name="releaseDate"
+              name="publishedAt"
               type="date"
               onChange={handleChange}
             />
+            {state?.errors?.publishedAt && <p className={styles.error}>{state.errors.publishedAt}</p>}
           </label>
         )}
 
         <input type="file" name="image" accept="image/*" onChange={handleFileChange} required />
 
+        {state?.message && <p className={styles.error}>{state.message}</p>}
         <button type="submit">
           {pending ? 'Submitting...' : 'Submit'}
         </button>
       </form>
 
-      <aside className={styles.previewPane}>
+      <aside className={styles.preview_pane}>
         <h2>Live Preview</h2>
         <ProjectCard project={{
           name: formPreview.name,
