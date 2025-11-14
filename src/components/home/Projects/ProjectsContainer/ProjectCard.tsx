@@ -9,7 +9,7 @@ export const ProjectCard = ({ project }: { project: Project}) => {
 		<a href={project.demoUrl || project.repoUrl} className={styles.card} target="_blank" rel="noopener noreferrer">
 			<div className={styles.card_content}>
 				<div className={styles.card_image}>
-					<Image src={project.imageUrl} alt={project.name} fill sizes='100%, 100%'/>
+					{project.imageUrl && <Image src={project.imageUrl} alt={project.name} fill sizes='100%, 100%'/>}
 					{project.demoUrl && project.repoUrl && <a href={project.repoUrl} className={styles.card_github_icon} target="_blank" rel="noopener noreferrer">
 						<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 							<title>GitHub</title>

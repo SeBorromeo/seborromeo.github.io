@@ -42,6 +42,16 @@ export const CreateProjectSchema = z.object({
 
 export type CreateProjectState =
   | {
+      values?: {
+        name?: string
+        slug?: string
+        demoUrl?: string
+        repoUrl?: string
+        description?: string
+        tags?: string[]
+        order?: number
+        publishedAt?: string
+      }
       errors?: {
         name?: string[]
         slug?: string[]

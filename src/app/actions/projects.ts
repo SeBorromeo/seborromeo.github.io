@@ -8,7 +8,7 @@ import { DeleteObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { refresh, revalidatePath } from "next/cache";
 import * as z from 'zod'
 
-export async function createProject(state: CreateProjectState, formData: FormData) {
+export async function createProject(prevState: CreateProjectState, formData: FormData) {
     const { error } = await requireAuth()
     if (error) return { 
         error,
@@ -19,12 +19,14 @@ export async function createProject(state: CreateProjectState, formData: FormDat
   
     const validatedFields = CreateProjectSchema.safeParse({
         ...raw,
+        publishedAt: raw.publishedAt ? new Date(raw.publishedAt.toString()) : undefined,
         tags: raw.tags?.toString(),
     });
 
     if (!validatedFields.success) {
         return {
             success: false,
+            values: { ...prevState?.values, ...raw },
             errors: z.flattenError(validatedFields.error).fieldErrors,
         };
     }
@@ -54,9 +56,10 @@ export async function createProject(state: CreateProjectState, formData: FormDat
                 demoUrl: data.demoUrl || null,
                 repoUrl: data.repoUrl,
                 description: data.description,
+                publishedAt: data.publishedAt || null, // TODO: Confirm this works
                 tags: data.tags.split(",").map(tag => tag.trim()),
                 imageUrl: `https://${process.env.AWS_BUCKET_NAME!}.s3.amazonaws.com/${key}`,
-                order: 0,
+                order: 7,
             },
         });
 
@@ -75,10 +78,10 @@ export async function createProject(state: CreateProjectState, formData: FormDat
                     Key: key,
                 })
             );
-            return { success: false, error: "Upload failed" };
+            return { success: false, values: { ...prevState?.values, ...raw }, error: "Upload failed" };
         } catch (rollbackError) {
             console.error("Rollback failed:", rollbackError);
-            return { success: false, error: "Upload failed" };
+            return { success: false, values: { ...prevState?.values, ...raw }, error: "Upload failed" };
         }
     }
 }
