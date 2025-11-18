@@ -50,7 +50,6 @@ export async function updateSession() {
     createSession(payload.userId);
 }
 
-
 export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
     const session = await decrypt(cookie)
