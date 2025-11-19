@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { createProject } from "@/app/actions/projects";
 import { ProjectCard } from "@/components/home/Projects/ProjectsContainer/ProjectCard";
 
@@ -8,6 +8,18 @@ import styles from "./projectseditor.module.scss";
 
 export default function ProjectsEditor() {
   const [state, action, pending] = useActionState(createProject, undefined);
+   const formRef = useRef<HTMLFormElement>(null);
+
+   useEffect(() => {
+      function watchReset(e: Event) {
+        e.preventDefault();
+      }
+        const currRef = formRef.current!
+        currRef.addEventListener('reset', watchReset);
+        return () => {
+          currRef.removeEventListener('reset', watchReset);
+      };
+  }, []);
 
   const [formPreview, setFormPreview] = useState({
     name: "",
@@ -46,7 +58,7 @@ export default function ProjectsEditor() {
 
   return (
     <div className={styles.editor_wrapper}>
-      <form action={action} className={styles.projectForm}>
+      <form action={action} className={styles.projectForm} ref={formRef}>
         <h1>Create Project</h1>
 
         <label>
