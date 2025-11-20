@@ -8,17 +8,19 @@ import styles from "./projectseditor.module.scss";
 
 export default function ProjectsEditor() {
   const [state, action, pending] = useActionState(createProject, undefined);
-   const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-   useEffect(() => {
-      function watchReset(e: Event) {
-        e.preventDefault();
-      }
-        const currRef = formRef.current!
-        currRef.addEventListener('reset', watchReset);
-        return () => {
-          currRef.removeEventListener('reset', watchReset);
-      };
+  useEffect(() => {
+    function watchReset(e: Event) {
+      e.preventDefault();
+    }
+    
+    const currRef = formRef.current!
+    currRef.addEventListener('reset', watchReset);
+
+    return () => {
+      currRef.removeEventListener('reset', watchReset);
+    };
   }, []);
 
   const [formPreview, setFormPreview] = useState({
