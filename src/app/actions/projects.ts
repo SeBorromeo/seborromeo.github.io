@@ -23,7 +23,6 @@ export async function createProject(prevState: CreateProjectState, formData: For
     if (!validatedFields.success) {
         return {
             success: false,
-            values: { ...prevState?.values, ...raw },
             errors: z.flattenError(validatedFields.error).fieldErrors,
         };
     }
@@ -74,10 +73,10 @@ export async function createProject(prevState: CreateProjectState, formData: For
                     Key: key,
                 })
             );
-            return { success: false, values: { ...prevState?.values, ...raw }, error: "Upload failed" };
+            return { success: false, error: "Upload failed" };
         } catch (rollbackError) {
             console.error("Rollback failed:", rollbackError);
-            return { success: false, values: { ...prevState?.values, ...raw }, error: "Upload failed" };
+            return { success: false, error: "Upload failed" };
         }
     }
 }
@@ -126,7 +125,6 @@ export async function updateProject(projectId: string, prevState: UpdateProjectS
     if (!validatedFields.success) {
         return {
             success: false,
-            values: { ...prevState?.values, ...raw },
             errors: z.flattenError(validatedFields.error).fieldErrors,
         };
     }
@@ -181,6 +179,6 @@ export async function updateProject(projectId: string, prevState: UpdateProjectS
         return { success: true, message: "Project updated successfully" };
     } catch (err) {
         console.error("Update failed:", err);
-        return { success: false, values: { ...prevState?.values, ...raw }, error: "Update failed" };
+        return { success: false, error: "Update failed" };
     }
 }
