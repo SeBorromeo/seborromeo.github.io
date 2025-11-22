@@ -7,7 +7,7 @@ import { createContext, useContext, useEffect } from 'react';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 type ScrollContextType = {
-    enableScroll: (enable: boolean) => void;
+    disableScroll: (enable: boolean) => void;
 };
 
 export const SmoothScrollContext = createContext<ScrollContextType | null>(null);
@@ -43,14 +43,14 @@ export default function SmoothScrollLayout({ children }: Readonly<{ children: Re
         smoother.scrollTop(0);
     });
 
-    const enableScroll = contextSafe((enable: boolean) => {
+    const disableScroll = contextSafe((enable: boolean) => {
         const smoother = ScrollSmoother.get();
         if (smoother) 
             smoother.paused(enable);
     });
 
     return (
-        <SmoothScrollContext.Provider value={{ enableScroll }}>
+        <SmoothScrollContext.Provider value={{ disableScroll }}>
             <div id="smooth-wrapper">
                 <div id="smooth-content">
                     {children}

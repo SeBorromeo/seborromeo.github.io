@@ -1,7 +1,7 @@
 export const revalidate = 86400; // 1 day in seconds
 
 import Header from '../../components/home/Header/Header';
-import SmoothScrollOverlay from '@/components/layout/SmoothScrollLayout/SmoothScrollLayout';
+import SmoothScrollLayout from '@/components/layout/SmoothScrollLayout/SmoothScrollLayout';
 import IntroAnimationLayout from '@/components/layout/IntroAnimationLayout/IntroAnimationLayout';
 import Navbar from '@/components/layout/Navbar/Navbar';
 import Footer from '@/components/layout/Footer/Footer';
@@ -16,7 +16,7 @@ export default function Home() {
     return (
         <IntroAnimationLayout disable={true}>
             <Navbar />
-            <SmoothScrollOverlay>
+            <SmoothScrollLayout>
                 <Header />
                 <main className={styles.main}>
                     <Bio />
@@ -25,7 +25,7 @@ export default function Home() {
                     <GetInTouch />
                 </main>
                 <Footer />
-            </SmoothScrollOverlay>
+            </SmoothScrollLayout>
         </IntroAnimationLayout>
     );
 }

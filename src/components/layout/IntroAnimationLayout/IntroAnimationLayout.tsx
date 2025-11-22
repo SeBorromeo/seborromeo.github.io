@@ -26,6 +26,6 @@ export default function IntroAnimationLayout({ children, disable = false }: { ch
 
 export function useIntroTimeline() {
     const ctx = useContext(TimelineContext);
-    if (!ctx) throw new Error("useTimeline must be used inside TimelineProvider");
+    if (!ctx) throw new Error("useIntroTimeline must be used inside TimelineProvider");
     return ctx;
 }
