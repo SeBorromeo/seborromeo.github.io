@@ -14,6 +14,7 @@ export default async function DashboardPage() {
 
     return (
         <IntroAnimationLayout disable={true}>
+            <div className={styles.admin_banner}>EDITABLE ADMIN DASHBOARD – ALL CHANGES WILL BE IMMEDIATELY REFLECTED ON THE MAIN PAGE</div>
             <Navbar />
             <SmoothScrollLayout>
                 <ModalProvider>

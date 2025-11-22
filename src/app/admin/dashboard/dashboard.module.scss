@@ -1,5 +1,12 @@
-.bio_editor {
-
+.admin_banner {
+    position: fixed;
+    width: 100%;
+    background-color: #d246524c;
+    color: white;
+    text-align: center;
+    padding: 8px 0;
+    font-weight: 500;
+    z-index: 20;
 }
 
 .main {
