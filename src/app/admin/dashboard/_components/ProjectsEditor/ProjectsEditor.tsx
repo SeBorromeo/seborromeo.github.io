@@ -2,9 +2,9 @@
 
 import { useActionState, useEffect, useRef, useState } from "react";
 import { createProject } from "@/app/actions/projects";
-import { ProjectCard } from "@/components/home/Projects/ProjectsContainer/ProjectCard";
+import { PreviewProjectCard } from "@/components/home/Projects/ProjectsContainer/ProjectCard";
 
-import styles from "./projectseditor.module.scss";
+import styles from "./ProjectsEditor.module.scss";
 
 export default function ProjectsEditor() {
   const [state, action, pending] = useActionState(createProject, undefined);
@@ -130,7 +130,7 @@ export default function ProjectsEditor() {
 
       <aside className={styles.preview_pane}>
         <h2>Live Preview</h2>
-        <ProjectCard project={{
+        <PreviewProjectCard project={{
           name: formPreview.name,
           slug: formPreview.slug || '',
           demoUrl: formPreview.demoUrl || '',

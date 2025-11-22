@@ -98,11 +98,7 @@ body::selection {
 /* Scroll Bar */
 
 .scrollable::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollable::-webkit-scrollbar-track {
-  background: transparent;
+  width: 6px;
 }
 
 .scrollable::-webkit-scrollbar-thumb {
@@ -113,13 +109,6 @@ body::selection {
 .scrollable::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.8);
 }
-
-// Firefox Scrollbar
-.scrollable {
-  scrollbar-width: thin;
-  scrollbar-color: white transparent;
-}
-
 
 /* Page Transition Psuedo-Elements */
 

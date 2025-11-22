@@ -10,3 +10,11 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 		</a>
 	);
 };
+
+export const PreviewProjectCard = ({ project }: { project: Project }) => {
+	return (
+		<div className={styles.card}>
+			<ProjectCardContent project={project} />
+		</div>
+	);
+};
