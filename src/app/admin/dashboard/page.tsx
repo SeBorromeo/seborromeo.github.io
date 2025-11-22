@@ -7,6 +7,7 @@ import IntroAnimationLayout from "@/components/layout/IntroAnimationLayout/Intro
 import Navbar from "@/components/layout/Navbar/Navbar";
 import SmoothScrollLayout from "@/components/layout/SmoothScrollLayout/SmoothScrollLayout";
 import ModalProvider from "@/components/layout/ModalProvider/Modal";
+import Projects from "@/components/home/Projects/Projects";
 
 import styles from './dashboard.module.scss';
 
@@ -21,7 +22,7 @@ export default async function DashboardPage() {
                     <Header />
                     <main className={`${styles.main} dark`}>
                         <Bio admin={true} />
-                        <ProjectsEditor />
+                        <Projects admin={true} />
                     </main>
                 </ModalProvider>
             </SmoothScrollLayout>

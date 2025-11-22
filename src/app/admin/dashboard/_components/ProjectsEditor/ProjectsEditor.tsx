@@ -9,9 +9,9 @@ import styles from "./projectseditor.module.scss";
 export default function ProjectsEditor() {
   const [state, action, pending] = useActionState(createProject, undefined);
   const formRef = useRef<HTMLFormElement>(null);
-
+  
   useEffect(() => {
-    function watchReset(e: Event) {
+    function watchReset(e: Event) { 
       e.preventDefault();
     }
     
@@ -65,13 +65,13 @@ export default function ProjectsEditor() {
 
         <label>
           Name
-          <input name="name" type="text" placeholder="Project name" onChange={handleChange} defaultValue={state?.values?.name} required />
+          <input name="name" type="text" placeholder="Project name" onChange={handleChange} required />
           {state?.errors?.name && <p className={styles.error}>{state.errors.name}</p>}
         </label>
 
         <label>
           Slug
-          <input name="slug" type="text" placeholder="example-project" onChange={handleChange} defaultValue={state?.values?.slug} required />
+          <input name="slug" type="text" placeholder="example-project" onChange={handleChange} required />
           {state?.errors?.slug && <p className={styles.error}>{state.errors.slug}</p>}
         </label>
 
@@ -83,19 +83,19 @@ export default function ProjectsEditor() {
 
         <label>
           Repo URL
-          <input name="repoUrl" type="url" placeholder="Enter URL..." onChange={handleChange} defaultValue={state?.values?.repoUrl} required />
+          <input name="repoUrl" type="url" placeholder="Enter URL..." onChange={handleChange} required />
           {state?.errors?.repoUrl && <p className={styles.error}>{state.errors.repoUrl}</p>}
         </label>
 
         <label>
           Description
-          <textarea name="description" placeholder="Description" onChange={handleChange} defaultValue={state?.values?.description} required />
+          <textarea name="description" placeholder="Description" onChange={handleChange} required />
           {state?.errors?.description && <p className={styles.error}>{state.errors.description}</p>}
         </label>
 
         <label>
           Tags (comma separated)
-          <input name="tags" type="text" placeholder="ex. React, Nextjs, TailwindCSS, ..." defaultValue={state?.values?.tags} required
+          <input name="tags" type="text" placeholder="ex. React, Nextjs, TailwindCSS, ..." required
             onChange={(e) => {
               const tags = e.target.value.split(",").map(tag => tag.trim());
               setFormPreview(prev => ({ ...prev, tags }));
@@ -111,8 +111,6 @@ export default function ProjectsEditor() {
             name="publishedAt"
             type="date"
             onChange={handleChange}
-            defaultValue={state?.values?.publishedAt}
-            required
           />
           {state?.errors?.publishedAt && <p className={styles.error}>{state.errors.publishedAt}</p>}
         </label>

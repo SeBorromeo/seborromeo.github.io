@@ -12,8 +12,9 @@ const ProjectsContainer = ({ children }: { children: React.ReactNode }) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        const cards = containerRef.current!.querySelectorAll<HTMLElement>(`.${styles.card}`);
+        const cards = containerRef.current!.querySelectorAll<HTMLElement>(`.${styles.card}, .${styles.add_project_card}`);
         
+        gsap.set(cards, {opacity: 0, y: 100});
         ScrollTrigger.batch(cards, {
             onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: {each: 0.15, grid: 'auto'}, overwrite: true}),
             onLeaveBack: batch => gsap.to(batch, {opacity: 0, y: 100, stagger: {grid: 'auto'}, overwrite: true}),
