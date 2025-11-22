@@ -39,7 +39,7 @@ export default async function Projects ({ admin = false }: { admin?: boolean }) 
 				}
 			</ProjectsContainer>
 			<div className={styles.view_all_button_container}>
-				<Button href="/projects" className={styles.view_all_button} theme={ButtonTheme.White}>
+				<Button href={admin ? "#" : "/projects"} className={styles.view_all_button} theme={ButtonTheme.White}>
 					VIEW ALL
 				</Button>
 			</div>

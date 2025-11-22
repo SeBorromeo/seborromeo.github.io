@@ -20,10 +20,12 @@ const PageTransitionLink: FC<Props> = ({children, style, className = '', href}) 
             className={className}
             style={style}
             onClick={(e) => {
-                e.preventDefault();
-                router.push(href, {
-                    onTransitionReady: pageAnimation
-                })
+                if (href != "#")  {
+                    e.preventDefault();
+                    router.push(href, {
+                        onTransitionReady: pageAnimation
+                    })
+                }
             }}
         >
             {children}
