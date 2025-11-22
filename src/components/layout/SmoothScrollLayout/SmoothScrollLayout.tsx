@@ -2,11 +2,17 @@
 
 import { gsap, ScrollTrigger, ScrollSmoother} from 'gsap/all';
 import { useGSAP } from '@gsap/react';
-import { useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-export default function SmoothScrollOverlay({ children }: Readonly<{ children: React.ReactNode }>) {
+type ScrollContextType = {
+    enableScroll: (enable: boolean) => void;
+};
+
+export const SmoothScrollContext = createContext<ScrollContextType | null>(null);
+
+export default function SmoothScrollLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     useEffect(() => {
         let forcingRefresh = false;
 
@@ -28,7 +34,7 @@ export default function SmoothScrollOverlay({ children }: Readonly<{ children: R
         };
     }, []);
 
-    useGSAP(() => {
+    const { contextSafe } = useGSAP(() => {
         let smoother = ScrollSmoother.create({
             smooth: 1.5,
             effects: true,
@@ -37,11 +43,25 @@ export default function SmoothScrollOverlay({ children }: Readonly<{ children: R
         smoother.scrollTop(0);
     });
 
+    const enableScroll = contextSafe((enable: boolean) => {
+        const smoother = ScrollSmoother.get();
+        if (smoother) 
+            smoother.paused(enable);
+    });
+
     return (
-        <div id="smooth-wrapper">
-            <div id="smooth-content">
-                {children}
+        <SmoothScrollContext.Provider value={{ enableScroll }}>
+            <div id="smooth-wrapper">
+                <div id="smooth-content">
+                    {children}
+                </div>
             </div>
-        </div>
+        </SmoothScrollContext.Provider>
     );
 }
+
+export const useScrollControl = () => {
+    const ctx = useContext(SmoothScrollContext);
+    if (!ctx) throw new Error("useScrollControl must be used inside SmoothScrollLayout");
+    return ctx;
+};
