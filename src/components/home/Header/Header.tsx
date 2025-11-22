@@ -108,7 +108,7 @@ export default function Header() {
                          SQL, and RESTful APIs.
                     </h3>
                     <div className={styles.button_container}>
-                        <Button href="/images/resume.pdf" className={styles.resume_button}>
+                        <Button href="/docs/sebastian_borromeo_resume.pdf" className={styles.resume_button}>
                             VIEW MY RESUME
                         </Button>
                     </div>
