@@ -1,18 +1,24 @@
 .backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
 }
 
 .modal_box {
-  background: rgb(41, 41, 41);
-  color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 500px;
-  width: 90%;
+    background: rgb(41, 41, 41);
+    color: white;
+    box-shadow:
+        0px 4px 32px rgba(0, 0, 0, 0.20),
+        0px 8px 48px rgba(0, 0, 0, 0.12);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 1400px;
+    width: 90%;
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

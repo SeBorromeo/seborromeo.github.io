@@ -29,8 +29,8 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
         {children}
 
         {content && createPortal(
-            <div className={styles.backdrop}>
-                <div className={styles.modal_box}>{content}</div>
+            <div className={styles.backdrop} onClick={() => setContent(null)}>
+                <div className={`${styles.modal_box} scrollable`} onClick={(e) => e.stopPropagation()}>{content}</div>
             </div>,
             document.body
         )}
