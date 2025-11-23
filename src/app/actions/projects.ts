@@ -110,7 +110,7 @@ export async function deleteProject(projectId: string) {
     }
 }
 
-export async function updateProject(projectId: string, prevState: UpdateProjectState, formData: FormData) {
+export async function updateProject(prevState: UpdateProjectState, formData: FormData) {
     const { error, shouldRedirect } = await requireAuth();
     if (error) return { error, shouldRedirect, message: "Unauthorized" };
 
@@ -121,7 +121,7 @@ export async function updateProject(projectId: string, prevState: UpdateProjectS
         publishedAt: raw.publishedAt ? new Date(raw.publishedAt.toString()) : undefined,
         tags: raw.tags?.toString(),
     });
-
+    
     if (!validatedFields.success) {
         return {
             success: false,
@@ -129,8 +129,12 @@ export async function updateProject(projectId: string, prevState: UpdateProjectS
         };
     }
 
-    const project = await prisma.projects.findUnique({ where: { id: projectId } });
     const data = validatedFields.data;
+    const project = await prisma.projects.findUnique({ where: { id: data.projectId } });
+
+    if (!project) {
+        return { success: false, error: "Project not found" };
+    }
 
     try {
         let imageUrl = project?.imageUrl || "";
@@ -159,10 +163,9 @@ export async function updateProject(projectId: string, prevState: UpdateProjectS
         }
 
         await prisma.projects.update({
-            where: { id: projectId },
+            where: { id: data.projectId },
             data: {
                 name: data.name,
-                slug: data.slug,
                 demoUrl: data.demoUrl || null,
                 repoUrl: data.repoUrl,
                 description: data.description,

@@ -9,6 +9,7 @@ import AdminAddNewProjectCard from './ProjectsContainer/AdminAddNewProjectCard';
 import styles from './Projects.module.scss';
 
 export type Project = {
+	id: string;
 	name: string;
 	slug: string;
 	demoUrl?: string | null;

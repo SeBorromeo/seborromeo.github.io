@@ -58,13 +58,14 @@ export type CreateProjectState =
   | undefined
 
 export const UpdateProjectSchema = z.object({
+  projectId: z.string(),
   name: z.string().min(2, "Project name is required").optional(),
-  slug: z.string().min(2, "Slug is required").regex(/^[a-z0-9-]+$/, "Slug must be URL friendly").optional(),
   demoUrl: z.url("Invalid URL").optional().or(z.literal("")).optional(),
   repoUrl: z.url("Invalid URL").optional(),
   description: z.string().min(10, "Description must be at least 10 characters").max(250, "Description must be at most 250 characters").optional(),
   tags: z.string().regex(/^[A-Za-z0-9, ]*$/, "Tags must be comma-separated words").optional(),
-  image: z.instanceof(File).optional().refine((file) => (file ? file.size > 0 : true), "File is required")
+  image: z.instanceof(File).optional()
+    .refine((file) => (file ? file.size > 0 : true))
     .refine(
       (file) =>
         file

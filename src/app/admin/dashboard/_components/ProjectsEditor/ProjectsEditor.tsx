@@ -1,14 +1,26 @@
 "use client";
 
 import { useActionState, useEffect, useRef, useState } from "react";
-import { createProject } from "@/app/actions/projects";
+import { createProject, deleteProject, updateProject } from "@/app/actions/projects";
 import { PreviewProjectCard } from "@/components/home/Projects/ProjectsContainer/ProjectCard";
+import { Project } from "@/components/home/Projects/Projects";
+import { useModal } from "@/components/layout/ModalProvider/Modal";
 
 import styles from "./ProjectsEditor.module.scss";
 
-export default function ProjectsEditor() {
-  const [state, action, pending] = useActionState(createProject, undefined);
+type ProjectsEditorProps =
+  | { mode: "create"; initial?: undefined }   
+  | { mode: "edit"; initial: Project };
+
+export default function ProjectsEditor({ initial, mode }: ProjectsEditorProps) {
+  let serverAction: (prevState: any, formData: FormData) => Promise<any> = createProject;
+  if (mode === 'edit') {
+    serverAction = updateProject;
+  }
+  
+  const [state, action, pending] = useActionState(serverAction, undefined);
   const formRef = useRef<HTMLFormElement>(null);
+  const { setContent } = useModal();
   
   useEffect(() => {
     function watchReset(e: Event) { 
@@ -23,15 +35,25 @@ export default function ProjectsEditor() {
     };
   }, []);
 
-  const [formPreview, setFormPreview] = useState({
+  const newProjectState = {
+    id: "",
     name: "",
     slug: "",
     demoUrl: "",
     repoUrl: "",
     description: "",
+    publishedAt: null,
     tags: [] as string[],
-    image: null as string | null,
-  });
+  };
+
+  const [formPreview, setFormPreview] = useState(
+    mode === "edit" && initial
+      ? {
+          ...newProjectState,
+          ...initial,
+        }
+      : newProjectState
+  );
 
   // Handle file preview
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -39,7 +61,7 @@ export default function ProjectsEditor() {
     if (file) {
       if (file.size > 2 * 1024 * 1024) { // 2 MB
         alert("File too large (max 2MB).");
-        e.target.value = ""; // clear
+        e.target.value = "";
         return;
       }
 
@@ -50,52 +72,53 @@ export default function ProjectsEditor() {
     }
   }
 
-  // Handle text changes
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, type } = e.target;
-    const value = type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value;
-
-    setFormPreview(prev => ({ ...prev, [name]: value }));
-  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const fileInput = formRef.current?.elements.namedItem("image") as HTMLInputElement | null;
+    if (fileInput && (!fileInput.files || fileInput.files.length === 0)) {
+      fileInput.removeAttribute("name"); // To remove empty image file from form data 
+    }
+  };
 
   return (
     <div className={styles.editor_wrapper}>
-      <form action={action} className={styles.projectForm} ref={formRef}>
-        <h1>Create Project</h1>
+      <form action={action} className={styles.projectForm} ref={formRef} onSubmit={handleSubmit}>
+        <h1>{mode === "create" ? "Create Project" : "Edit Project"}</h1>
+        <input type="hidden" name="projectId" value={initial?.id} />
 
         <label>
           Name
-          <input name="name" type="text" placeholder="Project name" onChange={handleChange} required />
+          <input name="name" type="text" placeholder="Project name" defaultValue={formPreview.name} required />
           {state?.errors?.name && <p className={styles.error}>{state.errors.name}</p>}
         </label>
 
+        {mode === 'create' && 
         <label>
           Slug
-          <input name="slug" type="text" placeholder="example-project" onChange={handleChange} required />
+          <input name="slug" type="text" placeholder="example-project" required />
           {state?.errors?.slug && <p className={styles.error}>{state.errors.slug}</p>}
-        </label>
+        </label>}
 
         <label>
           Demo URL (Optional)
-          <input name="demoUrl" type="url" placeholder="Enter URL..." onChange={handleChange} />
+          <input name="demoUrl" type="url" placeholder="Enter URL..." defaultValue={formPreview.demoUrl ?? ''} />
           {state?.errors?.demoUrl && <p className={styles.error}>{state.errors.demoUrl}</p>}
         </label>
 
         <label>
           Repo URL
-          <input name="repoUrl" type="url" placeholder="Enter URL..." onChange={handleChange} required />
+          <input name="repoUrl" type="url" placeholder="Enter URL..." defaultValue={formPreview.repoUrl} required />
           {state?.errors?.repoUrl && <p className={styles.error}>{state.errors.repoUrl}</p>}
         </label>
 
         <label>
           Description
-          <textarea name="description" placeholder="Description" onChange={handleChange} required />
+          <textarea name="description" placeholder="Description" defaultValue={formPreview.description} required />
           {state?.errors?.description && <p className={styles.error}>{state.errors.description}</p>}
         </label>
 
         <label>
           Tags (comma separated)
-          <input name="tags" type="text" placeholder="ex. React, Nextjs, TailwindCSS, ..." required
+          <input name="tags" type="text" placeholder="ex. React, Nextjs, TailwindCSS, ..." defaultValue={formPreview.tags} required
             onChange={(e) => {
               const tags = e.target.value.split(",").map(tag => tag.trim());
               setFormPreview(prev => ({ ...prev, tags }));
@@ -106,40 +129,43 @@ export default function ProjectsEditor() {
         </label>
 
         <label>
-          Release Date (If Released)
+          Release Date (Optional If Released)
           <input
             name="publishedAt"
             type="date"
-            onChange={handleChange}
+            defaultValue={formPreview.publishedAt ? formPreview.publishedAt.toISOString().split("T")[0] : ""}
           />
           {state?.errors?.publishedAt && <p className={styles.error}>{state.errors.publishedAt}</p>}
         </label>
 
-        <input type="file" name="image" accept="image/*" onChange={handleFileChange} required />
+        <input type="file" name="image" accept="image/*" onChange={handleFileChange} />
 
         {state?.message && <p className={styles.error}>{state.message}</p>}
-        <button type="submit" onClick={() => {
-          setFormPreview(prev => ({
-            ...prev,
-            image: null,
-          }));
-        }}>
+        <button type="submit" disabled={pending}>
           {pending ? 'Submitting...' : 'Submit'}
         </button>
       </form>
 
       <aside className={styles.preview_pane}>
         <h2>Live Preview</h2>
-        <PreviewProjectCard project={{
-          name: formPreview.name,
-          slug: formPreview.slug || '',
-          demoUrl: formPreview.demoUrl || '',
-          repoUrl: formPreview.repoUrl || '',
-          description: formPreview.description || '',
-          publishedAt: null,
-          tags: formPreview.tags || [],
-          imageUrl: formPreview.image || null,
-        }} />
+        <PreviewProjectCard project={formPreview} />
+        {mode == "edit" && <button
+          type="button"
+          onClick={async () => {
+            if (!confirm("Are you sure you want to delete this project?")) return;
+
+            try {
+              await deleteProject(initial?.id); // call your function
+              alert("Project deleted!");
+              setContent(null)
+            } catch (err) {
+              console.error(err);
+              alert("Failed to delete project.");
+            }
+          }}
+        >
+          Delete Project
+        </button>}
       </aside>
     </div>
   );
