@@ -7,11 +7,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function updateBio(tiptapcontent: JSONContent) {
     const { error, shouldRedirect } = await requireAuth()
-    if (error) return { 
-        error,
-        shouldRedirect,
-        message: "Unauthorized"
-    }
+    if (error) return { error, shouldRedirect, message: "Unauthorized" }
 
     await prisma.bio.updateMany({
         data: { tiptapcontent },
