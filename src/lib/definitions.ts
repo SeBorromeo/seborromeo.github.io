@@ -28,14 +28,19 @@ export const CreateProjectSchema = z.object({
   repoUrl: z.url("Invalid URL"),
   description: z.string().min(10, "Description must be at least 10 characters").max(250, "Description must be at most 250 characters"),
   tags: z.string().regex(/^[A-Za-z0-9, ]*$/, "Tags must be comma-separated words"),
-  image: z
-    .instanceof(File)
-    .refine((file) => file.size > 0, "File is required")
+  image: z.instanceof(File).optional()
+    .refine((file) => (file ? file.size > 0 : true))
     .refine(
-      (file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type),
+      (file) =>
+        file
+          ? ["image/jpeg", "image/png", "image/webp"].includes(file.type)
+          : true,
       "Only JPG, PNG, or WEBP allowed"
     )
-    .refine((file) => file.size <= 2 * 1024 * 1024, "File too large (max 2MB)"),
+    .refine(
+      (file) => (file ? file.size <= 2 * 1024 * 1024 : true),
+      "File too large (max 2MB)"
+    ),
   order: z.number().optional(),
   publishedAt: z.date().optional(),
 });

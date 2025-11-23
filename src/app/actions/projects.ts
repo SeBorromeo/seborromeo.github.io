@@ -11,9 +11,9 @@ import * as z from 'zod'
 export async function createProject(prevState: CreateProjectState, formData: FormData) {
     const { error, shouldRedirect } = await requireAuth()
     if (error) return { error, shouldRedirect, message: "Unauthorized" }
-
+    
     const raw = Object.fromEntries(formData.entries());
-  
+    
     const validatedFields = CreateProjectSchema.safeParse({
         ...raw,
         publishedAt: raw.publishedAt ? new Date(raw.publishedAt.toString()) : undefined,
@@ -28,23 +28,30 @@ export async function createProject(prevState: CreateProjectState, formData: For
     }
 
     const data = validatedFields.data;
+    let key: string | null = null;
+    if (data.image && data.image.size > 0) {
+        // Convert file to buffer
+        const fileBuffer = Buffer.from(await data.image.arrayBuffer());
+        const fileExt = data.image.name.split(".").pop();
+        key = `images/${Date.now()}.${fileExt}`;
 
-    // Convert file to buffer
-    const fileBuffer = Buffer.from(await data.image.arrayBuffer());
-    const fileExt = data.image.name.split(".").pop();
-    const key = `images/${Date.now()}.${fileExt}`;
-
-    try {
-        await s3.send(
-            new PutObjectCommand({
+        try {
+            await s3.send(
+                new PutObjectCommand({
                 Bucket: process.env.AWS_BUCKET_NAME!,
                 Key: key,
                 Body: fileBuffer,
                 ContentType: data.image.type,
-                ACL: "public-read", // optional for public URL
-            })
-        );
+                ACL: "public-read",
+                })
+            );
+        } catch (uploadErr) {
+            console.error("S3 upload failed:", uploadErr);
+            return { success: false, error: "Image upload failed." };
+        }
+    }
 
+    try {
         await prisma.projects.create({
             data: {
                 name: data.name,
@@ -52,9 +59,11 @@ export async function createProject(prevState: CreateProjectState, formData: For
                 demoUrl: data.demoUrl || null,
                 repoUrl: data.repoUrl,
                 description: data.description,
-                publishedAt: data.publishedAt || null, // TODO: Confirm this works
+                publishedAt: data.publishedAt || null,
                 tags: data.tags.split(",").map(tag => tag.trim()),
-                imageUrl: `https://${process.env.AWS_BUCKET_NAME!}.s3.amazonaws.com/${key}`,
+                imageUrl: key
+                    ? `https://${process.env.AWS_BUCKET_NAME!}.s3.amazonaws.com/${key}`
+                    : null,
                 order: 7,
             },
         });
@@ -62,21 +71,44 @@ export async function createProject(prevState: CreateProjectState, formData: For
         revalidatePath("/");
         revalidatePath("/projects");
         refresh();
-
         return { success: true, message: "Project created successfully" };
-    } catch (error) {
+    } catch (error: any) {
         console.error("Upload failed:", error);
 
-        try {
-            await s3.send(new DeleteObjectCommand({
-                    Bucket: process.env.AWS_BUCKET_NAME!,
-                    Key: key,
-                })
-            );
-            return { success: false, error: "Upload failed" };
-        } catch (rollbackError) {
-            console.error("Rollback failed:", rollbackError);
-            return { success: false, error: "Upload failed" };
+        // SLUG DUPLICATE ERROR (Prisma P2002)
+        if (error.code === "P2002" && error.meta?.target?.includes("slug")) {
+            if (key) {    
+                try {
+                    await s3.send(
+                            new DeleteObjectCommand({
+                            Bucket: process.env.AWS_BUCKET_NAME!,
+                            Key: key,
+                        })
+                    );
+                } catch (rollbackError) {
+                    console.error("Rollback (delete S3 file) failed:", rollbackError);
+                }
+            }
+
+            return {
+                success: false,
+                errors: { slug: "That slug is already taken." },
+            };
+        }
+
+        // Every other error
+        if (key) {
+            try {
+                await s3.send(new DeleteObjectCommand({
+                        Bucket: process.env.AWS_BUCKET_NAME!,
+                        Key: key,
+                    })
+                );
+                return { success: false, error: "Upload failed" };
+            } catch (rollbackError) {
+                console.error("Rollback failed:", rollbackError);
+                return { success: false, error: "Upload failed" };
+            }
         }
     }
 }
