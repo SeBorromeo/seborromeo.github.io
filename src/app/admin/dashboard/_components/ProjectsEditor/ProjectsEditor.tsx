@@ -9,7 +9,7 @@ import { useModal } from "@/components/layout/ModalProvider/Modal";
 import styles from "./ProjectsEditor.module.scss";
 
 type ProjectsEditorProps =
-  | { mode: "create"; initial?: undefined }   
+  | { mode?: "create"; initial?: undefined }   
   | { mode: "edit"; initial: Project };
 
 export default function ProjectsEditor({ initial, mode = 'create' }: ProjectsEditorProps) {
