@@ -31,7 +31,7 @@ export async function login(state: LoginState, formData: FormData) {
     const passwordMatch = await bcrypt.compare(password, user.password);
     
     if (!passwordMatch) {
-        return { errors: { password: ["User with this email could not be found"] }}
+        return { errors: { password: ["Incorrect password"] }}
     }
 
     await createSession(user.id)
