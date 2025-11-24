@@ -151,7 +151,11 @@ export default function ProjectsEditor({ initial, mode = 'create' }: ProjectsEdi
 
         {state?.message && <p className={styles.error}>{state.message}</p>}
         <button type="submit" disabled={pending}>
-          {pending ? 'Submitting...' : 'Submit'}
+          {mode === 'edit' ?
+            (pending ? 'Saving...' : 'Save')
+            : 
+            (pending ? 'Submitting...' : 'Submit')
+          }
         </button>
       </form>
 

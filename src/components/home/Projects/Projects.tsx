@@ -23,6 +23,7 @@ export type Project = {
 export default async function Projects ({ admin = false }: { admin?: boolean }) {
 	const projects = await prisma.projects.findMany({
 		orderBy: { order: "asc" }, 
+		take: admin ? undefined : 6,
 	});
 	
     return (
@@ -35,6 +36,7 @@ export default async function Projects ({ admin = false }: { admin?: boolean }) 
 					:
 					<ProjectCard project={project} key={index} />
 				)}
+
 				{admin && 
 					<AdminAddNewProjectCard />
 				}
