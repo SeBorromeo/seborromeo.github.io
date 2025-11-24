@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma';
 import Tags from '@/components/ui/Tags/Tags';
 import Image from 'next/image';
 import UnderlineHeading from '@/components/ui/animations/UnderlineHeading/UnderlineHeading';
+import ExperienceButton from '@/app/admin/dashboard/_components/ExperiencesEditor/ExperienceButton';
 
 import styles from './Experience.module.scss';
 
@@ -19,7 +20,7 @@ export type Experience = {
     skills: string[];
 };
 
-export default async function Experience() {
+export default async function Experience({ admin = false }: { admin?: boolean }) {
     const experiences = await prisma.experience.findMany({
         orderBy: { startDate: "desc" }, 
     });
@@ -35,46 +36,52 @@ export default async function Experience() {
                     <UnderlineHeading text={'EXPERIENCE'} />
                 </div>
                 {experiences.map((exp: Experience) => (
-                    <div key={exp.id} className={styles.experience_row}>
-                        <div className={styles.text_section}>
-                            {/* Date and tags */}
-                            <div className={styles.date}>
-                                <p>
-                                    {exp.startDate.toLocaleString('en-US', { month: 'short', year: 'numeric'})} - {exp.endDate ? exp.endDate.toLocaleString('en-US', { month: 'short', year: 'numeric'}) : "Present"}
-                                </p>
-                            </div>
-                            
-                            <div className={styles.tags}>
-                                <Tags list={exp.skills} />
-                            </div>
+                    <>
+                        {admin && <ExperienceButton experience={exp} />}
+                        <div key={exp.id} className={styles.experience_row}>
+                            <div className={styles.text_section}>
+                                {/* Date and tags */}
+                                <div className={styles.date}>
+                                    <p>
+                                        {exp.startDate.toLocaleString('en-US', { month: 'short', year: 'numeric'})} - {exp.endDate ? exp.endDate.toLocaleString('en-US', { month: 'short', year: 'numeric'}) : "Present"}
+                                    </p>
+                                </div>
+                                
+                                <div className={styles.tags}>
+                                    <Tags list={exp.skills} />
+                                </div>
 
-                            {/* Role, company, description */}
-                            <div>
-                                <h3 className={styles.company_and_role}>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
-                            </div>
+                                {/* Role, company, description */}
+                                <div>
+                                    <h3 className={styles.company_and_role}>{exp.role} <span className={styles.company}>@ <a href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a></span></h3>
+                                </div>
 
-                            <div>
-                                <ul className={styles.role_description_list}>
-                                    {exp.description.map((item, i) => (
-                                        <li key={i}>{item}</li>
-                                    ))}
-                                </ul>
+                                <div>
+                                    <ul className={styles.role_description_list}>
+                                        {exp.description.map((item, i) => (
+                                            <li key={i}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className={styles.logo_section}>
+                                <div className={styles.logo_container}>
+                                    <Image
+                                        fill
+                                        src={exp.logoUrl}
+                                        sizes='100%, 100%'
+                                        alt="Photo of Sebastian"
+                                        style={{ objectFit: "cover" }}
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div className={styles.logo_section}>
-                            <div className={styles.logo_container}>
-                                <Image
-                                    fill
-                                    src={exp.logoUrl}
-                                    sizes='100%, 100%'
-                                    alt="Photo of Sebastian"
-                                    style={{ objectFit: "cover" }}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    </>
                 ))}
+                {admin && <ExperienceButton />}
             </div>
         </section>
     );
 };
+
+

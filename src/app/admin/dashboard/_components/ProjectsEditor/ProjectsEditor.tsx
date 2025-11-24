@@ -86,7 +86,6 @@ export default function ProjectsEditor({ initial, mode = 'create' }: ProjectsEdi
     }
   };
 
-  // TODO: Fix no live preview changes
   return (
     <div className={styles.editor_wrapper}>
       <form action={action} className={styles.projectForm} ref={formRef} onSubmit={handleSubmit}>
@@ -162,6 +161,7 @@ export default function ProjectsEditor({ initial, mode = 'create' }: ProjectsEdi
       <aside className={styles.preview_pane}>
         <h2>Live Preview</h2>
         <PreviewProjectCard project={formPreview} />
+
         {mode === "edit" && <button
           type="button"
           onClick={async () => {
@@ -169,7 +169,7 @@ export default function ProjectsEditor({ initial, mode = 'create' }: ProjectsEdi
 
             if (initial) {
               try {
-                await deleteProject(initial.id); // call your function
+                await deleteProject(initial.id);
                 alert("Project deleted!");
                 setContent(null)
               } catch (err) {
@@ -181,6 +181,7 @@ export default function ProjectsEditor({ initial, mode = 'create' }: ProjectsEdi
         >
           Delete Project
         </button>}
+
       </aside>
     </div>
   );
