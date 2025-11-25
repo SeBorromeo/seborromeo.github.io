@@ -3,6 +3,7 @@ import Tags from '@/components/ui/Tags/Tags';
 import Image from 'next/image';
 import UnderlineHeading from '@/components/ui/animations/UnderlineHeading/UnderlineHeading';
 import ExperienceButton from '@/app/admin/dashboard/_components/ExperiencesEditor/ExperienceButton';
+import React from 'react';
 
 import styles from './Experience.module.scss';
 
@@ -35,8 +36,8 @@ export default async function Experience({ admin = false }: { admin?: boolean })
                 <div className={styles.heading_container}>
                     <UnderlineHeading text={'EXPERIENCE'} />
                 </div>
-                {experiences.map((exp: Experience) => (
-                    <>
+                {experiences.map((exp: Experience, index) => (
+                    <React.Fragment key={index}>
                         {admin && <ExperienceButton experience={exp} />}
                         <div key={exp.id} className={styles.experience_row}>
                             <div className={styles.text_section}>
@@ -76,7 +77,7 @@ export default async function Experience({ admin = false }: { admin?: boolean })
                                 </div>
                             </div>
                         </div>
-                    </>
+                    </React.Fragment>
                 ))}
                 {admin && <ExperienceButton />}
             </div>

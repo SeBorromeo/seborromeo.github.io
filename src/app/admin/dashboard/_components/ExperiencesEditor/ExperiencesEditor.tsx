@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import React, { useActionState, useEffect, useRef } from "react";
 import { useModal } from "@/components/layout/ModalProvider/Modal";
 import { Experience } from "@/components/home/Experience/Experience";
 import { createExperience, deleteExperience, updateExperience } from "@/app/actions/experiences";
+import DescriptionEditor from "./DescriptionEditor";
 
 import styles from "./ExperiencesEditor.module.scss";
 
@@ -71,12 +72,7 @@ export default function ExperiencesEditor({ initial, mode = 'create' }: Experien
           {state?.errors?.companyUrl && <p className={styles.error}>{state.errors.companyUrl}</p>}
         </label>
 
-				{/* TODO: Figure out string array */}
-        <label>
-          Description
-          <textarea name="description" placeholder="Description" defaultValue={initial?.description} required />
-          {state?.errors?.description && <p className={styles.error}>{state.errors.description}</p>}
-        </label>
+				<DescriptionEditor initialDescriptions={initial?.description} errors={state?.errors?.description} />
 
         <label>
           Skills (comma separated)

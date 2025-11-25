@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { SessionPayload } from '@/lib/definitions'
 import { cookies } from 'next/headers';
 import { cache } from 'react';
+import { redirect } from 'next/navigation';
  
 export async function encrypt(payload: SessionPayload) {
     return jwt.sign(
@@ -54,8 +55,9 @@ export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
     const session = await decrypt(cookie)
     
-    if (!session?.userId)
-        return null
+    if (!session?.userId) {
+        redirect('/admin/login')
+    }
     
     return { isAuth: true, userId: session.userId }
 })
