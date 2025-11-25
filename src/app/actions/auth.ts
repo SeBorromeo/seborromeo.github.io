@@ -1,9 +1,8 @@
 'use server';
 
-import { verifySession } from '@/lib/dal';
 import { LoginFormSchema, LoginState } from '@/lib/definitions';
 import { prisma } from '@/lib/prisma';
-import { createSession, deleteSession } from '@/lib/session';
+import { createSession, deleteSession, verifySession } from '@/lib/session';
 import bcrypt from 'bcrypt';
 import { redirect } from 'next/navigation';
 import * as z from 'zod'
