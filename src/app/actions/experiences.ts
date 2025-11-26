@@ -31,7 +31,7 @@ export async function deleteExperience(experienceId: string) {
             }));
         }
 
-        await prisma.projects.delete({ where: { id: experienceId } });
+        await prisma.experience.delete({ where: { id: experienceId } });
 
         revalidatePath("/");
         refresh();
