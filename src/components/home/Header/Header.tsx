@@ -99,6 +99,7 @@ export default function Header() {
     return (
         <header id="header" className={styles.header} data-speed="0.72">
             <div className={styles.bg}/>
+            <div className={styles.scrollTrigger}/>
             <div className={styles.intro_section}>
                 <div className={styles.name_column}>
                     <h1 className={styles.name}>Hi, I&apos;m Sebastian!</h1>
