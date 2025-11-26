@@ -87,7 +87,6 @@ export const UpdateProjectSchema = z.object({
   publishedAt: z.date().optional(),
 });
 
-
 export type UpdateProjectState =
   | {
       errors?: {
@@ -104,6 +103,32 @@ export type UpdateProjectState =
       message?: string
     }
   | undefined
+
+export const CreateExperienceSchema = z.object({
+  company: z.string().min(2, "Company name required").max(50, "Company name can't exceed 50 characters"),
+  companyUrl: z.url("Invalid URL"),
+  role: z.string().min(2, "Role required").max(50, "Company name can't exceed 50 characters"),
+  startDate: z.date(),
+  endDate: z.date().optional(),
+  description: z.array(
+    z.string().min(25, "Each description bullet must be at least 25 characters").max(300, "Each description bullet must be at most 300 characters")
+  ).min(1, "At least one description bullet is required")
+    .max(10, "No more than 10 description bullets allowed"),
+  image: z.instanceof(File)
+    .refine((file) => (file ? file.size > 0 : true))
+    .refine(
+      (file) =>
+        file
+          ? ["image/jpeg", "image/png", "image/webp"].includes(file.type)
+          : true,
+      "Only JPG, PNG, or WEBP allowed"
+    )
+    .refine(
+      (file) => (file ? file.size <= 2 * 1024 * 1024 : true),
+      "File too large (max 2MB)"
+    ),
+  skills: z.string().regex(/^[A-Za-z0-9, ]*$/, "Skills must be comma-separated words")
+})
 
 export const UpdateExperienceSchema = z.object({
   experienceId: z.string(),

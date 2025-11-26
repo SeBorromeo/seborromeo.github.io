@@ -1,6 +1,6 @@
 'use server';
 
-import { ModifyExperienceState, UpdateExperienceSchema } from "@/lib/definitions";
+import { CreateExperienceSchema, ModifyExperienceState, UpdateExperienceSchema } from "@/lib/definitions";
 import { prisma } from "@/lib/prisma";
 import { s3 } from "@/lib/s3";
 import { requireAuth } from "@/lib/session";
@@ -12,7 +12,76 @@ export async function createExperience(prevState: ModifyExperienceState, formDat
     const { error, shouldRedirect } = await requireAuth();
     if (error) return { error, shouldRedirect, message: "Unauthorized" };
 
+    const raw = Object.fromEntries(formData.entries());
+    const description = formData.getAll("description");
     
+    const validatedFields = CreateExperienceSchema.safeParse({
+        ...raw,
+        description: description,
+        startDate: raw.startDate ? new Date(raw.startDate.toString()) : undefined,
+        endDate: raw.endDate ? new Date(raw.endDate.toString()) : undefined,
+    });
+    
+    if (!validatedFields.success) {
+        return {
+            success: false,
+            errors: z.flattenError(validatedFields.error).fieldErrors,
+        };
+    }
+
+    const data = validatedFields.data;
+
+    // Convert file to buffer
+    const fileBuffer = Buffer.from(await data.image.arrayBuffer());
+    const fileExt = data.image.name.split(".").pop();
+    const key = `images/${Date.now()}.${fileExt}`;
+
+    try {
+        await s3.send(
+            new PutObjectCommand({
+                Bucket: process.env.AWS_BUCKET_NAME!,
+                Key: key,
+                Body: fileBuffer,
+                ContentType: data.image.type,
+                ACL: "public-read",
+            })
+        );
+    } catch (uploadErr) {
+        console.error("S3 upload failed:", uploadErr);
+        return { success: false, error: "Image upload failed." };
+    }
+
+    try {
+        await prisma.experience.create({
+            data: {
+                company: data.company,
+                companyUrl: data.companyUrl,
+                role: data.role,
+                startDate: data.startDate,
+                description: data.description,
+                skills: data.skills.split(",").map(skill => skill.trim()),
+                endDate: data.endDate,
+                logoUrl: `https://${process.env.AWS_BUCKET_NAME!}.s3.amazonaws.com/${key}`,
+            },
+        });
+
+        revalidatePath("/");
+        refresh();
+        return { success: true, message: "Experience created successfully" };
+    } catch (error: any) {
+        console.error("Upload failed:", error);
+        try {
+            await s3.send(
+                    new DeleteObjectCommand({
+                    Bucket: process.env.AWS_BUCKET_NAME!,
+                    Key: key,
+                })
+            );
+        } catch (rollbackError) {
+            console.error("Rollback (delete S3 file) failed:", rollbackError);
+        }
+        return { success: false, error: "Upload failed" };
+    }
 }
 
 export async function deleteExperience(experienceId: string) {

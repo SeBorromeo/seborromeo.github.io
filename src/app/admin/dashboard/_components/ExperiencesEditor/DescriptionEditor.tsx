@@ -25,6 +25,7 @@ export default function DescriptionEditor({ initialDescriptions = [], errors }: 
   return (
     <label>
       Description
+      {errors && <p className={styles.error}>{errors}</p>}
       {descriptions.map((bulletPoint, index) => (
         <div key={index} className={styles.descriptionItem}>
           <textarea
@@ -32,11 +33,10 @@ export default function DescriptionEditor({ initialDescriptions = [], errors }: 
             placeholder="Enter Text..."
             value={bulletPoint}
             onChange={(e) => updateDescription(index, e.target.value)}
-            maxLength={500}  
+            maxLength={300}  
             required
           />
-          {errors && <p className={styles.error}>{errors}</p>}
-          <p>{500 - bulletPoint.length} characters left</p>
+          <p>{300 - bulletPoint.length} characters left</p>
           <button
             type="button"
             onClick={() => deleteDescription(index)}

@@ -48,9 +48,16 @@ export default function ExperiencesEditor({ initial, mode = 'create' }: Experien
     }
   }
 
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const fileInput = formRef.current?.elements.namedItem("image") as HTMLInputElement | null;
+    if (fileInput && (!fileInput.files || fileInput.files.length === 0)) {
+      fileInput.removeAttribute("name"); // To remove empty image file from form data 
+    }
+  };
+
   return (
     <div className={styles.editor_wrapper}>
-      <form action={action} className={styles.experienceForm} ref={formRef}>
+      <form action={action} className={styles.experienceForm} ref={formRef} onSubmit={handleSubmit}>
         <h1>{mode === "create" ? "Create Experience" : "Edit Experience"}</h1>
         <input type="hidden" name="experienceId" value={initial?.id} />
 
@@ -86,6 +93,7 @@ export default function ExperiencesEditor({ initial, mode = 'create' }: Experien
             name="startDate"
             type="month"
             defaultValue={initial?.startDate.toISOString().slice(0, 7)}
+						required
           />
           {state?.errors?.startDate && <p className={styles.error}>{state.errors.startDate}</p>}
         </label>
@@ -100,7 +108,7 @@ export default function ExperiencesEditor({ initial, mode = 'create' }: Experien
           {state?.errors?.endDate && <p className={styles.error}>{state.errors.endDate}</p>}
         </label>
 
-        <input type="file" name="logoUrl" accept="image/*" onChange={handleFileChange} required={mode === 'create'} />
+        <input type="file" name="image" accept="image/*" onChange={handleFileChange} required={mode === 'create'} />
         {state?.errors?.logo && <p className={styles.error}>{state.errors.logo}</p>}
 
         {state?.message && <p className={styles.error}>{state.message}</p>}
