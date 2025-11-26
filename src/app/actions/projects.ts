@@ -151,7 +151,6 @@ export async function updateProject(prevState: UpdateProjectState, formData: For
     const validatedFields = UpdateProjectSchema.safeParse({
         ...raw,
         publishedAt: raw.publishedAt ? new Date(raw.publishedAt.toString()) : undefined,
-        tags: raw.tags?.toString(),
     });
     
     if (!validatedFields.success) {

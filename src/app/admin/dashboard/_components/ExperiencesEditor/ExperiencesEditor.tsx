@@ -85,7 +85,7 @@ export default function ExperiencesEditor({ initial, mode = 'create' }: Experien
           <input
             name="startDate"
             type="month"
-            defaultValue={initial?.startDate.toISOString().split("T")[0]}
+            defaultValue={initial?.startDate.toISOString().slice(0, 7)}
           />
           {state?.errors?.startDate && <p className={styles.error}>{state.errors.startDate}</p>}
         </label>
@@ -95,12 +95,12 @@ export default function ExperiencesEditor({ initial, mode = 'create' }: Experien
           <input
             name="endDate"
             type="month"
-            defaultValue={initial?.endDate?.toISOString().split("T")[0]}
+            defaultValue={initial?.endDate?.toISOString().slice(0, 7)}
           />
           {state?.errors?.endDate && <p className={styles.error}>{state.errors.endDate}</p>}
         </label>
 
-        <input type="file" name="logo" accept="image/*" onChange={handleFileChange} required />
+        <input type="file" name="logoUrl" accept="image/*" onChange={handleFileChange} required={mode === 'create'} />
         {state?.errors?.logo && <p className={styles.error}>{state.errors.logo}</p>}
 
         {state?.message && <p className={styles.error}>{state.message}</p>}

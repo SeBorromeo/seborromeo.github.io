@@ -35,6 +35,7 @@ export default function DescriptionEditor({ initialDescriptions = [], errors }: 
             maxLength={500}  
             required
           />
+          {errors && <p className={styles.error}>{errors}</p>}
           <p>{500 - bulletPoint.length} characters left</p>
           <button
             type="button"
@@ -43,9 +44,6 @@ export default function DescriptionEditor({ initialDescriptions = [], errors }: 
           >
             Delete
           </button>
-          {errors && (
-            <p className={styles.error}>{errors}</p>
-          )}
         </div>
       ))}
       <button type="button" onClick={addDescription} className={styles.addButton}>
