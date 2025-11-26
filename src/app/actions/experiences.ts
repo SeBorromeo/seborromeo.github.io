@@ -11,12 +11,36 @@ import z from "zod";
 export async function createExperience(prevState: ModifyExperienceState, formData: FormData) {
     const { error, shouldRedirect } = await requireAuth();
     if (error) return { error, shouldRedirect, message: "Unauthorized" };
+
+    
 }
 
 export async function deleteExperience(experienceId: string) {
     const { error, shouldRedirect } = await requireAuth();
     if (error) return { error, shouldRedirect, message: "Unauthorized" };
     
+     try {
+        const experience = await prisma.experience.findUnique({ where: { id: experienceId } });
+        if (!experience) return { success: false, error: "Experience not found" };
+
+        if (experience.logoUrl) {
+            const key = experience.logoUrl.split(`https://${process.env.AWS_BUCKET_NAME!}.s3.amazonaws.com/`)[1];
+            await s3.send(new DeleteObjectCommand({
+                Bucket: process.env.AWS_BUCKET_NAME!,
+                Key: key,
+            }));
+        }
+
+        await prisma.projects.delete({ where: { id: experienceId } });
+
+        revalidatePath("/");
+        refresh();
+
+        return { success: true, message: "Experience deleted successfully" };
+    } catch (err) {
+        console.error("Delete failed:", err);
+        return { success: false, error: "Delete failed" };
+    }
 }
 
 export async function updateExperience(prevState: ModifyExperienceState, formData: FormData) {
