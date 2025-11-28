@@ -28,7 +28,7 @@ export const CreateProjectSchema = z.object({
   demoUrl: z.url("Invalid URL").optional().or(z.literal("")),
   repoUrl: z.url("Invalid URL"),
   description: z.string().min(10, "Description must be at least 10 characters").max(250, "Description must be at most 250 characters"),
-  tags: z.string().regex(/^[A-Za-z0-9, ]*$/, "Tags must be comma-separated words"),
+  tags: z.string().regex(/^[A-Za-z0-9, \-\/.+#()]*$/, "Tags must be comma-separated words"),
   image: z.instanceof(File).optional()
     .refine((file) => (file ? file.size > 0 : true))
     .refine(
@@ -69,7 +69,7 @@ export const UpdateProjectSchema = z.object({
   demoUrl: z.url("Invalid URL").optional().or(z.literal("")).optional(),
   repoUrl: z.url("Invalid URL").optional(),
   description: z.string().min(10, "Description must be at least 10 characters").max(250, "Description must be at most 250 characters").optional(),
-  tags: z.string().regex(/^[A-Za-z0-9, ]*$/, "Tags must be comma-separated words").optional(),
+  tags: z.string().regex(/^[A-Za-z0-9, \-\/.+#()]*$/, "Tags must be comma-separated words").optional(),
   image: z.instanceof(File).optional()
     .refine((file) => (file ? file.size > 0 : true))
     .refine(
@@ -127,7 +127,7 @@ export const CreateExperienceSchema = z.object({
       (file) => (file ? file.size <= 2 * 1024 * 1024 : true),
       "File too large (max 2MB)"
     ),
-  skills: z.string().regex(/^[A-Za-z0-9, ]*$/, "Skills must be comma-separated words")
+  skills: z.string().regex(/^[A-Za-z0-9, \-\/.+#()]*$/, "Skills must be comma-separated words")
 })
 
 export const UpdateExperienceSchema = z.object({
@@ -154,7 +154,7 @@ export const UpdateExperienceSchema = z.object({
       (file) => (file ? file.size <= 2 * 1024 * 1024 : true),
       "File too large (max 2MB)"
     ),
-  skills: z.string().regex(/^[A-Za-z0-9, ]*$/, "Skills must be comma-separated words")
+  skills: z.string().regex(/^[A-Za-z0-9, \-\/.+#()]*$/, "Skills must be comma-separated words")
 })
 
 export type ModifyExperienceState = {
