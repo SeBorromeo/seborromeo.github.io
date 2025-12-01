@@ -4,7 +4,7 @@ import { FC, useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import { useIntroTimeline } from '../IntroAnimationLayout/IntroAnimationLayout';
 import StickyDiv from '@/components/ui/StickyDiv/StickyDiv';
-import SideNav from './SideNav/SideNav';
+import SideNav, { MobileSideNav } from './SideNav/SideNav';
 import { CONTACT_EMAIL } from '@/constants/constants';
 
 import styles from './Navbar.module.scss';
@@ -25,6 +25,7 @@ const Navbar: FC = () => {
     return (
         <>
             <SideNav isOpen={sideBarOpen} onClose={() => setSidebarOpen(false)}/>
+            <MobileSideNav isOpen={sideBarOpen} onClose={() => setSidebarOpen(false)}/>
             <nav className={styles.nav_container} ref={navRef}>
                 <div className={styles.home_container}>
                     <StickyDiv padding='0px'>
